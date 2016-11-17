@@ -1,4 +1,3 @@
-import java.util.AbstractMap;
 import java.util.ArrayList;
 
 /**
@@ -26,19 +25,52 @@ public class MLP {
         outputNeuron = new Neuron(hiddenLayer);
     }
 
-    public void trainWeigthts(ArrayList<AbstractMap.SimpleImmutableEntry<ArrayList<Double>, Double>> trainingSet) {
+    public void trainWeights(ArrayList<Sample> trainingSet) {
+        boolean continueLearning = false;
+        int learningStep = 0;
+        do {
+            continueLearning = false;
+            // UPPER WEIGHTS
+            for (Connection connection : outputNeuron.connections) {
+                double errorSum = 0;
+                for (Sample sample : trainingSet) {
+                    double errorDerRespValue = getEstimate(sample.inputs) - sample.desiredOutput;
+                    errorSum += errorDerRespValue * outputNeuron.sigmaPrime() * connection.incomingNeuron.value;
+                }
+                if (Math.abs(errorSum) > 0.00_000_1){
+                    continueLearning = true;
+                }
+                connection.deltaWeight = -learningRate(learningStep) * errorSum;
+            }
+            // LOWER WEIGHTS
+            for (Neuron neuron : hiddenLayer) {
+                for (Connection connection : neuron.connections) {
 
-        for (Connection connection : outputNeuron.connections) {
-
-        }
-
-        for (AbstractMap.SimpleImmutableEntry<ArrayList<Double>, Double> sample : trainingSet) {
-
-
-        }
+                    double errorSum = 0;
+                    for (Sample sample : trainingSet) {
+                        double errorDerOutputNeuronRespValue = getEstimate(sample.inputs) - sample.desiredOutput;
+                        double errorDerRespValue = errorDerOutputNeuronRespValue * outputNeuron.sigmaPrime() * outputNeuron.connectionsMap.get(neuron).weight;
+                        errorSum += errorDerOutputNeuronRespValue * neuron.sigmaPrime() * connection.incomingNeuron.value;
+                    }
+                    if (Math.abs(errorSum) > 0.00_000_1){
+                        continueLearning = true;
+                    }
+                    connection.deltaWeight = -learningRate(learningStep) * errorSum;
+                }
+            }
+            updateWeights();
+            learningStep++;
+        } while (continueLearning);
     }
 
-    public double getMovieRating(ArrayList<Double> inputs) {
+    public void updateWeights() {
+        for (Neuron neuron : hiddenLayer) {
+            neuron.updateWeights();
+        }
+        outputNeuron.updateWeights();
+    }
+
+    public double getEstimate(ArrayList<Double> inputs) {
         if (inputLayer.size() != inputs.size()) {
             throw new IllegalArgumentException("Input is not of same length as there are input neurons");
         }

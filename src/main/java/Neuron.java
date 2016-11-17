@@ -10,14 +10,21 @@ public class Neuron {
     private static double WEIGHT_INIT = 0.3;
 
     public ArrayList<Connection> connections = new ArrayList<>();
+    public HashMap<Neuron, Connection> connectionsMap = new HashMap<>();
 
+    public double innerPotential;
     public double value;
 
     public Neuron(ArrayList<Neuron> lowerLayer) {
         for (Neuron n : lowerLayer) {
-            connections.add(new Connection(n, WEIGHT_INIT));
+            Connection conn = new Connection(n, WEIGHT_INIT);
+            connections.add(conn);
+            connectionsMap.put(n, conn);
         }
-        connections.add(new Connection(new Neuron(1), WEIGHT_INIT));
+        Neuron neuron = new Neuron(1);
+        Connection connection = new Connection(neuron, WEIGHT_INIT);
+        connections.add(connection);
+        connectionsMap.put(neuron, connection);
     }
 
     public Neuron(double value) {
@@ -25,11 +32,21 @@ public class Neuron {
     }
 
     public void evaluate() {
-        double innerPotential = 0;
+        innerPotential = 0;
         for (Connection connection : connections) {
             innerPotential += connection.incomingNeuron.value * connection.weight;
         }
-        value = 1 / (1 + Math.exp(MLP.sigmoidSteepness * innerPotential));
+        value = 1 / (1 + Math.exp(-MLP.sigmoidSteepness * innerPotential));
+    }
+
+    public double sigmaPrime() {
+        return MLP.sigmoidSteepness * value * (1 - value);
+    }
+
+    public void updateWeights() {
+        for (Connection connection : connections) {
+            connection.weight += connection.deltaWeight;
+        }
     }
 
 }
