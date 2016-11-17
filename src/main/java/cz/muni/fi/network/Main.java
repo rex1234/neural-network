@@ -1,4 +1,4 @@
-import java.util.stream.IntStream;
+package cz.muni.fi.network;
 
 /**
  * Created by MiHu on 11.11.2016.

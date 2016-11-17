@@ -1,6 +1,7 @@
+package cz.muni.fi.network;
+
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by MiHu on 17.11.2016.
