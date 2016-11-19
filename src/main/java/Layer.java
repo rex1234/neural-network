@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created by MiHu on 19.11.2016.
  */
@@ -5,24 +7,34 @@ public class Layer {
 
     private MLP mlp;
 
+    Random r = new Random();
+
+    private boolean isHidden;
     public double outputs[];
     public double weights[][];
     public double deltaWeights[][];
     public double errorDsRespectY[];
     public double inputs[];
 
-    public Layer(MLP mlp, int numNeurons, int numInputs) {
+    public Layer(MLP mlp, int numNeurons, int numInputs, boolean isHidden) {
         this.mlp = mlp;
-        outputs = new double[numNeurons];
-        errorDsRespectY = new double[numNeurons];
-        weights = new double[numNeurons][numInputs];
-        deltaWeights = new double[numNeurons][numInputs];
+        this.isHidden = isHidden;
+        if (isHidden) {
+            outputs = new double[numNeurons + 1];
+            outputs[numNeurons] = 1.0;
+            errorDsRespectY = new double[numNeurons + 1];
+        } else {
+            outputs = new double[numNeurons];
+            errorDsRespectY = new double[numNeurons];
+        }
+        weights = new double[numNeurons][numInputs + 1];
+        deltaWeights = new double[numNeurons][numInputs + 1];
     }
 
-    public void initWeights() {
+    public void initWeights(double min, double max) {
         for (int i = 0; i < weights.length; i++) {
             for (int j = 0; j < weights[i].length; j++) {
-                weights[i][j] = 0.1;
+                weights[i][j] = min + (max - min) * r.nextDouble();
             }
         }
     }
@@ -38,8 +50,11 @@ public class Layer {
     public double[] evaluate() {
         for (int i = 0; i < weights.length; i++) {
             double innerPotential = 0;
-            for (int j = 0; j < weights[i].length; j++) {
+            for (int j = 0; j < inputs.length; j++) {
                 innerPotential += weights[i][j] * inputs[j];
+            }
+            if (isHidden) {
+                innerPotential += weights[i][inputs.length]; //TODO optimalizovat if podmienku
             }
             outputs[i] = sigmoid(innerPotential);
         }
@@ -49,7 +64,7 @@ public class Layer {
     public void updateWeights(double learningRate) {
         for (int i = 0; i < weights.length; i++) {
             for (int j = 0; j < weights[i].length; j++) {
-                weights[i][j] = -learningRate * deltaWeights[i][j];
+                weights[i][j] += -learningRate * deltaWeights[i][j];
             }
         }
     }
