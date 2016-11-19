@@ -1,3 +1,5 @@
+package cz.muni.fi.network;
+
 /**
  * Created by MiHu on 19.11.2016.
  */

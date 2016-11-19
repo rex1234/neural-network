@@ -1,3 +1,5 @@
+package cz.muni.fi.network;
+
 import java.util.Random;
 
 /**

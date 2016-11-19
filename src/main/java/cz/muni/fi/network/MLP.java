@@ -1,5 +1,6 @@
+package cz.muni.fi.network;
+
 import java.util.ArrayList;
-import java.util.regex.Matcher;
 
 /**
  * Created by MiHu on 17.11.2016.
