@@ -16,8 +16,8 @@ public class MLP {
         this.sigmoidSteepness = sigmoidSteepness;
         this.learningRate = learningRate;
 
-        outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons, false);
-        hiddenLayer = new Layer(this, numHiddenNeurons, numInputNeurons, true);
+        outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons);
+        hiddenLayer = new Layer(this, numHiddenNeurons, numInputNeurons);
         outputLayer.inputs = hiddenLayer.outputs;
     }
 
