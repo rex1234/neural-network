@@ -1,15 +1,13 @@
-import java.util.ArrayList;
-
 /**
- * Created by MiHu on 17.11.2016.
+ * Created by MiHu on 19.11.2016.
  */
 public class Sample {
 
-    public ArrayList<Double> inputs;
-    public double desiredOutput;
+    public double[] inputs;
+    public double[] desiredOutputs;
 
-    public Sample(ArrayList<Double> inputs, double desiredOutput) {
+    public Sample(double[] inputs, double[] desiredOutputs) {
         this.inputs = inputs;
-        this.desiredOutput = desiredOutput;
+        this.desiredOutputs = desiredOutputs;
     }
 }

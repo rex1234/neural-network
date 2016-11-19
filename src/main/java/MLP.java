@@ -5,86 +5,79 @@ import java.util.ArrayList;
  */
 public class MLP {
 
-    public static double sigmoidSteepness;
+    public double sigmoidSteepness;
+    public double learningRate;
 
+    private Layer outputLayer;
+    private Layer hiddenLayer;
 
-    private Neuron outputNeuron;
-    private ArrayList<Neuron> hiddenLayer = new ArrayList<>();
-    private ArrayList<Neuron> inputLayer = new ArrayList<>();
+    public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, double sigmoidSteepness, double learningRate) {
 
-    public MLP(int numInputNeurons, int numHiddenNeurons, double sigmoidSteepness) {
-        MLP.sigmoidSteepness = sigmoidSteepness;
+        this.sigmoidSteepness = sigmoidSteepness;
+        this.learningRate = learningRate;
 
-        for (int i = 0; i < numInputNeurons; i++) {
-            inputLayer.add(new Neuron(0));
-        }
-
-        for (int i = 0; i < numHiddenNeurons; i++) {
-            hiddenLayer.add(new Neuron(inputLayer));
-        }
-        outputNeuron = new Neuron(hiddenLayer);
+        outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons);
+        hiddenLayer = new Layer(this, numHiddenNeurons, numInputNeurons);
+        outputLayer.inputs = hiddenLayer.outputs;
     }
 
-    public void trainWeights(ArrayList<Sample> trainingSet) {
-        boolean continueLearning = false;
+    public void training(ArrayList<Sample> samples) {
+        initWeights();
+        boolean continueTraining = true;
         int learningStep = 0;
         do {
-            continueLearning = false;
-            // UPPER WEIGHTS
-            for (Connection connection : outputNeuron.connections) {
-                double errorSum = 0;
-                for (Sample sample : trainingSet) {
-                    double errorDerRespValue = getEstimate(sample.inputs) - sample.desiredOutput;
-                    errorSum += errorDerRespValue * outputNeuron.sigmaPrime() * connection.incomingNeuron.value;
-                }
-                if (Math.abs(errorSum) > 0.00_000_1){
-                    continueLearning = true;
-                }
-                connection.deltaWeight = -learningRate(learningStep) * errorSum;
-            }
-            // LOWER WEIGHTS
-            for (Neuron neuron : hiddenLayer) {
-                for (Connection connection : neuron.connections) {
-
-                    double errorSum = 0;
-                    for (Sample sample : trainingSet) {
-                        double errorDerOutputNeuronRespValue = getEstimate(sample.inputs) - sample.desiredOutput;
-                        double errorDerRespValue = errorDerOutputNeuronRespValue * outputNeuron.sigmaPrime() * outputNeuron.connectionsMap.get(neuron).weight;
-                        errorSum += errorDerOutputNeuronRespValue * neuron.sigmaPrime() * connection.incomingNeuron.value;
-                    }
-                    if (Math.abs(errorSum) > 0.00_000_1){
-                        continueLearning = true;
-                    }
-                    connection.deltaWeight = -learningRate(learningStep) * errorSum;
-                }
-            }
-            updateWeights();
             learningStep++;
-        } while (continueLearning);
+            resetDeltaWeights();
+            for (Sample sample : samples) {
+                feedForward(sample.inputs);
+
+                for (int i = 0; i < outputLayer.outputs.length; i++) {
+                    outputLayer.errorDsRespectY[i] = outputLayer.outputs[i] - sample.desiredOutputs[i];
+                }
+
+                for (int i = 0; i < hiddenLayer.outputs.length; i++) {
+                    double errDRespectYi = 0;
+                    for (int j = 0; j < outputLayer.outputs.length; j++) {
+                        errDRespectYi += outputLayer.errorDsRespectY[j] * outputLayer.weights[j][i] * outputLayer.dSigmoid(outputLayer.outputs[j]);
+                    }
+                    hiddenLayer.errorDsRespectY[i] = errDRespectYi;
+                }
+
+                for (int i = 0; i < outputLayer.weights.length; i++) {
+                    for (int j = 0; j < outputLayer.weights[i].length; j++) {
+                        outputLayer.deltaWeights[i][j] += 0;//outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dSigmoid(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
+                    }
+                }
+
+                for (int i = 0; i < hiddenLayer.weights.length; i++) {
+                    for (int j = 0; j < hiddenLayer.weights[i].length; j++) {
+                        hiddenLayer.deltaWeights[i][j] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dSigmoid(hiddenLayer.outputs[i]);
+                    }
+                }
+            }
+            updateWeights(learningRate);
+
+        } while (learningStep<1);
     }
 
-    public void updateWeights() {
-        for (Neuron neuron : hiddenLayer) {
-            neuron.updateWeights();
-        }
-        outputNeuron.updateWeights();
+    public double[] feedForward(double[] inputs) {
+        hiddenLayer.inputs = inputs;
+        hiddenLayer.evaluate();
+        return outputLayer.evaluate();
     }
 
-    public double getEstimate(ArrayList<Double> inputs) {
-        if (inputLayer.size() != inputs.size()) {
-            throw new IllegalArgumentException("Input is not of same length as there are input neurons");
-        }
-        for (int i = 0; i < inputs.size(); i++) {
-            inputLayer.get(i).value = inputs.get(i);
-        }
-        for (Neuron neuron : hiddenLayer) {
-            neuron.evaluate();
-        }
-        outputNeuron.evaluate();
-        return outputNeuron.value;
+    private void initWeights() {
+        hiddenLayer.initWeights();
+        outputLayer.initWeights();
     }
 
-    private double learningRate(int learningStep) {
-        return 0.5;
+    private void updateWeights(double learningRate) {
+        hiddenLayer.updateWeights(learningRate);
+        outputLayer.updateWeights(learningRate);
+    }
+
+    private void resetDeltaWeights() {
+        hiddenLayer.resetDeltaWeights();
+        outputLayer.resetDeltaWeights();
     }
 }

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
@@ -5,9 +7,23 @@ import java.util.stream.IntStream;
  */
 public class Main {
 
-    public static int NUM_HIDDEN_NEURONS = 5;
-
     public static void main(String[] args) {
+
+        ArrayList<Sample> samples = new ArrayList<>();
+        samples.add(new Sample(new double[]{1, 1}, new double[]{0}));
+        samples.add(new Sample(new double[]{1, 0}, new double[]{1}));
+        samples.add(new Sample(new double[]{0, 1}, new double[]{1}));
+        samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
+
+        //                 Input,  Hidden,  Output,  Steepness,  Learning rate
+        MLP mlp = new MLP( 2,      3,       1,       1.0,        0.1);
+        mlp.training(samples);
+
+        System.out.println("Vstup: [1,0] Výstup: " + mlp.feedForward(new double[]{1, 0})[0]);
+        System.out.println("Vstup: [1,1] Výstup: " + mlp.feedForward(new double[]{1, 1})[0]);
+        System.out.println("Vstup: [0,1] Výstup: " + mlp.feedForward(new double[]{0, 1})[0]);
+        System.out.println("Vstup: [1,1] Výstup: " + mlp.feedForward(new double[]{1, 1})[0]);
+
 
     }
 }
