@@ -16,8 +16,8 @@ public class MLP {
         this.sigmoidSteepness = sigmoidSteepness;
         this.learningRate = learningRate;
 
-        outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons);
-        hiddenLayer = new Layer(this, numHiddenNeurons, numInputNeurons);
+        outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons, false);
+        hiddenLayer = new Layer(this, numHiddenNeurons, numInputNeurons, true);
         outputLayer.inputs = hiddenLayer.outputs;
     }
 
@@ -45,7 +45,7 @@ public class MLP {
 
                 for (int i = 0; i < outputLayer.weights.length; i++) {
                     for (int j = 0; j < outputLayer.weights[i].length; j++) {
-                        outputLayer.deltaWeights[i][j] += 0;//outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dSigmoid(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
+                        outputLayer.deltaWeights[i][j] += outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dSigmoid(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
                     }
                 }
 
@@ -57,7 +57,7 @@ public class MLP {
             }
             updateWeights(learningRate);
 
-        } while (learningStep<1);
+        } while (learningStep < 100);
     }
 
     public double[] feedForward(double[] inputs) {
