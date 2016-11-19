@@ -13,6 +13,7 @@ public class Layer {
 
     private boolean isHidden;
     public double outputs[];
+    public double potentials[];
     public double weights[][];
     public double deltaWeights[][];
     public double errorDsRespectY[];
@@ -29,6 +30,7 @@ public class Layer {
             outputs = new double[numNeurons];
             errorDsRespectY = new double[numNeurons];
         }
+        potentials = new double[numNeurons];
         weights = new double[numNeurons][numInputs + 1];
         deltaWeights = new double[numNeurons][numInputs + 1];
     }
@@ -58,6 +60,7 @@ public class Layer {
             if (isHidden) {
                 innerPotential += weights[i][inputs.length]; //TODO optimalizovat if podmienku
             }
+            potentials[i] = innerPotential; // ---------------------------  Len pre výpisy
             outputs[i] = sigmoid(innerPotential);
         }
         return outputs;
