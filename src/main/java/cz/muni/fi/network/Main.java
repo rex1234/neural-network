@@ -16,9 +16,9 @@ public class Main {
         samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
 
         //                 Num Inputs,  Num Hidden,  Num Outputs,  Sigmoid steepness,
-        MLP mlp = new MLP( 2,           2,           1,            4.0,
+        MLP mlp = new MLP( 2,           2,           1,            2.0,
         //     Learning rate,  Weight init min,  Weight init max,  Print status frequency
-               1,              0.1,             0.2,                10   );
+               0.5,              -0.2,             0.2,                10   );
 
         mlp.training(samples);
         System.out.println("----------------------------------------------------------------------");
