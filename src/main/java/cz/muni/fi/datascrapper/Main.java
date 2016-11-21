@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -157,6 +158,7 @@ public class Main{
     }
 
 
+    private static List<Movie> processedMovies = Collections.synchronizedList(new ArrayList<Movie>());
     private static void loadMovieDetails(List<Movie> toBeDetailed) {
         buffered = 20;
         processed = 0;
@@ -164,11 +166,14 @@ public class Main{
         toBeDetailed.stream().parallel().forEach(movie -> {
             try {
                 parseMovieDetails(movie);
+                System.out.printf("%s - %.1f %d%n", movie.getName(), movie.getRating(), movie.getYear());
+
+                processedMovies.add(movie);
                 ++processed;
 
                 if (buffered-- == 0 || processed == toBeDetailed.size()) {
                     synchronized (writeLock) {
-                        String moviesJson = new Gson().toJson(movies);
+                        String moviesJson = new Gson().toJson(processedMovies);
                         Files.write(Paths.get("movies.json"), moviesJson.getBytes());
                         buffered = 20;
                     }
@@ -192,12 +197,10 @@ public class Main{
         }
 
         try {
-            int year = Integer.parseInt(doc.title().replaceAll(".*\\(.*(\\d+)\\) - IMDb", "$1"));
+            int year = Integer.parseInt(doc.title().replaceAll(".*\\(.*?(\\d+)\\) - IMDb", "$1"));
             movie.setYear(year);
         } catch (Exception e) {
             System.err.println("Failed to extract year");
         }
-
-        System.out.printf("%s - %.0f %d%n", movie.getName(), movie.getRating(), movie.getYear());
     }
 }
