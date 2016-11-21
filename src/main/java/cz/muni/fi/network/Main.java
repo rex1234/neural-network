@@ -75,7 +75,7 @@ public class Main {
         }
 
         //                 Num Inputs,  Num Hidden,  Num Outputs,  Sigmoid steepness,
-        MLP mlp = new MLP( 1000,           11,          1,            2.0,
+        MLP mlp = new MLP( 1000,           11,          1,            0.5,
                 //     Learning rate,  Weight init min,  Weight init max,  Print status frequency
                 0.5,              -0.2,             0.2,                10   );
 
