@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -22,8 +23,14 @@ import java.util.List;
  */
 public class Main{
 
+    private static volatile int bufferedActors = 20;
+    private static volatile int processedActors = 0;
+
+    private static Object writeLock = new Object();
+
     private static String baseActorUrl = "http://www.imdb.com/name/[id]/";
     private static String baseMovieUrl = "http://www.imdb.com/title/[id]/";
+
 
     private static String[] actorLists = new String[]{
             "http://www.imdb.com/list/ls058011111/?start=1&view=compact&sort=listorian:asc",
@@ -40,20 +47,23 @@ public class Main{
         System.out.println(baseActors.size());
 
         loadMoviesForActors();
-//        List<Movie> movies = loadPreProcessedMovies();
+        movies = loadPreProcessedMovies();
         System.out.println(movies.size());
+
+        Collections.sort(movies, (o1, o2) -> o1.getActors().size() - o2.getActors().size());
+
+        for (Movie movie : movies) {
+            if(movie.getActors().size() > 1)
+                System.out.println(movie.getName() + " " + movie.getActors().size());
+        }
     }
 
     private static List<Movie> loadPreProcessedMovies() throws IOException {
-        return new Gson().fromJson(new JsonReader(new FileReader("movies_preprocessed.json")), new TypeToken<ArrayList<Person>>(){}.getType());
+        return new Gson().fromJson(new JsonReader(new FileReader("movies_preprocessed.json")), new TypeToken<ArrayList<Movie>>(){}.getType());
     }
 
     private static void loadMoviesForActors() {
-        int buffer = 20;
-
-        int processed = 0;
-
-        for (Person actor : baseActors) {
+        baseActors.stream().parallel().forEach(actor -> {
             try {
                 Document doc = Jsoup.connect(baseActorUrl.replace("[id]", actor.getId())).userAgent("Mozilla").timeout(10_000).get();
                 Elements movieElements = doc.select("div.filmo-row");
@@ -66,23 +76,25 @@ public class Main{
 
                     int i = movies.indexOf(movie);
 
-                    if(i == -1) {
+                    if (i == -1) {
                         movies.add(movie);
                         movie.getActors().add(actor.getId());
                     } else {
                         movie = movies.get(i);
-                        if(!movie.getActors().contains(actor.getId())) {
+                        if (!movie.getActors().contains(actor.getId())) {
                             movie.getActors().add(actor.getId());
                         }
                     }
                 }
 
-                System.out.println("Processed " + ++processed + " actors");
+                System.out.println("Processed " + ++processedActors + " actors");
 
-                if(buffer-- == 0 || processed == baseActors.size()) {
-                    String moviesJson = new Gson().toJson(movies);
-                    Files.write(Paths.get("movies_preprocessed.json"), moviesJson.getBytes());
-                    buffer = 20;
+                if (bufferedActors-- == 0 || processedActors == baseActors.size()) {
+                    synchronized (writeLock) {
+                        String moviesJson = new Gson().toJson(movies);
+                        Files.write(Paths.get("movies_preprocessed.json"), moviesJson.getBytes());
+                        bufferedActors = 20;
+                    }
                 }
 
                 System.out.println("Added movies from actor " + actor.getName());
@@ -90,7 +102,7 @@ public class Main{
                 System.err.println("Failed to load movies for actor " + actor.getName());
                 e.printStackTrace();
             }
-        }
+        });
     }
 
     private static List<Person> loadOrParseActors() throws IOException {
