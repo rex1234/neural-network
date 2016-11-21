@@ -1,5 +1,6 @@
 package cz.muni.fi.datascrapper.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,11 +10,11 @@ public class Movie {
     private String id;
     private float rating;
     private String name;
-    private List<Person> actors;
+    private List<String> actors = new ArrayList<>();
     private Person director;
     private int year;
 
-    public Movie(String id, float rating, List<Person> actors, Person director, int year) {
+    public Movie(String id, float rating, List<String> actors, Person director, int year) {
         this.id = id;
         this.rating = rating;
         this.actors = actors;
@@ -42,11 +43,11 @@ public class Movie {
         this.rating = rating;
     }
 
-    public List<Person> getActors() {
+    public List<String> getActors() {
         return actors;
     }
 
-    public void setActors(List<Person> actors) {
+    public void setActors(List<String> actors) {
         this.actors = actors;
     }
 

@@ -23,6 +23,7 @@ import java.util.List;
 public class Main{
 
     private static String baseActorUrl = "http://www.imdb.com/name/[id]/";
+    private static String baseMovieUrl = "http://www.imdb.com/title/[id]/";
 
     private static String[] actorLists = new String[]{
             "http://www.imdb.com/list/ls058011111/?start=1&view=compact&sort=listorian:asc",
@@ -31,18 +32,28 @@ public class Main{
             "http://www.imdb.com/list/ls058011111/?start=751&view=compact&sort=listorian:asc"
     };
 
-    private static List<Person> actors;
+    private static List<Person> baseActors;
     private static List<Movie> movies = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
-        actors = loadOrParseActors();
-        System.out.println(actors.size());
+        baseActors = loadOrParseActors();
+        System.out.println(baseActors.size());
 
         loadMoviesForActors();
+//        List<Movie> movies = loadPreProcessedMovies();
+        System.out.println(movies.size());
+    }
+
+    private static List<Movie> loadPreProcessedMovies() throws IOException {
+        return new Gson().fromJson(new JsonReader(new FileReader("movies_preprocessed.json")), new TypeToken<ArrayList<Person>>(){}.getType());
     }
 
     private static void loadMoviesForActors() {
-        for (Person actor : actors) {
+        int buffer = 20;
+
+        int processed = 0;
+
+        for (Person actor : baseActors) {
             try {
                 Document doc = Jsoup.connect(baseActorUrl.replace("[id]", actor.getId())).userAgent("Mozilla").timeout(10_000).get();
                 Elements movieElements = doc.select("div.filmo-row");
@@ -53,13 +64,26 @@ public class Main{
 
                     Movie movie = new Movie(id, name);
 
-                    if(!movies.contains(movie)) {
+                    int i = movies.indexOf(movie);
+
+                    if(i == -1) {
                         movies.add(movie);
+                        movie.getActors().add(actor.getId());
+                    } else {
+                        movie = movies.get(i);
+                        if(!movie.getActors().contains(actor.getId())) {
+                            movie.getActors().add(actor.getId());
+                        }
                     }
                 }
 
-                String moviesJson = new Gson().toJson(movies);
-                Files.write(Paths.get("movies_preprocessed.json"), moviesJson.getBytes());
+                System.out.println("Processed " + ++processed + " actors");
+
+                if(buffer-- == 0 || processed == baseActors.size()) {
+                    String moviesJson = new Gson().toJson(movies);
+                    Files.write(Paths.get("movies_preprocessed.json"), moviesJson.getBytes());
+                    buffer = 20;
+                }
 
                 System.out.println("Added movies from actor " + actor.getName());
             } catch (IOException e) {
@@ -99,5 +123,13 @@ public class Main{
         Files.write(Paths.get("actors.json"), actorsJson.getBytes());
 
         return parsedActors;
+    }
+
+    private void parseMovieDetails(Movie movie) throws IOException {
+        Document doc = Jsoup.connect(baseMovieUrl.replace("[id]", movie.getId())).userAgent("Mozilla").timeout(10_000).get();
+
+        float rating = Float.parseFloat(doc.select("div.ratingvalue").first().select("span").first().text());
+        int year = Integer.valueOf(doc.title().replaceAll(".* (\\(.*\\)) - IMDb", "$1"));
+
     }
 }
