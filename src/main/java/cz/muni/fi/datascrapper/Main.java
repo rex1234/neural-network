@@ -65,18 +65,6 @@ public class Main{
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //public methods for loading analysed data
-
-    public static List<Movie> getBaseActors() throws IOException{
-        return new Gson().fromJson(new JsonReader(new FileReader("actors.json")), new TypeToken<ArrayList<Person>>(){}.getType());
-    }
-
-    public static List<Movie> getMoviesFromJson() throws IOException{
-        return new Gson().fromJson(new JsonReader(new FileReader("movies.json")), new TypeToken<ArrayList<Movie>>(){}.getType());
-    }
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private static List<Movie> loadPreProcessedMovies() throws IOException {
         return new Gson().fromJson(new JsonReader(new FileReader("movies_preprocessed.json")), new TypeToken<ArrayList<Movie>>(){}.getType());
@@ -168,11 +156,11 @@ public class Main{
                 parseMovieDetails(movie);
                 System.out.printf("%s - %.1f %d%n", movie.getName(), movie.getRating(), movie.getYear());
 
-                processedMovies.add(movie);
-                ++processed;
+                synchronized (writeLock) {
+                    processedMovies.add(movie);
+                    ++processed;
 
-                if (buffered-- == 0 || processed == toBeDetailed.size()) {
-                    synchronized (writeLock) {
+                    if (buffered-- == 0 || processed == toBeDetailed.size()) {
                         String moviesJson = new Gson().toJson(processedMovies);
                         Files.write(Paths.get("movies.json"), moviesJson.getBytes());
                         buffered = 20;

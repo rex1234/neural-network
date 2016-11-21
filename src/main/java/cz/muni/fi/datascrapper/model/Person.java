@@ -12,6 +12,10 @@ public class Person {
         this.name = name;
     }
 
+    public Person(String id) {
+        this.id = id;
+    }
+
     public String getId() {
         return id;
     }

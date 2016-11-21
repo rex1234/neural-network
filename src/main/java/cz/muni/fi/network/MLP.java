@@ -1,6 +1,6 @@
 package cz.muni.fi.network;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by MiHu on 17.11.2016.
@@ -48,7 +48,7 @@ public class MLP {
 
     }
 
-    public void training(ArrayList<Sample> samples) {
+    public void training(List<Sample> samples) {
         initWeights();
         boolean continueTraining = true;
         int learningStep = 0;
