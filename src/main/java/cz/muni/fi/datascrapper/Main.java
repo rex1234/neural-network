@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,8 +22,8 @@ import java.util.List;
  */
 public class Main{
 
-    private static volatile int bufferedActors = 20;
-    private static volatile int processedActors = 0;
+    private static volatile int buffered = 5000;
+    private static volatile int processed = 0;
 
     private static Object writeLock = new Object();
 
@@ -46,17 +45,37 @@ public class Main{
         baseActors = loadOrParseActors();
         System.out.println(baseActors.size());
 
-        loadMoviesForActors();
+        //loadMoviesForActors();
         movies = loadPreProcessedMovies();
         System.out.println(movies.size());
 
-        Collections.sort(movies, (o1, o2) -> o1.getActors().size() - o2.getActors().size());
+        //Collections.sort(movies, (o1, o2) -> o1.getActors().size() - o2.getActors().size());
 
+        List<Movie> toBeDetailed = new ArrayList<>();
         for (Movie movie : movies) {
-            if(movie.getActors().size() > 1)
-                System.out.println(movie.getName() + " " + movie.getActors().size());
+            if(movie.getActors().size() >= 4 && movie.getActors().size() < 10)
+                toBeDetailed.add(movie);
+            //System.out.println(movie.getName() + " " + movie.getActors().size());
         }
+
+        System.out.println("Going to process " + toBeDetailed.size() + " movies");
+
+        loadMovieDetails(toBeDetailed);
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //public methods for loading analysed data
+
+    public static List<Movie> getBaseActors() throws IOException{
+        return new Gson().fromJson(new JsonReader(new FileReader("actors.json")), new TypeToken<ArrayList<Person>>(){}.getType());
+    }
+
+    public static List<Movie> getMoviesFromJson() throws IOException{
+        return new Gson().fromJson(new JsonReader(new FileReader("movies.json")), new TypeToken<ArrayList<Movie>>(){}.getType());
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     private static List<Movie> loadPreProcessedMovies() throws IOException {
         return new Gson().fromJson(new JsonReader(new FileReader("movies_preprocessed.json")), new TypeToken<ArrayList<Movie>>(){}.getType());
@@ -87,13 +106,13 @@ public class Main{
                     }
                 }
 
-                System.out.println("Processed " + ++processedActors + " actors");
+                System.out.println("Processed " + ++processed + " actors");
 
-                if (bufferedActors-- == 0 || processedActors == baseActors.size()) {
+                if (buffered-- == 0 || processed == baseActors.size()) {
                     synchronized (writeLock) {
                         String moviesJson = new Gson().toJson(movies);
                         Files.write(Paths.get("movies_preprocessed.json"), moviesJson.getBytes());
-                        bufferedActors = 20;
+                        buffered = 5000;
                     }
                 }
 
@@ -137,11 +156,48 @@ public class Main{
         return parsedActors;
     }
 
-    private void parseMovieDetails(Movie movie) throws IOException {
+
+    private static void loadMovieDetails(List<Movie> toBeDetailed) {
+        buffered = 20;
+        processed = 0;
+
+        toBeDetailed.stream().parallel().forEach(movie -> {
+            try {
+                parseMovieDetails(movie);
+                ++processed;
+
+                if (buffered-- == 0 || processed == toBeDetailed.size()) {
+                    synchronized (writeLock) {
+                        String moviesJson = new Gson().toJson(movies);
+                        Files.write(Paths.get("movies.json"), moviesJson.getBytes());
+                        buffered = 20;
+                    }
+                }
+
+                System.out.println("Processed " + processed + " movies");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private static void parseMovieDetails(Movie movie) throws IOException {
         Document doc = Jsoup.connect(baseMovieUrl.replace("[id]", movie.getId())).userAgent("Mozilla").timeout(10_000).get();
 
-        float rating = Float.parseFloat(doc.select("div.ratingvalue").first().select("span").first().text());
-        int year = Integer.valueOf(doc.title().replaceAll(".* (\\(.*\\)) - IMDb", "$1"));
+        try {
+            float rating = Float.parseFloat(doc.select("div.ratingvalue").first().select("span").first().text());
+            movie.setRating(rating);
+        } catch (Exception e) {
+            System.err.println("Failed to extract rating");
+        }
 
+        try {
+            int year = Integer.parseInt(doc.title().replaceAll(".*\\(.*(\\d+)\\) - IMDb", "$1"));
+            movie.setYear(year);
+        } catch (Exception e) {
+            System.err.println("Failed to extract year");
+        }
+
+        System.out.printf("%s - %.0f %d%n", movie.getName(), movie.getRating(), movie.getYear());
     }
 }
