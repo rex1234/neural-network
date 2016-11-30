@@ -1,6 +1,9 @@
 package cz.muni.fi.network;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by MiHu on 17.11.2016.
@@ -33,8 +36,8 @@ public class MLP {
     }
 
     private void initWeights() {
-        hiddenLayer.initWeights(weightInitMin, weightInitMax);
-        outputLayer.initWeights(weightInitMin, weightInitMax);
+        hiddenLayer.initWeights(-1, 1);
+        outputLayer.initWeights(-0.3, 0.3);
 //        outputLayer.weights[0][0] = -3;
 //        outputLayer.weights[0][1] = 1;
 //        outputLayer.weights[0][2] = -1;
@@ -55,12 +58,19 @@ public class MLP {
         double error = 0; // ------------------------------------------ Len na vypisy
         double previousError = 99; // ------------------------------------------ Len na vypisy
         double deltaWeightsVectorLength = 0; // ------------------------------------------ Len na vypisy
+
         do {
             resetDeltaWeights();
             error = 0;  // ---------------------------------------------- Len na vypisy
             deltaWeightsVectorLength = 0;// ---------------------------------------------- Len na vypisy
-            for (Sample sample : samples) {
+
+            List<Sample> miniBatch = new ArrayList<>(samples);
+            Collections.shuffle(miniBatch, new Random(learningStep));
+            miniBatch = miniBatch.subList(0, samples.size() / 10);
+
+            for (Sample sample : miniBatch) {
                 feedForward(sample.inputs, false);
+
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
                     outputLayer.errorDsRespectY[i] = outputLayer.outputs[i] - sample.desiredOutputs[i];
                     error += 0.5 * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
@@ -90,21 +100,36 @@ public class MLP {
                     deltaWeightsVectorLength += Math.pow(hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length], 2);  // --------------------------- Len na vypisy
                 }
             }
+
             updateWeights(learningRate);
-            if (error > previousError) {
-                System.out.println("**********************************************************************************");
-                System.out.println("*******************PREVIOUS ERROR: " + previousError + "**************************");
-                System.out.println("****************************ERROR: " + error + "***********************************");
-                System.out.println("**********************************************************************************");
-                System.out.println("**********************************************************************************");
-                System.out.println("**********************************************************************************");
-            }
+
+//            if (error >= previousError) {
+//                System.out.println("**********************************************************************************");
+//                System.out.println("*******************PREVIOUS ERROR: " + previousError + "**************************");
+//                System.out.println("****************************ERROR: " + error + "**********************************");
+//                System.out.println("**********************************************************************************");
+//                System.out.println("");
+//            }
+
+
+//            if(learningStep % 10 == 0) {
+//                System.out.println("Error: " + error);
+//            }
+
             previousError = error;
             if (learningStep % printStatusFreq == 0) {  // ------------------------------------------ Len na vypisy
                 System.out.println("Delta weigth length: " + Math.sqrt(deltaWeightsVectorLength) + "    Error: " + error);
             }
             learningStep++;
-        } while (learningStep < 100000);
+
+            if(learningStep % 100 == 0) {
+                learningRate *= 0.9;
+            }
+
+//            System.out.println();
+//            System.out.println("-----");
+//            System.out.println();
+        } while (learningStep < 10_000);
     }
 
     public double[] feedForward(double[] inputs, boolean printPotentials) {
