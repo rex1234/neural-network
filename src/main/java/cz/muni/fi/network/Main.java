@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  * Created by MiHu on 11.11.2016.
@@ -17,9 +18,31 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        trainOnMovies();
+//        trainOnMovies();
 
-        //testTraining();
+        testTraining();
+    }
+
+    private static void testTraining2() {
+        ArrayList<Sample> samples = new ArrayList<>();
+        for (int i = 0; i < 400; i++) {
+            double x = new Random(i).nextInt((int) (2 * Math.PI * 1000)) / 1000d;
+            samples.add(new Sample(new double[]{x / 7}, new double[] {(Math.sin(x) + 1) / 2}));
+        }
+
+        //                 Num Inputs,  Num Hidden,  Num Outputs,  Sigmoid steepness,
+        MLP mlp = new MLP( 1,           2,           1,            1.0,
+                //     Learning rate,  Weight init min,  Weight init max,  Print status frequency
+                1,              -1,             1,                10   );
+
+        mlp.training(samples);
+
+        for(double x = 0.1; x < Math.PI * 2; x = x + 0.1) {
+            System.out.printf("%.1f = %.4f%n", x, (Math.sin(x) + 1) / 2);
+            System.out.printf("Výstup: %.4f%n", mlp.feedForward(new double[]{x / 7}, false)[0]);
+            System.out.println();
+        }
+
     }
 
     private static void testTraining() {
@@ -31,8 +54,8 @@ public class Main {
 
         //                 Num Inputs,  Num Hidden,  Num Outputs,  Sigmoid steepness,
         MLP mlp = new MLP( 2,           2,           1,            2.0,
-        //     Learning rate,  Weight init min,  Weight init max,  Print status frequency
-               0.5,              -0.2,             0.2,                10   );
+                //     Learning rate,  Weight init min,  Weight init max,  Print status frequency
+                0.5,              -0.2,             0.2,                10   );
 
         mlp.training(samples);
         System.out.println("----------------------------------------------------------------------");
@@ -44,58 +67,68 @@ public class Main {
 
     private static void trainOnMovies() throws IOException{
         List<Person> actors = DataTools.getBaseActors();
-        List<Movie> movies = DataTools.getMoviesFromJson();
-
-        List<Sample> samples = new ArrayList<>();
-
-        Collections.shuffle(movies, new Random(55));
-
-        int trainingSize = 500;
+        List<Movie> movies = DataTools.getMoviesFromJson()
+                .stream().filter(m -> !m.shouldBeSkipped()).collect(Collectors.toList());
 
         for (Movie movie : movies) {
+            for (String actor : movie.getActors()) {
+                for (Person person : actors) {
+                    if(person.getId().equals(actor)) {
+                        person.count++;
+                    }
+                }
+            }
+        }
 
+        Collections.sort(actors, (b,a) -> b.count - a.count);
+        actors = actors.subList(0, 500);
 
+        List<Sample> samples = new ArrayList<>();
+//        Collections.shuffle(movies, new Random(55));
+        Collections.sort(movies, (a,b) -> Float.compare(a.getRating(), b.getRating()));
+
+        int trainingSize = 2000;
+
+        for (Movie movie : movies) {
             if(--trainingSize == 0) {
                 break;
             }
-
-            //error
-            if(movie.getRating() < 0.1) {
-                continue;
-            }
-
-            double[] outputs = new double[] {movie.getRating()};
-            double[] inputs = new double[1000];
+            double[] outputs = new double[] {movie.getRating() / 5 - 1};
+            double[] inputs = new double[500];
 
             for (String actorId : movie.getActors()) {
-                inputs[actors.indexOf(new Person(actorId))] = 1;
+                int i = actors.indexOf(new Person(actorId));
+                if(i == -1) {
+                    continue;
+                }
+
+                inputs[i] = 1;
             }
 
             samples.add(new Sample(inputs, outputs));
         }
 
         //                 Num Inputs,  Num Hidden,  Num Outputs,  Sigmoid steepness,
-        MLP mlp = new MLP( 1000,           11,          1,            0.5,
+        MLP mlp = new MLP(500,           30,         1,            1,
                 //     Learning rate,  Weight init min,  Weight init max,  Print status frequency
-                0.5,              -0.2,             0.2,                10   );
+                0.1,              -0.1,             0.1,                10   );
 
 
         mlp.training(samples);
 
-        for (int i = 500; i < movies.size(); i++) {
-            //error
-            if(movies.get(i).getRating() < 0.1) {
-                continue;
-            }
-
-            double[] inputs = new double[1000];
+        for (int i = 0; i < 2000; i++) {
+            double[] inputs = new double[500];
 
             for (String actorId : movies.get(i).getActors()) {
-                inputs[actors.indexOf(new Person(actorId))] = 1;
+                int j = actors.indexOf(new Person(actorId));
+                if(j == -1) {
+                    continue;
+                }
+                inputs[j] = 1;
             }
 
             System.out.println(String.format("Movie : %s, rating: %.1f", movies.get(i).getName(), movies.get(i).getRating()));
-            System.out.println(String.format("Predicted rating: %.1f", mlp.feedForward(inputs, true)[0]));
+            System.out.println(String.format("Predicted rating: %.1f", (mlp.feedForward(inputs, false)[0] + 1) * 5));
 
         }
     }

@@ -86,4 +86,8 @@ public class Movie {
     public String getName() {
         return name;
     }
+
+    public boolean shouldBeSkipped() {
+        return rating < 0.1 || actors.size() != 4;
+    }
 }

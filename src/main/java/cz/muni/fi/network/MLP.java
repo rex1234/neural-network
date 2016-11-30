@@ -1,9 +1,7 @@
 package cz.muni.fi.network;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by MiHu on 17.11.2016.
@@ -36,8 +34,8 @@ public class MLP {
     }
 
     private void initWeights() {
-        hiddenLayer.initWeights(-1, 1);
-        outputLayer.initWeights(-0.3, 0.3);
+        hiddenLayer.initWeights(-.5, .5);
+        outputLayer.initWeights(-.3, .3);
 //        outputLayer.weights[0][0] = -3;
 //        outputLayer.weights[0][1] = 1;
 //        outputLayer.weights[0][2] = -1;
@@ -65,8 +63,8 @@ public class MLP {
             deltaWeightsVectorLength = 0;// ---------------------------------------------- Len na vypisy
 
             List<Sample> miniBatch = new ArrayList<>(samples);
-            Collections.shuffle(miniBatch, new Random(learningStep));
-            miniBatch = miniBatch.subList(0, samples.size() / 10);
+//            Collections.shuffle(miniBatch, new Random(learningStep));
+//            miniBatch = miniBatch.subList(0, samples.size() / 10);
 
             for (Sample sample : miniBatch) {
                 feedForward(sample.inputs, false);
@@ -129,7 +127,7 @@ public class MLP {
 //            System.out.println();
 //            System.out.println("-----");
 //            System.out.println();
-        } while (learningStep < 10_000);
+        } while (learningStep < 1_000);
     }
 
     public double[] feedForward(double[] inputs, boolean printPotentials) {
