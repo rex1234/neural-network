@@ -79,24 +79,24 @@ public class MLP {
                 for (int i = 0; i < hiddenLayer.outputs.length; i++) {
                     double errDRespectYi = 0;
                     for (int j = 0; j < outputLayer.outputs.length; j++) {
-                        errDRespectYi += outputLayer.errorDsRespectY[j] * outputLayer.weights[j][i] * outputLayer.dSigmoid(outputLayer.outputs[j]);
+                        errDRespectYi += outputLayer.errorDsRespectY[j] * outputLayer.weights[j][i] * outputLayer.dTanh(outputLayer.outputs[j]);
                     }
                     hiddenLayer.errorDsRespectY[i] = errDRespectYi;
                 }
 
                 for (int i = 0; i < outputLayer.weights.length; i++) {
                     for (int j = 0; j < outputLayer.weights[i].length; j++) {
-                        outputLayer.deltaWeights[i][j] += outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dSigmoid(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
+                        outputLayer.deltaWeights[i][j] += outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dTanh(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
                         deltaWeightsVectorLength += Math.pow(outputLayer.deltaWeights[i][j], 2);  // --------------------------- Len na vypisy
                     }
                 }
 
                 for (int i = 0; i < hiddenLayer.weights.length; i++) {
                     for (int j = 0; j < hiddenLayer.inputs.length; j++) {
-                        hiddenLayer.deltaWeights[i][j] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dSigmoid(hiddenLayer.outputs[i]);
+                        hiddenLayer.deltaWeights[i][j] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
                         deltaWeightsVectorLength += Math.pow(hiddenLayer.deltaWeights[i][j], 2);  // --------------------------- Len na vypisy
                     }
-                    hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.dSigmoid(hiddenLayer.outputs[i]);
+                    hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
                     deltaWeightsVectorLength += Math.pow(hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length], 2);  // --------------------------- Len na vypisy
                 }
             }

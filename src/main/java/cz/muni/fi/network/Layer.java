@@ -61,7 +61,7 @@ public class Layer {
                 innerPotential += weights[i][inputs.length]; //TODO optimalizovat if podmienku
             }
             potentials[i] = innerPotential; // ---------------------------  Len pre výpisy
-            outputs[i] = sigmoid(innerPotential);
+            outputs[i] = tanh(innerPotential);
         }
         return outputs;
     }
@@ -80,6 +80,14 @@ public class Layer {
 
     public double dSigmoid(double y) {
         return mlp.sigmoidSteepness * y * (1 - y);
+    }
+
+    public double tanh(double x) {
+        return 1.7159 * (2 / (1 + Math.exp((-4 / 3) * x)) - 1);
+    }
+
+    public double dTanh(double y) {
+        return 1 - Math.pow(y, 2);
     }
 
 }
