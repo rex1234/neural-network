@@ -20,7 +20,7 @@ public class Main {
 
 //        trainOnMovies();
 
-        testTraining();
+        xorTraining();
     }
 
     private static void testTraining2() {
@@ -45,17 +45,17 @@ public class Main {
 
     }
 
-    private static void testTraining() {
+    private static void xorTraining() {
         ArrayList<Sample> samples = new ArrayList<>();
         samples.add(new Sample(new double[]{1, 1}, new double[]{0}));
         samples.add(new Sample(new double[]{1, 0}, new double[]{1}));
         samples.add(new Sample(new double[]{0, 1}, new double[]{1}));
         samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
 
-        //                 Num Inputs,  Num Hidden,  Num Outputs,  Sigmoid steepness,
-        MLP mlp = new MLP( 2,           2,           1,            2.0,
+        //                 Num Inputs,  Num Hidden,  Num Outputs,
+        MLP mlp = new MLP( 2,           2,           1,
                 //     Learning rate,  Weight init min,  Weight init max,  Print status frequency
-                0.5,              -0.2,             0.2,                10   );
+                0.5,              0.2,             0.2,                10   );
 
         mlp.training(samples);
         System.out.println("----------------------------------------------------------------------");

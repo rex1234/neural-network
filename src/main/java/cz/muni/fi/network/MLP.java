@@ -8,23 +8,21 @@ import java.util.List;
  */
 public class MLP {
 
-    public double sigmoidSteepness;
     public double learningRate;
 
-    private double weightInitMin;
-    private double weightInitMax;
+    private double hiddenWeights;
+    private double outputWeights;
 
     private Layer outputLayer;
     private Layer hiddenLayer;
 
     private int printStatusFreq;
 
-    public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, double sigmoidSteepness,
-               double learningRate, double weightInitMin, double weightInitMax, int printStatusFreq) {
+    public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons,
+               double learningRate, double hiddenWeights, double outputWeights, int printStatusFreq) {
 
-        this.weightInitMax = weightInitMax;
-        this.weightInitMin = weightInitMin;
-        this.sigmoidSteepness = sigmoidSteepness;
+        this.hiddenWeights = hiddenWeights;
+        this.outputWeights = outputWeights;
         this.learningRate = learningRate;
         this.printStatusFreq = printStatusFreq;
 
@@ -33,25 +31,13 @@ public class MLP {
         outputLayer.inputs = hiddenLayer.outputs;
     }
 
-    private void initWeights() {
-        hiddenLayer.initWeights(-.5, .5);
-        outputLayer.initWeights(-.3, .3);
-//        outputLayer.weights[0][0] = -3;
-//        outputLayer.weights[0][1] = 1;
-//        outputLayer.weights[0][2] = -1;
-//
-//        hiddenLayer.weights[0][0] = 0.5;
-//        hiddenLayer.weights[0][1] = 0.5;
-//        hiddenLayer.weights[0][2] = 0;
-//        hiddenLayer.weights[1][0] = 1;
-//        hiddenLayer.weights[1][1] = 1;
-//        hiddenLayer.weights[1][2] = 0;
-
+    private void initWeights(double hiddenWeights, double outputWeights) {
+        hiddenLayer.initWeights(-hiddenWeights, hiddenWeights);
+        outputLayer.initWeights(-outputWeights, outputWeights);
     }
 
     public void training(List<Sample> samples) {
-        initWeights();
-        boolean continueTraining = true;
+        initWeights(hiddenWeights, outputWeights);
         int learningStep = 0;
         double error = 0; // ------------------------------------------ Len na vypisy
         double previousError = 99; // ------------------------------------------ Len na vypisy
@@ -101,13 +87,13 @@ public class MLP {
 
             updateWeights(learningRate);
 
-//            if (error >= previousError) {
-//                System.out.println("**********************************************************************************");
-//                System.out.println("*******************PREVIOUS ERROR: " + previousError + "**************************");
-//                System.out.println("****************************ERROR: " + error + "**********************************");
-//                System.out.println("**********************************************************************************");
-//                System.out.println("");
-//            }
+            if (error >= previousError) {
+                System.out.println("**********************************************************************************");
+                System.out.println("*******************PREVIOUS ERROR: " + previousError + "**************************");
+                System.out.println("****************************ERROR: " + error + "**********************************");
+                System.out.println("**********************************************************************************");
+                System.out.println("");
+            }
 
 
 //            if(learningStep % 10 == 0) {
@@ -120,9 +106,9 @@ public class MLP {
             }
             learningStep++;
 
-            if(learningStep % 100 == 0) {
-                learningRate *= 0.9;
-            }
+//            if (learningStep % 100 == 0) {
+//                learningRate *= 0.9;
+//            }
 
 //            System.out.println();
 //            System.out.println("-----");
@@ -135,8 +121,7 @@ public class MLP {
         hiddenLayer.evaluate();
         double[] output = outputLayer.evaluate();
 
-        //----------------------------- Len výpis
-        if (printPotentials) {
+        if (printPotentials) {  //----------------------------- Len výpis
             System.out.println("--------------------------------------");
             StringBuilder s = new StringBuilder("Output potentials: ");
             for (int i = 0; i < outputLayer.potentials.length; i++) {
@@ -148,7 +133,6 @@ public class MLP {
                 s.append(hiddenLayer.potentials[i]).append(", ");
             }
             System.out.println(s);
-            System.out.println("-");
         }
         return output;
     }
@@ -172,7 +156,6 @@ public class MLP {
             }
             System.out.println(s);
         }
-
         System.out.println("Hidden layer weights:");
         for (int i = 0; i < hiddenLayer.weights.length; i++) {
             StringBuilder s = new StringBuilder("Neuron [");

@@ -18,6 +18,10 @@ public class Layer {
     public double deltaWeights[][];
     public double errorDsRespectY[];
     public double inputs[];
+    private double twoThirds = 2 / 3;
+    private double c1 = twoThirds * 1.7159;
+    private double c2 = twoThirds / 1.7159;
+
 
     public Layer(MLP mlp, int numNeurons, int numInputs, boolean isHidden) {
         this.mlp = mlp;
@@ -75,19 +79,19 @@ public class Layer {
     }
 
     public double sigmoid(double x) {
-        return 1 / (1 + Math.exp(-mlp.sigmoidSteepness * x));
+        return 1 / (1 + Math.exp(-x));
     }
 
     public double dSigmoid(double y) {
-        return mlp.sigmoidSteepness * y * (1 - y);
+        return y * (1 - y);
     }
 
     public double tanh(double x) {
-        return 1.7159 * (2 / (1 + Math.exp((-4 / 3) * x)) - 1);
+        return 1.7159 * Math.tanh(twoThirds * x);
     }
 
     public double dTanh(double y) {
-        return 1 - Math.pow(y, 2);
+        return c1 - c2 * Math.pow(y, 2);
     }
 
 }
