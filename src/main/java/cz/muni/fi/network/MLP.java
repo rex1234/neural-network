@@ -1,6 +1,6 @@
 package cz.muni.fi.network;
 
-import java.util.ArrayList;
+import javax.swing.*;
 import java.util.List;
 
 /**
@@ -9,6 +9,8 @@ import java.util.List;
 public class MLP {
 
     public double learningRate;
+    public int numLearningSteps;
+    public boolean showGraph;
 
     private double hiddenWeights;
     private double outputWeights;
@@ -17,42 +19,53 @@ public class MLP {
     public Layer hiddenLayer;
 
     private int printStatusFreq;
+    private double errors[];
 
-    public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons,
-               double learningRate, double hiddenWeights, double outputWeights, int printStatusFreq) {
+    public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph,
+               double learningRate, boolean glorotBengioWeights, int printStatusFreq) {
 
-        this.hiddenWeights = hiddenWeights;
-        this.outputWeights = outputWeights;
+        if (glorotBengioWeights) {
+            this.hiddenWeights = Math.sqrt(6 / (numInputNeurons + numOutputNeurons));
+            this.outputWeights = Math.sqrt(6 / (numHiddenNeurons + 1));
+        } else {
+            this.hiddenWeights = Math.sqrt(3) / Math.sqrt(numInputNeurons);
+            this.outputWeights = Math.sqrt(3) / Math.sqrt(numHiddenNeurons);
+        }
+        System.out.println("--------- WEIGHTS BEING INITIALIZED RANDOMLY ---------------");
+        System.out.println("Hidden weights: " + hiddenWeights);
+        System.out.println("Output weights: " + outputWeights);
         this.learningRate = learningRate;
         this.printStatusFreq = printStatusFreq;
+        this.numLearningSteps = numLearningSteps;
+        this.errors = new double[numLearningSteps];
+        this.showGraph = showGraph;
 
         outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons, false);
         hiddenLayer = new Layer(this, numHiddenNeurons, numInputNeurons, true);
         outputLayer.inputs = hiddenLayer.outputs;
     }
 
-    private void initWeights(double hiddenWeights, double outputWeights) {
+    private void initWeights() {
         hiddenLayer.initWeights(-hiddenWeights, hiddenWeights);
         outputLayer.initWeights(-outputWeights, outputWeights);
     }
 
     public void training(List<Sample> samples) {
-        initWeights(hiddenWeights, outputWeights);
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(1024, 768);
+        f.setLocation(200, 200);
+        initWeights();
         int learningStep = 0;
-        double error = 0; // ------------------------------------------ Len na vypisy
-        double previousError = 99; // ------------------------------------------ Len na vypisy
-        double deltaWeightsVectorLength = 0; // ------------------------------------------ Len na vypisy
-
+        double deltaWeightsVectorLength; // ------------------------------------------ Len na vypisy
         do {
             resetDeltaWeights();
-            error = 0;  // ---------------------------------------------- Len na vypisy
             deltaWeightsVectorLength = 0;// ---------------------------------------------- Len na vypisy
-
             for (Sample sample : samples) {
                 feedForward(sample.inputs, false);
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
                     outputLayer.errorDsRespectY[i] = outputLayer.outputs[i] - sample.desiredOutputs[i];
-                    error += 0.5 * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
+                    errors[learningStep] += 0.5 * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
                 }
 
                 for (int i = 0; i < hiddenLayer.outputs.length; i++) {
@@ -81,19 +94,17 @@ public class MLP {
             }
             updateWeights(learningRate);
             if (learningStep % printStatusFreq == 0) {  // ------------------------------------------ Len na vypisy
-                System.out.println(String.format("Lning: %.7f ", learningRate) + String.format("| Delta W lgth: %.8f ", Math.sqrt(deltaWeightsVectorLength)) + String.format("| Err: %.8f", error));
+                System.out.println(String.format("Lning: %.7f ", learningRate) + String.format("| Delta W lgth: %.8f ", Math.sqrt(deltaWeightsVectorLength)) + String.format("| Err: %.8f", errors[learningStep]));
+            }
+            if (showGraph && learningStep % (5 * printStatusFreq) == 0) {
+                f.getContentPane().add(new Graph(errors, numLearningSteps));
+                f.setVisible(true);
             }
             if (learningStep % 10 == 0) {
-                learningRate *= 0.99;
+                learningRate *= 0.98;
             }
-            if (error >= previousError) {
-                System.out.println("*******************PREVIOUS ERROR: " + previousError + "**************************");
-                System.out.println("****************************ERROR: " + error + "**********************************");
-            }
-            previousError = error;
-
             learningStep++;
-        } while (learningStep < 1000);
+        } while (learningStep < numLearningSteps);
         System.out.println("---------    TRAINING FINISHED   ----------");
     }
 
@@ -129,7 +140,7 @@ public class MLP {
     }
 
     private void printWeights() {
-        System.out.println("----------");
+        System.out.println("---------   WEIGHTS     -------");
         for (int i = 0; i < outputLayer.weights.length; i++) {
             StringBuilder s = new StringBuilder("Output layer weights: ");
             for (int j = 0; j < outputLayer.weights[i].length; j++) {
@@ -147,4 +158,6 @@ public class MLP {
             System.out.println(s);
         }
     }
+
+
 }

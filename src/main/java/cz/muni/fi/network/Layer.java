@@ -45,7 +45,7 @@ public class Layer {
                 double random;
                 do {
                     random = r.nextDouble();
-                } while (Math.abs(min + (max - min) * random) < 0.006);
+                } while (Math.abs(min + (max - min) * random) < 0.008);
                 weights[i][j] = min + (max - min) * random;
             }
         }

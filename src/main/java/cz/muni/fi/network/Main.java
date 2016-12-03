@@ -29,9 +29,9 @@ public class Main {
         }
 
         //                 Num Inputs,  Num Hidden,  Num Outputs,
-        MLP mlp = new MLP(1, 2, 1,
+        MLP mlp = new MLP(1, 2, 1, 1000, false,
                 //     Learning rate,  Hidden weights, Output weights,  Print status frequency
-                1, -1, 1, 10);
+                1, false, 10);
 
         mlp.training(samples);
 
@@ -50,10 +50,10 @@ public class Main {
         samples.add(new Sample(new double[]{0, 1}, new double[]{1}));
         samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
 
-        //    Num Inputs,  Num Hidden,  Num Outputs,
-        MLP mlp = new MLP(2, 2, 1,
-                //Learning rate,  Hidden weights, Output weights,  Print status frequency
-                0.3, 1, 1, 10);
+        //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph
+        MLP mlp = new MLP(2, 2, 1, 1000, true,
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency
+                0.2, false, 10);
 
         mlp.training(samples);
 
@@ -107,9 +107,9 @@ public class Main {
         }
 
         //                 Num Inputs,  Num Hidden,  Num Outputs,
-        MLP mlp = new MLP(500, 30, 1,
+        MLP mlp = new MLP(500, 30, 1, 1000, false,
                 //     Learning rate,   Hidden weights, Output weights,  Print status frequency
-                0.1, -0.1, 0.1, 10);
+                0.1, false, 10);
 
 
         mlp.training(samples);
