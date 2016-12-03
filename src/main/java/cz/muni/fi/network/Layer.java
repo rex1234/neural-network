@@ -15,7 +15,8 @@ public class Layer {
     public double outputs[];
     public double potentials[];
     public double weights[][];
-    public double deltaWeights[][];
+    public double errorDsRespectW[][];
+    public double previousDeltaWs[][];
     public double errorDsRespectY[];
     public double inputs[];
     private double twoThirds = 2d / 3d;
@@ -36,7 +37,8 @@ public class Layer {
         }
         potentials = new double[numNeurons];
         weights = new double[numNeurons][numInputs + 1];
-        deltaWeights = new double[numNeurons][numInputs + 1];
+        errorDsRespectW = new double[numNeurons][numInputs + 1];
+        previousDeltaWs = new double[numNeurons][numInputs + 1];
     }
 
     public void initWeights(double min, double max) {
@@ -51,10 +53,10 @@ public class Layer {
         }
     }
 
-    public void resetDeltaWeights() {
-        for (int i = 0; i < deltaWeights.length; i++) {
-            for (int j = 0; j < deltaWeights[i].length; j++) {
-                deltaWeights[i][j] = 0.0;
+    public void resetErrorDsRespectW() {
+        for (int i = 0; i < errorDsRespectW.length; i++) {
+            for (int j = 0; j < errorDsRespectW[i].length; j++) {
+                errorDsRespectW[i][j] = 0.0;
             }
         }
     }
@@ -77,7 +79,9 @@ public class Layer {
     public void updateWeights(double learningRate) {
         for (int i = 0; i < weights.length; i++) {
             for (int j = 0; j < weights[i].length; j++) {
-                weights[i][j] += -learningRate * deltaWeights[i][j];
+                double deltaWeight = (-learningRate * errorDsRespectW[i][j]) + (mlp.momentumInfluence * previousDeltaWs[i][j]);
+                weights[i][j] += deltaWeight;
+                previousDeltaWs[i][j] = deltaWeight;
             }
         }
     }

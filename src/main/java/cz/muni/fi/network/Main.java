@@ -31,7 +31,7 @@ public class Main {
         //                 Num Inputs,  Num Hidden,  Num Outputs,
         MLP mlp = new MLP(1, 2, 1, 1000, false,
                 //     Learning rate,  Hidden weights, Output weights,  Print status frequency
-                1, false, 10);
+                1, false, 10, 0.5);
 
         mlp.training(samples);
 
@@ -52,8 +52,8 @@ public class Main {
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph
         MLP mlp = new MLP(2, 2, 1, 1000, true,
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency
-                0.1, false, 10);
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence
+                0.1, false, 10, 0.5);
 
         mlp.training(samples);
 
@@ -109,7 +109,7 @@ public class Main {
         //                 Num Inputs,  Num Hidden,  Num Outputs,
         MLP mlp = new MLP(500, 30, 1, 1000, false,
                 //     Learning rate,   Hidden weights, Output weights,  Print status frequency
-                0.1, false, 10);
+                0.1, false, 10, 0.5);
 
 
         mlp.training(samples);

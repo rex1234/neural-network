@@ -9,6 +9,7 @@ import java.util.List;
 public class MLP {
 
     public double learningRate;
+    public double momentumInfluence;
     public int numLearningSteps;
     public boolean showGraph;
 
@@ -20,10 +21,10 @@ public class MLP {
 
     private int printStatusFreq;
     private double errors[];
-    private double deltaWeightsVectorLengths[];
+    private double errorDerivatives[];
 
     public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph,
-               double learningRate, boolean glorotBengioWeights, int printStatusFreq) {
+               double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence) {
 
         if (glorotBengioWeights) {
             this.hiddenWeights = Math.sqrt(6 / (numInputNeurons + numOutputNeurons));
@@ -35,11 +36,12 @@ public class MLP {
         System.out.println("--------- WEIGHTS BEING INITIALIZED RANDOMLY ---------------");
         System.out.println("Hidden weights: " + hiddenWeights);
         System.out.println("Output weights: " + outputWeights);
+        this.momentumInfluence = momentumInfluence;
         this.learningRate = learningRate;
         this.printStatusFreq = printStatusFreq;
         this.numLearningSteps = numLearningSteps;
         this.errors = new double[numLearningSteps];
-        this.deltaWeightsVectorLengths = new double[numLearningSteps];
+        this.errorDerivatives = new double[numLearningSteps];
         this.showGraph = showGraph;
 
         outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons, false);
@@ -60,7 +62,7 @@ public class MLP {
         initWeights();
         int learningStep = 0;
         do {
-            resetDeltaWeights();
+            resetErrorDsRespectW();
             for (Sample sample : samples) {
                 feedForward(sample.inputs, false);
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
@@ -78,29 +80,28 @@ public class MLP {
 
                 for (int i = 0; i < outputLayer.weights.length; i++) {
                     for (int j = 0; j < outputLayer.weights[i].length; j++) {
-                        outputLayer.deltaWeights[i][j] += outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dTanh(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
+                        outputLayer.errorDsRespectW[i][j] += outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dTanh(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
                     }
                 }
 
                 for (int i = 0; i < hiddenLayer.weights.length; i++) {
                     for (int j = 0; j < hiddenLayer.inputs.length; j++) {
-                        hiddenLayer.deltaWeights[i][j] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
+                        hiddenLayer.errorDsRespectW[i][j] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
                     }
-                    hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
+                    hiddenLayer.errorDsRespectW[i][hiddenLayer.inputs.length] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
                 }
             }
-            deltaWeightsVectorLengths[learningStep] = deltaWeightLength();
-
+            errorDerivatives[learningStep] = errorDerivative();
             updateWeights(learningRate);
             if (learningStep % printStatusFreq == 0) {  // ------------------------------------------ Len na vypisy
-                System.out.println(String.format("Lning: %.7f ", learningRate) + String.format("| Delta W lgth: %.8f ", Math.sqrt(deltaWeightsVectorLengths[learningStep])) + String.format("| Err: %.8f", errors[learningStep]));
+                System.out.println(String.format("Lning rate: %.7f ", learningRate) + String.format("| Error derivative: %.8f ", Math.sqrt(errorDerivatives[learningStep])) + String.format("| Err: %.8f", errors[learningStep]));
             }
             if (showGraph && learningStep % (5 * printStatusFreq) == 0) {
-                f.getContentPane().add(new Graph(errors, deltaWeightsVectorLengths, numLearningSteps));
+                f.getContentPane().add(new Graph(errors, errorDerivatives, numLearningSteps));
                 f.setVisible(true);
             }
             if (learningStep % 20 == 0) {
-                learningRate *= 0.96;
+                learningRate *= 0.97;
             }
             learningStep++;
         } while (learningStep < numLearningSteps);
@@ -133,25 +134,25 @@ public class MLP {
         outputLayer.updateWeights(learningRate);
     }
 
-    private void resetDeltaWeights() {
-        hiddenLayer.resetDeltaWeights();
-        outputLayer.resetDeltaWeights();
+    private void resetErrorDsRespectW() {
+        hiddenLayer.resetErrorDsRespectW();
+        outputLayer.resetErrorDsRespectW();
     }
 
-    private double deltaWeightLength() {
-        double deltaWeightLength = 0;
+    private double errorDerivative() {
+        double errorDerivative = 0;
         for (int i = 0; i < outputLayer.weights.length; i++) {
             for (int j = 0; j < outputLayer.weights[i].length; j++) {
-                deltaWeightLength += Math.pow(outputLayer.deltaWeights[i][j], 2);
+                errorDerivative += Math.pow(outputLayer.errorDsRespectW[i][j], 2);
             }
         }
         for (int i = 0; i < hiddenLayer.weights.length; i++) {
             for (int j = 0; j < hiddenLayer.inputs.length; j++) {
-                deltaWeightLength += Math.pow(hiddenLayer.deltaWeights[i][j], 2);
+                errorDerivative += Math.pow(hiddenLayer.errorDsRespectW[i][j], 2);
             }
-            deltaWeightLength += Math.pow(hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length], 2);
+            errorDerivative += Math.pow(hiddenLayer.errorDsRespectW[i][hiddenLayer.inputs.length], 2);
         }
-        return Math.sqrt(deltaWeightLength);
+        return Math.sqrt(errorDerivative);
     }
 
     private void printWeights() {
