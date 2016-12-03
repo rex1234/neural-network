@@ -1,7 +1,9 @@
 package cz.muni.fi.network;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 /**
@@ -9,11 +11,13 @@ import javax.swing.*;
  */
 public class Graph extends JPanel {
     double[] data;
+    double[] data2;
     final int PAD = 20;
     int xLength;
 
-    public Graph(double[] data, int xLength) {
+    public Graph(double[] data, double[] data2, int xLength) {
         this.data = data;
+        this.data2 = data2;
         this.xLength = xLength;
     }
 
@@ -26,7 +30,7 @@ public class Graph extends JPanel {
         int h = getHeight();
         g2.drawLine(PAD, PAD, PAD, h - PAD);
         g2.drawLine(PAD, h - PAD, w - PAD, h - PAD);
-        double xScale = ((double)(w - 2 * PAD)) / (double)(xLength + 1);
+        double xScale = ((double) (w - 2 * PAD)) / (double) (xLength + 1);
         double maxValue = data[0];
         double yScale = (h - 2 * PAD) / maxValue;
         // The origin location.
@@ -36,6 +40,15 @@ public class Graph extends JPanel {
         for (int j = 0; j < data.length; j++) {
             int x = x0 + (int) Math.round(xScale * (j + 1));
             int y = y0 - (int) Math.round(yScale * data[j]);
+            g2.fillOval(x - 2, y - 2, 4, 4);
+        }
+
+        maxValue = data2[0];
+        yScale = (h - 2 * PAD) / maxValue;
+        g2.setPaint(Color.CYAN);
+        for (int j = 0; j < data2.length; j++) {
+            int x = x0 + (int) Math.round(xScale * (j + 1));
+            int y = y0 - (int) Math.round(yScale * data2[j]);
             g2.fillOval(x - 1, y - 1, 3, 3);
         }
     }

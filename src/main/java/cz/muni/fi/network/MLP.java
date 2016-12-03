@@ -20,6 +20,7 @@ public class MLP {
 
     private int printStatusFreq;
     private double errors[];
+    private double deltaWeightsVectorLengths[];
 
     public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph,
                double learningRate, boolean glorotBengioWeights, int printStatusFreq) {
@@ -38,6 +39,7 @@ public class MLP {
         this.printStatusFreq = printStatusFreq;
         this.numLearningSteps = numLearningSteps;
         this.errors = new double[numLearningSteps];
+        this.deltaWeightsVectorLengths = new double[numLearningSteps];
         this.showGraph = showGraph;
 
         outputLayer = new Layer(this, numOutputNeurons, numHiddenNeurons, false);
@@ -57,10 +59,8 @@ public class MLP {
         f.setLocation(200, 200);
         initWeights();
         int learningStep = 0;
-        double deltaWeightsVectorLength; // ------------------------------------------ Len na vypisy
         do {
             resetDeltaWeights();
-            deltaWeightsVectorLength = 0;// ---------------------------------------------- Len na vypisy
             for (Sample sample : samples) {
                 feedForward(sample.inputs, false);
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
@@ -79,29 +79,28 @@ public class MLP {
                 for (int i = 0; i < outputLayer.weights.length; i++) {
                     for (int j = 0; j < outputLayer.weights[i].length; j++) {
                         outputLayer.deltaWeights[i][j] += outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dTanh(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
-                        deltaWeightsVectorLength += Math.pow(outputLayer.deltaWeights[i][j], 2);  // --------------------------- Len na vypisy
                     }
                 }
 
                 for (int i = 0; i < hiddenLayer.weights.length; i++) {
                     for (int j = 0; j < hiddenLayer.inputs.length; j++) {
                         hiddenLayer.deltaWeights[i][j] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
-                        deltaWeightsVectorLength += Math.pow(hiddenLayer.deltaWeights[i][j], 2);  // --------------------------- Len na vypisy
                     }
                     hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
-                    deltaWeightsVectorLength += Math.pow(hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length], 2);  // --------------------------- Len na vypisy
                 }
             }
+            deltaWeightsVectorLengths[learningStep] = deltaWeightLength();
+
             updateWeights(learningRate);
             if (learningStep % printStatusFreq == 0) {  // ------------------------------------------ Len na vypisy
-                System.out.println(String.format("Lning: %.7f ", learningRate) + String.format("| Delta W lgth: %.8f ", Math.sqrt(deltaWeightsVectorLength)) + String.format("| Err: %.8f", errors[learningStep]));
+                System.out.println(String.format("Lning: %.7f ", learningRate) + String.format("| Delta W lgth: %.8f ", Math.sqrt(deltaWeightsVectorLengths[learningStep])) + String.format("| Err: %.8f", errors[learningStep]));
             }
             if (showGraph && learningStep % (5 * printStatusFreq) == 0) {
-                f.getContentPane().add(new Graph(errors, numLearningSteps));
+                f.getContentPane().add(new Graph(errors, deltaWeightsVectorLengths, numLearningSteps));
                 f.setVisible(true);
             }
-            if (learningStep % 10 == 0) {
-                learningRate *= 0.98;
+            if (learningStep % 20 == 0) {
+                learningRate *= 0.96;
             }
             learningStep++;
         } while (learningStep < numLearningSteps);
@@ -137,6 +136,22 @@ public class MLP {
     private void resetDeltaWeights() {
         hiddenLayer.resetDeltaWeights();
         outputLayer.resetDeltaWeights();
+    }
+
+    private double deltaWeightLength() {
+        double deltaWeightLength = 0;
+        for (int i = 0; i < outputLayer.weights.length; i++) {
+            for (int j = 0; j < outputLayer.weights[i].length; j++) {
+                deltaWeightLength += Math.pow(outputLayer.deltaWeights[i][j], 2);
+            }
+        }
+        for (int i = 0; i < hiddenLayer.weights.length; i++) {
+            for (int j = 0; j < hiddenLayer.inputs.length; j++) {
+                deltaWeightLength += Math.pow(hiddenLayer.deltaWeights[i][j], 2);
+            }
+            deltaWeightLength += Math.pow(hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length], 2);
+        }
+        return Math.sqrt(deltaWeightLength);
     }
 
     private void printWeights() {

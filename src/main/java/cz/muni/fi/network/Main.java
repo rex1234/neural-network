@@ -53,7 +53,7 @@ public class Main {
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph
         MLP mlp = new MLP(2, 2, 1, 1000, true,
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency
-                0.2, false, 10);
+                0.1, false, 10);
 
         mlp.training(samples);
 
