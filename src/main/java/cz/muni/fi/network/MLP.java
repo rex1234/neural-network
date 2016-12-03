@@ -62,13 +62,15 @@ public class MLP {
         initWeights();
         printWeights();
         int learningStep = 0;
+        double invertedSampleCount = 1d / samples.size();
         do {
             resetErrorDsRespectW();
+
             for (Sample sample : samples) {
                 feedForward(sample.inputs, false);
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
                     outputLayer.errorDsRespectY[i] = outputLayer.outputs[i] - sample.desiredOutputs[i];
-                    errors[learningStep] += 0.5 * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
+                    errors[learningStep] += invertedSampleCount * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
                 }
 
                 for (int i = 0; i < hiddenLayer.outputs.length; i++) {
@@ -81,15 +83,15 @@ public class MLP {
 
                 for (int i = 0; i < outputLayer.weights.length; i++) {
                     for (int j = 0; j < outputLayer.weights[i].length; j++) {
-                        outputLayer.errorDsRespectW[i][j] += outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dTanh(outputLayer.outputs[i]); // TODO optimalizovat, sigmoid sa uz pocital
+                        outputLayer.errorDsRespectW[i][j] += invertedSampleCount * (outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dTanh(outputLayer.outputs[i])); // TODO optimalizovat, sigmoid sa uz pocital
                     }
                 }
 
                 for (int i = 0; i < hiddenLayer.weights.length; i++) {
                     for (int j = 0; j < hiddenLayer.inputs.length; j++) {
-                        hiddenLayer.errorDsRespectW[i][j] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
+                        hiddenLayer.errorDsRespectW[i][j] += invertedSampleCount * (hiddenLayer.errorDsRespectY[i] * hiddenLayer.inputs[j] * hiddenLayer.dTanh(hiddenLayer.outputs[i]));
                     }
-                    hiddenLayer.errorDsRespectW[i][hiddenLayer.inputs.length] += hiddenLayer.errorDsRespectY[i] * hiddenLayer.dTanh(hiddenLayer.outputs[i]);
+                    hiddenLayer.errorDsRespectW[i][hiddenLayer.inputs.length] += invertedSampleCount * (hiddenLayer.errorDsRespectY[i] * hiddenLayer.dTanh(hiddenLayer.outputs[i]));
                 }
             }
             errorDerivatives[learningStep] = errorDerivative();
@@ -102,9 +104,9 @@ public class MLP {
                 f.setVisible(true);
                 System.out.println("Printing graph");
             }
-            if (learningStep % 30 == 0) {
-                learningRate *= 0.95;
-            }
+//            if (learningStep % 30 == 0) {
+//                learningRate *= 0.98;
+//            }
             learningStep++;
         } while (learningStep < numLearningSteps);
         System.out.println("---------    TRAINING FINISHED   ----------");
