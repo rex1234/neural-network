@@ -13,8 +13,8 @@ public class MLP {
     private double hiddenWeights;
     private double outputWeights;
 
-    private Layer outputLayer;
-    private Layer hiddenLayer;
+    public Layer outputLayer;
+    public Layer hiddenLayer;
 
     private int printStatusFreq;
 
@@ -48,13 +48,8 @@ public class MLP {
             error = 0;  // ---------------------------------------------- Len na vypisy
             deltaWeightsVectorLength = 0;// ---------------------------------------------- Len na vypisy
 
-            List<Sample> miniBatch = new ArrayList<>(samples);
-//            Collections.shuffle(miniBatch, new Random(learningStep));
-//            miniBatch = miniBatch.subList(0, samples.size() / 10);
-
-            for (Sample sample : miniBatch) {
+            for (Sample sample : samples) {
                 feedForward(sample.inputs, false);
-
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
                     outputLayer.errorDsRespectY[i] = outputLayer.outputs[i] - sample.desiredOutputs[i];
                     error += 0.5 * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
@@ -84,36 +79,22 @@ public class MLP {
                     deltaWeightsVectorLength += Math.pow(hiddenLayer.deltaWeights[i][hiddenLayer.inputs.length], 2);  // --------------------------- Len na vypisy
                 }
             }
-
             updateWeights(learningRate);
-
+            if (learningStep % printStatusFreq == 0) {  // ------------------------------------------ Len na vypisy
+                System.out.println(String.format("Lning: %.7f ", learningRate) + String.format("| Delta W lgth: %.8f ", Math.sqrt(deltaWeightsVectorLength)) + String.format("| Err: %.8f", error));
+            }
+            if (learningStep % 10 == 0) {
+                learningRate *= 0.99;
+            }
             if (error >= previousError) {
-                System.out.println("**********************************************************************************");
                 System.out.println("*******************PREVIOUS ERROR: " + previousError + "**************************");
                 System.out.println("****************************ERROR: " + error + "**********************************");
-                System.out.println("**********************************************************************************");
-                System.out.println("");
             }
-
-
-//            if(learningStep % 10 == 0) {
-//                System.out.println("Error: " + error);
-//            }
-
             previousError = error;
-            if (learningStep % printStatusFreq == 0) {  // ------------------------------------------ Len na vypisy
-                System.out.println("Delta weigth length: " + Math.sqrt(deltaWeightsVectorLength) + "    Error: " + error);
-            }
+
             learningStep++;
-
-//            if (learningStep % 100 == 0) {
-//                learningRate *= 0.9;
-//            }
-
-//            System.out.println();
-//            System.out.println("-----");
-//            System.out.println();
-        } while (learningStep < 1_000);
+        } while (learningStep < 1000);
+        System.out.println("---------    TRAINING FINISHED   ----------");
     }
 
     public double[] feedForward(double[] inputs, boolean printPotentials) {
@@ -122,7 +103,7 @@ public class MLP {
         double[] output = outputLayer.evaluate();
 
         if (printPotentials) {  //----------------------------- Len výpis
-            System.out.println("--------------------------------------");
+            System.out.println("-");
             StringBuilder s = new StringBuilder("Output potentials: ");
             for (int i = 0; i < outputLayer.potentials.length; i++) {
                 s.append(outputLayer.potentials[i]).append(", ");

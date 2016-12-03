@@ -18,9 +18,9 @@ public class Layer {
     public double deltaWeights[][];
     public double errorDsRespectY[];
     public double inputs[];
-    private double twoThirds = 2 / 3;
-    private double c1 = twoThirds * 1.7159;
-    private double c2 = twoThirds / 1.7159;
+    private double twoThirds = 2d / 3d;
+    private double c1 = twoThirds * 1.7159d;
+    private double c2 = twoThirds / 1.7159d;
 
 
     public Layer(MLP mlp, int numNeurons, int numInputs, boolean isHidden) {
@@ -42,7 +42,11 @@ public class Layer {
     public void initWeights(double min, double max) {
         for (int i = 0; i < weights.length; i++) {
             for (int j = 0; j < weights[i].length; j++) {
-                weights[i][j] = min + (max - min) * r.nextDouble();
+                double random;
+                do {
+                    random = r.nextDouble();
+                } while (Math.abs(min + (max - min) * random) < 0.006);
+                weights[i][j] = min + (max - min) * random;
             }
         }
     }
@@ -91,7 +95,7 @@ public class Layer {
     }
 
     public double dTanh(double y) {
-        return c1 - c2 * Math.pow(y, 2);
+        return c1 - (c2 * Math.pow(y, 2));
     }
 
 }
