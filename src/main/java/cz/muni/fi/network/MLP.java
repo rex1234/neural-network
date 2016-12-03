@@ -57,9 +57,10 @@ public class MLP {
     public void training(List<Sample> samples) {
         JFrame f = new JFrame();
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(1024, 768);
-        f.setLocation(200, 200);
+        f.setSize(1024, 1024);
+        f.setLocation(10, 10);
         initWeights();
+        printWeights();
         int learningStep = 0;
         do {
             resetErrorDsRespectW();
@@ -99,9 +100,10 @@ public class MLP {
             if (showGraph && learningStep % (5 * printStatusFreq) == 0) {
                 f.getContentPane().add(new Graph(errors, errorDerivatives, numLearningSteps));
                 f.setVisible(true);
+                System.out.println("Printing graph");
             }
-            if (learningStep % 20 == 0) {
-                learningRate *= 0.97;
+            if (learningStep % 30 == 0) {
+                learningRate *= 0.95;
             }
             learningStep++;
         } while (learningStep < numLearningSteps);

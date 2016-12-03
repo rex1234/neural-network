@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-//        trainOnMovies();
-        xorTraining();
+        trainOnMovies();
+//        xorTraining();
     }
 
     private static void sinTraining() {
@@ -106,12 +106,10 @@ public class Main {
             samples.add(new Sample(inputs, outputs));
         }
 
-        //                 Num Inputs,  Num Hidden,  Num Outputs,
-        MLP mlp = new MLP(500, 30, 1, 1000, false,
-                //     Learning rate,   Hidden weights, Output weights,  Print status frequency
-                0.1, false, 10, 0.5);
-
-
+        //                 //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph
+        MLP mlp = new MLP(500, 40, 1, 1000, true,
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence
+                0.0001, false, 10, 0.5);
         mlp.training(samples);
 
         for (int i = 0; i < 2000; i++) {
