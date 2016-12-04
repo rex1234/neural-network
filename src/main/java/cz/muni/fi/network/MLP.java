@@ -12,7 +12,7 @@ public class MLP {
     public double momentumInfluence;
     public int numLearningSteps;
     public boolean showGraph;
-
+    private int decLearningRateFreq;
     private double hiddenWeights;
     private double outputWeights;
 
@@ -22,9 +22,10 @@ public class MLP {
     private int printStatusFreq;
     private double errors[];
     private double errorDerivatives[];
+    private JFrame f;
 
     public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph,
-               double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence) {
+               double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq) {
 
         if (glorotBengioWeights) {
             this.hiddenWeights = Math.sqrt(6 / (numInputNeurons + numOutputNeurons));
@@ -37,6 +38,7 @@ public class MLP {
         System.out.println("Hidden weights: " + hiddenWeights);
         System.out.println("Output weights: " + outputWeights);
         this.momentumInfluence = momentumInfluence;
+        this.decLearningRateFreq = decLearningRateFreq;
         this.learningRate = learningRate;
         this.printStatusFreq = printStatusFreq;
         this.numLearningSteps = numLearningSteps;
@@ -55,12 +57,8 @@ public class MLP {
     }
 
     public void training(List<Sample> samples) {
-        JFrame f = new JFrame();
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.setSize(1024, 1024);
-        f.setLocation(10, 10);
+        f = prepareGraph();
         initWeights();
-        printWeights();
         int learningStep = 0;
         double invertedSampleCount = 1d / samples.size();
         do {
@@ -73,17 +71,21 @@ public class MLP {
                     errors[learningStep] += invertedSampleCount * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
                 }
 
+                double preprocessed[] = new double[outputLayer.outputs.length];
+                for (int j = 0; j < outputLayer.outputs.length; j++) {
+                    preprocessed[j] = outputLayer.errorDsRespectY[j] * outputLayer.dTanh(outputLayer.outputs[j]);
+                }
                 for (int i = 0; i < hiddenLayer.outputs.length; i++) {
                     double errDRespectYi = 0;
                     for (int j = 0; j < outputLayer.outputs.length; j++) {
-                        errDRespectYi += outputLayer.errorDsRespectY[j] * outputLayer.weights[j][i] * outputLayer.dTanh(outputLayer.outputs[j]);
+                        errDRespectYi += preprocessed[j] * outputLayer.weights[j][i];
                     }
                     hiddenLayer.errorDsRespectY[i] = errDRespectYi;
                 }
 
                 for (int i = 0; i < outputLayer.weights.length; i++) {
                     for (int j = 0; j < outputLayer.weights[i].length; j++) {
-                        outputLayer.errorDsRespectW[i][j] += invertedSampleCount * (outputLayer.errorDsRespectY[i] * hiddenLayer.outputs[j] * outputLayer.dTanh(outputLayer.outputs[i])); // TODO optimalizovat, sigmoid sa uz pocital
+                        outputLayer.errorDsRespectW[i][j] += invertedSampleCount * (preprocessed[i] * hiddenLayer.outputs[j]);
                     }
                 }
 
@@ -94,19 +96,19 @@ public class MLP {
                     hiddenLayer.errorDsRespectW[i][hiddenLayer.inputs.length] += invertedSampleCount * (hiddenLayer.errorDsRespectY[i] * hiddenLayer.dTanh(hiddenLayer.outputs[i]));
                 }
             }
-            errorDerivatives[learningStep] = errorDerivative();
+            errorDerivatives[learningStep] = errorDerivative();//---------------Len vypis
             updateWeights(learningRate);
-            if (learningStep % printStatusFreq == 0) {  // ------------------------------------------ Len na vypisy
-                System.out.println(String.format("Lning rate: %.7f ", learningRate) + String.format("| Error derivative: %.8f ", Math.sqrt(errorDerivatives[learningStep])) + String.format("| Err: %.8f", errors[learningStep]));
+            if (learningStep % printStatusFreq == 0) {  //------------------------------------------ Len na vypisy
+                System.out.println(String.format("Lning rate: %.6f ", learningRate) + String.format("| Error derivative: %.8f ", errorDerivatives[learningStep]) + String.format("| Err: %.8f", errors[learningStep]));
             }
             if (showGraph && learningStep % (5 * printStatusFreq) == 0) {
                 f.getContentPane().add(new Graph(errors, errorDerivatives, numLearningSteps));
                 f.setVisible(true);
                 System.out.println("Printing graph");
             }
-//            if (learningStep % 30 == 0) {
-//                learningRate *= 0.98;
-//            }
+            if (learningStep % decLearningRateFreq == 0) {
+                learningRate *= 0.99;
+            }
             learningStep++;
         } while (learningStep < numLearningSteps);
         System.out.println("---------    TRAINING FINISHED   ----------");
@@ -117,19 +119,19 @@ public class MLP {
         hiddenLayer.evaluate();
         double[] output = outputLayer.evaluate();
 
-        if (printPotentials) {  //----------------------------- Len výpis
-            System.out.println("-");
-            StringBuilder s = new StringBuilder("Output potentials: ");
-            for (int i = 0; i < outputLayer.potentials.length; i++) {
-                s.append(outputLayer.potentials[i]).append(", ");
-            }
-            System.out.println(s);
-            s = new StringBuilder("Hidden potentials: ");
-            for (int i = 0; i < hiddenLayer.potentials.length; i++) {
-                s.append(hiddenLayer.potentials[i]).append(", ");
-            }
-            System.out.println(s);
-        }
+//        if (printPotentials) {  //----------------------------- Len výpis
+//            System.out.println("-");
+//            StringBuilder s = new StringBuilder("Output potentials: ");
+//            for (int i = 0; i < outputLayer.potentials.length; i++) {
+//                s.append(outputLayer.potentials[i]).append(", ");
+//            }
+//            System.out.println(s);
+//            s = new StringBuilder("Hidden potentials: ");
+//            for (int i = 0; i < hiddenLayer.potentials.length; i++) {
+//                s.append(hiddenLayer.potentials[i]).append(", ");
+//            }
+//            System.out.println(s);
+//        }
         return output;
     }
 
@@ -141,6 +143,14 @@ public class MLP {
     private void resetErrorDsRespectW() {
         hiddenLayer.resetErrorDsRespectW();
         outputLayer.resetErrorDsRespectW();
+    }
+
+    private JFrame prepareGraph() {
+        JFrame f = new JFrame();
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setSize(1024, 1024);
+        f.setLocation(10, 10);
+        return f;
     }
 
     private double errorDerivative() {

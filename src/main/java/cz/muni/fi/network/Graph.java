@@ -31,7 +31,7 @@ public class Graph extends JPanel {
         g2.drawLine(PAD, PAD, PAD, h - PAD);
         g2.drawLine(PAD, h - PAD, w - PAD, h - PAD);
         double xScale = ((double) (w - 2 * PAD)) / (double) (xLength + 1);
-        double maxValue = data[0] * 2;
+        double maxValue = data[0] * 1.5;
         double yScale = (h - 2 * PAD) / maxValue;
         // The origin location.
         int x0 = PAD;
@@ -43,7 +43,7 @@ public class Graph extends JPanel {
             g2.fillOval(x - 2, y - 2, 4, 4);
         }
 
-        maxValue = data2[0] * 2;
+        maxValue = data2[0] * 1.5;
         yScale = (h - 2 * PAD) / maxValue;
         g2.setPaint(Color.CYAN);
         for (int j = 0; j < data2.length; j++) {

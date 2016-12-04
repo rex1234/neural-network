@@ -62,16 +62,25 @@ public class Layer {
     }
 
     public double[] evaluate() {
-        for (int i = 0; i < weights.length; i++) {
-            double innerPotential = 0;
-            for (int j = 0; j < inputs.length; j++) {
-                innerPotential += weights[i][j] * inputs[j];
+        if (isHidden) {
+            for (int i = 0; i < weights.length; i++) {
+                double innerPotential = 0;
+                for (int j = 0; j < inputs.length; j++) {
+                    innerPotential += weights[i][j] * inputs[j];
+                }
+                innerPotential += weights[i][inputs.length];
+//                potentials[i] = innerPotential; // ---------------------------  Len pre výpisy
+                outputs[i] = tanh(innerPotential);
             }
-            if (isHidden) {
-                innerPotential += weights[i][inputs.length]; //TODO optimalizovat if podmienku
+        } else {
+            for (int i = 0; i < weights.length; i++) {
+                double innerPotential = 0;
+                for (int j = 0; j < inputs.length; j++) {
+                    innerPotential += weights[i][j] * inputs[j];
+                }
+//                potentials[i] = innerPotential; // ---------------------------  Len pre výpisy
+                outputs[i] = tanh(innerPotential);
             }
-            potentials[i] = innerPotential; // ---------------------------  Len pre výpisy
-            outputs[i] = tanh(innerPotential);
         }
         return outputs;
     }
