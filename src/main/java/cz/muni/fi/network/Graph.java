@@ -2,6 +2,7 @@ package cz.muni.fi.network;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -40,7 +41,7 @@ public class Graph extends JPanel {
         for (int j = 0; j < data.length; j++) {
             int x = x0 + (int) Math.round(xScale * (j + 1));
             int y = y0 - (int) Math.round(yScale * data[j]);
-            g2.fillOval(x - 2, y - 2, 4, 4);
+            g2.fillOval(x - 1, y - 1, 3, 3);
         }
 
         maxValue = data2[0] * 1.5;
@@ -51,6 +52,20 @@ public class Graph extends JPanel {
             int y = y0 - (int) Math.round(yScale * data2[j]);
             g2.fillOval(x - 1, y - 1, 3, 3);
         }
+    }
+
+    public static BufferedImage getScreenShot(
+            Component component) {
+
+        BufferedImage image = new BufferedImage(
+                component.getWidth(),
+                component.getHeight(),
+                BufferedImage.TYPE_INT_RGB
+        );
+        // call the Component's paint method, using
+        // the Graphics object of the image.
+        component.paint(image.getGraphics()); // alternately use .printAll(..)
+        return image;
     }
 
 }

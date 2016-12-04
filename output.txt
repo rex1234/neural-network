@@ -1,0 +1,16 @@
+----------------------------- NEW MLP INIT -----------------------------
+----------------------------------  batch1  -----------------------------------
+-----------------------------------  -----------------------------------
+-----------------------------------  -----------------------------------
+Num learning steps: 10000
+Learning rate: 0.1
+Glorot and Bengio Weights: false
+Momentum influence: 0.5
+Print status frequency: 30
+Frequency of decreasing learning rate: 50
+--------- WEIGHTS BEING INITIALIZED RANDOMLY ---------------
+Hidden weights: 0.07745966692414832
+Output weights: 0.27386127875258304
+Lning rate: 0,100000 | Error derivative: 0,69143205 | Err: 0,18304698
+Lning rate: 0,099000 | Error derivative: 0,00795015 | Err: 0,04026922
+Lning rate: 0,098010 | Error derivative: 0,00743988 | Err: 0,03956621

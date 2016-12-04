@@ -1,7 +1,13 @@
 package cz.muni.fi.network;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+
+import static cz.muni.fi.network.Graph.getScreenShot;
 
 /**
  * Created by MiHu on 17.11.2016.
@@ -11,6 +17,7 @@ public class MLP {
     public double learningRate;
     public double momentumInfluence;
     public int numLearningSteps;
+    private String imgName;
     public boolean showGraph;
     private int decLearningRateFreq;
     private double hiddenWeights;
@@ -24,9 +31,18 @@ public class MLP {
     private double errorDerivatives[];
     private JFrame f;
 
-    public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph,
+    public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph, String imgName,
                double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq) {
-
+        System.out.println("----------------------------- NEW MLP INIT -----------------------------");
+        System.out.println("----------------------------------  batch" + imgName + "  -----------------------------------");
+        System.out.println("-----------------------------------  -----------------------------------");
+        System.out.println("-----------------------------------  -----------------------------------");
+        System.out.println("Num learning steps: " + numLearningSteps);
+        System.out.println("Learning rate: " + learningRate);
+        System.out.println("Glorot and Bengio Weights: " + glorotBengioWeights);
+        System.out.println("Momentum influence: " + momentumInfluence);
+        System.out.println("Print status frequency: " + printStatusFreq);
+        System.out.println("Frequency of decreasing learning rate: " + decLearningRateFreq);
         if (glorotBengioWeights) {
             this.hiddenWeights = Math.sqrt(6 / (numInputNeurons + numOutputNeurons));
             this.outputWeights = Math.sqrt(6 / (numHiddenNeurons + 1));
@@ -38,6 +54,7 @@ public class MLP {
         System.out.println("Hidden weights: " + hiddenWeights);
         System.out.println("Output weights: " + outputWeights);
         this.momentumInfluence = momentumInfluence;
+        this.imgName = imgName;
         this.decLearningRateFreq = decLearningRateFreq;
         this.learningRate = learningRate;
         this.printStatusFreq = printStatusFreq;
@@ -102,16 +119,16 @@ public class MLP {
                 System.out.println(String.format("Lning rate: %.6f ", learningRate) + String.format("| Error derivative: %.8f ", errorDerivatives[learningStep]) + String.format("| Err: %.8f", errors[learningStep]));
             }
             if (showGraph && learningStep % (5 * printStatusFreq) == 0) {
-                f.getContentPane().add(new Graph(errors, errorDerivatives, numLearningSteps));
-                f.setVisible(true);
-                System.out.println("Printing graph");
+//                drawGraph();
             }
             if (learningStep % decLearningRateFreq == 0) {
                 learningRate *= 0.99;
             }
             learningStep++;
         } while (learningStep < numLearningSteps);
-        System.out.println("---------    TRAINING FINISHED   ----------");
+        System.out.println("--------------    TRAINING FINISHED   --------------");
+        drawGraphAndWriteImg(imgName);
+
     }
 
     public double[] feedForward(double[] inputs, boolean printPotentials) {
@@ -138,6 +155,22 @@ public class MLP {
     private void updateWeights(double learningRate) {
         hiddenLayer.updateWeights(learningRate);
         outputLayer.updateWeights(learningRate);
+    }
+
+    private void drawGraph() {
+        f.getContentPane().add(new Graph(errors, errorDerivatives, numLearningSteps));
+        f.setVisible(true);
+    }
+
+    private void drawGraphAndWriteImg(String filename) {
+        drawGraph();
+        BufferedImage img = getScreenShot(f.getContentPane());
+        File outputfile = new File(filename + ".jpg");
+        try {
+            ImageIO.write(img, "jpg", outputfile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void resetErrorDsRespectW() {
