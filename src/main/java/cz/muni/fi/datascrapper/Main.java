@@ -14,9 +14,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Rex on 8.11.2016.
@@ -30,7 +28,9 @@ public class Main{
 
     private static String baseActorUrl = "http://www.imdb.com/name/[id]/";
     private static String baseMovieUrl = "http://www.imdb.com/title/[id]/";
+    private static String detailMovieUrl = "http://www.imdb.com/title/[id]/fullcredits";
 
+    private static List<Movie> processedMovies = Collections.synchronizedList(new ArrayList<>());
 
     private static String[] actorLists = new String[]{
             "http://www.imdb.com/list/ls058011111/?start=1&view=compact&sort=listorian:asc",
@@ -43,25 +43,39 @@ public class Main{
     private static List<Movie> movies = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
-        baseActors = loadOrParseActors();
-        System.out.println(baseActors.size());
+        //*******************
+        //loading actors
+        //*******************
 
+        //baseActors = loadOrParseActors();
+        //System.out.println(baseActors.size());
         //loadMoviesForActors();
-        movies = loadPreProcessedMovies();
-        System.out.println(movies.size());
+
+        //*******************
+        //loading movie rating and year
+        //*******************
+
+        //movies = loadPreProcessedMovies();
+        //System.out.println(movies.size());
 
         //Collections.sort(movies, (o1, o2) -> o1.getActors().size() - o2.getActors().size());
 
-        List<Movie> toBeDetailed = new ArrayList<>();
-        for (Movie movie : movies) {
-            if(movie.getActors().size() >= 4 && movie.getActors().size() < 10)
-                toBeDetailed.add(movie);
-            //System.out.println(movie.getName() + " " + movie.getActors().size());
-        }
+        //List<Movie> toBeDetailed = new ArrayList<>();
+        //for (Movie movie : movies) {
+        //    if(movie.getActors().size() >= 4 && movie.getActors().size() < 10)
+        //        toBeDetailed.add(movie);
+        //    //System.out.println(movie.getName() + " " + movie.getActors().size());
+        //}
 
-        System.out.println("Going to process " + toBeDetailed.size() + " movies");
+        //System.out.println("Going to process " + toBeDetailed.size() + " movies");
 
-        loadMovieDetails(toBeDetailed);
+        //loadMovieDetails1(toBeDetailed);
+
+        //*******************
+        //loading movie director
+        //*******************
+        movies = DataTools.getMoviesFromJson();
+        loadMovieDetails2(movies);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -146,8 +160,7 @@ public class Main{
     }
 
 
-    private static List<Movie> processedMovies = Collections.synchronizedList(new ArrayList<Movie>());
-    private static void loadMovieDetails(List<Movie> toBeDetailed) {
+    private static void loadMovieDetails1(List<Movie> toBeDetailed) {
         buffered = 20;
         processed = 0;
 
@@ -163,6 +176,58 @@ public class Main{
                     if (buffered-- == 0 || processed == toBeDetailed.size()) {
                         String moviesJson = new Gson().toJson(processedMovies);
                         Files.write(Paths.get("movies.json"), moviesJson.getBytes());
+                        buffered = 20;
+                    }
+                }
+
+                System.out.println("Processed " + processed + " movies");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private static void loadMovieDetails2(List<Movie> moviesWODirectors) throws IOException {
+        buffered = 20;
+        processed = 0;
+
+//        List<Movie> moviesWDirectors = DataTools.getMoviesWDirectorsFromJson();
+//        for (Movie movie : moviesWODirectors) {
+//            if(!moviesWDirectors.contains(movie)); {
+//                moviesWDirectors.add(movie);
+//            }
+//        }
+//
+//        final List<Movie> movies = moviesWODirectors;
+//
+//        processed = movies.size();
+
+        Set<Person> parsedDirectors = new HashSet<>(); //DataTools.getBaseDirectors()
+
+        moviesWODirectors.stream().parallel().forEach(movie -> {
+            if(movie.getDirector() != null && movie.getDirector().length() > 0) {
+                return;
+            }
+
+            try {
+                Person director = parseMovieDirector(movie);
+
+                if(director == null) {
+                    return;
+                }
+
+
+                synchronized (writeLock) {
+                    parsedDirectors.add(director);
+                    processedMovies.add(movie);
+                    ++processed;
+
+                    if (buffered-- == 0 || processed == movies.size()) {
+                        String moviesJson = new Gson().toJson(processedMovies);
+                        Files.write(Paths.get("movies_w_directors.json"), moviesJson.getBytes());
+
+                        String directorsJson = new Gson().toJson(parsedDirectors);
+                        Files.write(Paths.get("directors.json"), directorsJson.getBytes());
                         buffered = 20;
                     }
                 }
@@ -190,5 +255,26 @@ public class Main{
         } catch (Exception e) {
             System.err.println("Failed to extract year");
         }
+    }
+
+    private static Person parseMovieDirector(Movie movie) throws IOException{
+        Document doc = Jsoup.connect(detailMovieUrl.replace("[id]", movie.getId())).userAgent("Mozilla").timeout(10_000).get();
+
+        try {
+            Element directorElem = doc.select(".name").first().select("a").first();
+            String directorName = directorElem.text();
+            String directorId = directorElem.attr("href").replaceAll(".*/name/(.*?)/.*", "$1");
+
+            Person director = new Person(directorId, directorName);
+
+            movie.setDirector(directorId);
+
+
+            return director;
+        } catch (Exception e) {
+            System.out.println("Failed to extract director for movie " + movie.getName());
+        }
+
+        return null;
     }
 }

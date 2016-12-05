@@ -7,7 +7,7 @@ public class Person {
     private String id;
     private String name;
 
-    public int count = 0;
+    public transient int count = 0;
 
     public Person(String id, String name) {
         this.id = id;

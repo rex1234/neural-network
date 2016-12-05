@@ -11,10 +11,10 @@ public class Movie {
     private float rating;
     private String name;
     private List<String> actors = new ArrayList<>();
-    private Person director;
+    private String director;
     private int year;
 
-    public Movie(String id, float rating, List<String> actors, Person director, int year) {
+    public Movie(String id, float rating, List<String> actors, String director, int year) {
         this.id = id;
         this.rating = rating;
         this.actors = actors;
@@ -51,11 +51,11 @@ public class Movie {
         this.actors = actors;
     }
 
-    public Person getDirector() {
+    public String getDirector() {
         return director;
     }
 
-    public void setDirector(Person director) {
+    public void setDirector(String director) {
         this.director = director;
     }
 

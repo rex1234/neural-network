@@ -70,7 +70,8 @@ public class Main {
 
     private static void trainOnMovies() throws IOException {
         List<Person> actors = DataTools.getBaseActors();
-        List<Movie> movies = DataTools.getMoviesFromJson()
+        List<Person> directors = DataTools.getBaseDirectors();
+        List<Movie> movies = DataTools.getMoviesWDirectorsFromJson()
                 .stream().filter(m -> !m.shouldBeSkipped()).collect(Collectors.toList());
 
         for (Movie movie : movies) {
@@ -81,13 +82,22 @@ public class Main {
                     }
                 }
             }
+
+            for (Person person : directors) {
+                if (person.getId().equals(movie.getDirector())) {
+                    person.count++;
+                }
+            }
         }
 
         Collections.sort(actors, (b, a) -> b.count - a.count);
+        Collections.sort(directors, (b, a) -> b.count - a.count);
+
         actors = actors.subList(0, 500);
+        directors = directors.subList(0, 100);
 
         List<Sample> samples = new ArrayList<>();
-//        Collections.shuffle(movies, new Random(55));
+        //Collections.shuffle(movies, new Random(55));
         Collections.sort(movies, (a, b) -> Float.compare(a.getRating(), b.getRating()));
 
         int trainingSize = 2000;
@@ -97,7 +107,7 @@ public class Main {
                 break;
             }
             double[] outputs = new double[]{movie.getRating() / 5 - 1};
-            double[] inputs = new double[500];
+            double[] inputs = new double[600];
 
             for (String actorId : movie.getActors()) {
                 int i = actors.indexOf(new Person(actorId));
@@ -108,53 +118,61 @@ public class Main {
                 inputs[i] = 1;
             }
 
+            int directorIndex = directors.indexOf(new Person(movie.getDirector()));
+            if (directorIndex == -1) {
+                //todo
+                //film nema rezisera v top 100
+            } else {
+                inputs[500 + directorIndex] = 1;
+            }
+
             samples.add(new Sample(inputs, outputs));
         }
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(500, 40, 1, 10000, true, "1",
+        MLP mlp = new MLP(600, 40, 1, 10000, true, "1",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
                 0.1, false, 30, 0.5, 50);
         mlp.training(samples);
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        mlp = new MLP(500, 40, 1, 10000, true, "2",
+        mlp = new MLP(600, 40, 1, 10000, true, "2",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
                 0.1, false, 30, 0.7, 20);
         mlp.training(samples);
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        mlp = new MLP(500, 40, 1, 10000, true, "3",
+        mlp = new MLP(600, 40, 1, 10000, true, "3",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
                 0.1, false, 30, 0.8, 70);
         mlp.training(samples);
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        mlp = new MLP(500, 40, 1, 10000, true, "4",
+        mlp = new MLP(600, 40, 1, 10000, true, "4",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
                 0.1, false, 30, 0.5, 25);
         mlp.training(samples);
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        mlp = new MLP(500, 40, 1, 10000, true, "5",
+        mlp = new MLP(600, 40, 1, 10000, true, "5",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
                 0.2, false, 30, 0.6, 25);
         mlp.training(samples);
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        mlp = new MLP(500, 40, 1, 10000, true, "6",
+        mlp = new MLP(600, 40, 1, 10000, true, "6",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
                 0.2, false, 30, 0.5, 40);
         mlp.training(samples);
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        mlp = new MLP(500, 40, 1, 10000, true, "7",
+        mlp = new MLP(600, 40, 1, 10000, true, "7",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
                 0.2, false, 30, 0.7, 80);
         mlp.training(samples);
 
         for (int i = 0; i < 2000; i++) {
-            double[] inputs = new double[500];
+            double[] inputs = new double[600];
 
             for (String actorId : movies.get(i).getActors()) {
                 int j = actors.indexOf(new Person(actorId));
@@ -162,6 +180,14 @@ public class Main {
                     continue;
                 }
                 inputs[j] = 1;
+            }
+
+            int directorIndex = directors.indexOf(new Person(movies.get(i).getDirector()));
+            if (directorIndex == -1) {
+                //todo
+                //film nema rezisera v top 100
+            } else {
+                inputs[500 + directorIndex] = 1;
             }
 
             System.out.println(String.format("Movie : %s, rating: %.1f", movies.get(i).getName(), movies.get(i).getRating()));

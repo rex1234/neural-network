@@ -20,7 +20,16 @@ public class DataTools {
         return new Gson().fromJson(new JsonReader(new FileReader("actors.json")), new TypeToken<ArrayList<Person>>(){}.getType());
     }
 
+    public static List<Person> getBaseDirectors() throws IOException{
+        return new Gson().fromJson(new JsonReader(new FileReader("directors.json")), new TypeToken<ArrayList<Person>>(){}.getType());
+    }
+
     public static List<Movie> getMoviesFromJson() throws IOException{
         return new Gson().fromJson(new JsonReader(new FileReader("movies.json")), new TypeToken<ArrayList<Movie>>(){}.getType());
     }
+
+    public static List<Movie> getMoviesWDirectorsFromJson() throws IOException{
+        return new Gson().fromJson(new JsonReader(new FileReader("movies_w_directors.json")), new TypeToken<ArrayList<Movie>>(){}.getType());
+    }
+
 }
