@@ -88,6 +88,9 @@ public class Movie {
     }
 
     public boolean shouldBeSkipped() {
-        return rating < 0.1 || actors.size() != 4;
+        if(getActors().size() > 3) {
+            actors = actors.subList(0, 3);
+        }
+        return rating < 0.1 || actors.size() < 3 || director == null;
     }
 }

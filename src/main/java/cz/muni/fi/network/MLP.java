@@ -5,7 +5,10 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static cz.muni.fi.network.Graph.getScreenShot;
 
@@ -81,7 +84,10 @@ public class MLP {
         do {
             resetErrorDsRespectW();
 
-            for (Sample sample : samples) {
+            List<Sample> minibatch = new ArrayList<>(samples);
+            Collections.shuffle(minibatch, new Random(learningStep));
+            minibatch = samples.subList(0, 100);
+            for (Sample sample : minibatch) {
                 feedForward(sample.inputs, false);
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
                     outputLayer.errorDsRespectY[i] = outputLayer.outputs[i] - sample.desiredOutputs[i];
