@@ -87,10 +87,15 @@ public class Movie {
         return name;
     }
 
-    public boolean shouldBeSkipped() {
-        if(getActors().size() > 3) {
-            actors = actors.subList(0, 3);
+    public boolean filterMovie(int maxActors, boolean keepMovie) {
+        if(getActors().size() > maxActors) {
+            actors = actors.subList(0, maxActors);
         }
-        return rating < 0.1 || actors.size() < 3 || director == null;
+
+        if(keepMovie) {
+            return false;
+        }
+
+        return rating < 0.1 || actors.size() < maxActors || director == null;
     }
 }
