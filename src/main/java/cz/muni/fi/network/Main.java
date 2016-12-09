@@ -16,8 +16,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
         //System.setOut(out);
-
-        trainOnMovies(500, 100, 2, true);
+        xorTraining();
+//        trainOnMovies(500, 100, 2, true);
     }
 
     private static void sinTraining() {
@@ -29,8 +29,8 @@ public class Main {
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
         MLP mlp = new MLP(1, 2, 1, 1000, true, "2",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
-                0.15, false, 10, 0.65, 30);
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on
+                0.15, false, 10, 0.65, 30, true);
 
         mlp.training(samples);
 
@@ -51,8 +51,8 @@ public class Main {
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
         MLP mlp = new MLP(2, 2, 1, 1000, true, "1",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
-                0.15, false, 10, 0.5, 15);
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate,Is dropout on
+                0.15, false, 10, 0.5, 15, true);
 
         mlp.training(samples);
 
@@ -168,8 +168,8 @@ public class Main {
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
         MLP mlp = new MLP(outputSize, 40, 1, 1000, true, "7",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
-                0.2, false, 30, 0.7, 80);
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on
+                0.2, false, 30, 0.7, 80, true);
         mlp.training(samples);
 
         int[] diffs = new int[] {0,0,0,0};

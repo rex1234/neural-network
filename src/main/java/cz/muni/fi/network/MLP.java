@@ -25,6 +25,7 @@ public class MLP {
     private int decLearningRateFreq;
     private double hiddenWeights;
     private double outputWeights;
+    private boolean dropoutOn;
 
     public Layer outputLayer;
     public Layer hiddenLayer;
@@ -35,7 +36,8 @@ public class MLP {
     private JFrame f;
 
     public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph, String imgName,
-               double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq) {
+               double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq,
+               boolean dropoutOn) {
         System.out.println("----------------------------- NEW MLP INIT -----------------------------");
         System.out.println("----------------------------------  batch" + imgName + "  -----------------------------------");
         System.out.println("-----------------------------------  -----------------------------------");
@@ -57,6 +59,7 @@ public class MLP {
         System.out.println("Hidden weights: " + hiddenWeights);
         System.out.println("Output weights: " + outputWeights);
         this.momentumInfluence = momentumInfluence;
+        this.dropoutOn = dropoutOn;
         this.imgName = imgName;
         this.decLearningRateFreq = decLearningRateFreq;
         this.learningRate = learningRate;
@@ -159,8 +162,8 @@ public class MLP {
     }
 
     private void updateWeights(double learningRate) {
-        hiddenLayer.updateWeights(learningRate);
-        outputLayer.updateWeights(learningRate);
+        hiddenLayer.updateWeights(learningRate, dropoutOn);
+        outputLayer.updateWeights(learningRate, dropoutOn);
     }
 
     private void drawGraph() {
