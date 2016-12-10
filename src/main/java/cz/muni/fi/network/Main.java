@@ -16,8 +16,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
         //System.setOut(out);
-        xorTraining();
-//        trainOnMovies(500, 100, 2, true);
+//        xorTraining();
+        trainOnMovies(500, 50, 2, true);
     }
 
     private static void sinTraining() {
@@ -177,16 +177,20 @@ public class Main {
         System.out.println(samples.size());
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(outputSize, 40, 1, 1000, true, "7",
+        MLP mlp = new MLP(outputSize, 20, 1, 5000, true, "7",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
-                0.2, false, 30, 0.7, 80, true, true, 10);
+                0.2, false, 30, 0.7, 80, true, true, movies.size() / 500);
         mlp.training(samples);
 
         int[] diffs = new int[]{0, 0, 0, 0};
 
-        for (int i = trainingSize; i < movies.size(); i++) {
+        for (int i = 0; i < movies.size(); i++) {
 
             if (i == trainingSize) {
+                printDiffsTable(diffs);
+
+                diffs = new int[]{0, 0, 0, 0};
+
                 System.out.println("***");
                 System.out.println((movies.size() - trainingSize) + "movies not from the training set:");
                 System.out.println("***");
@@ -205,8 +209,9 @@ public class Main {
             float rating = movies.get(i).getRating();
             double predictedRating = (mlp.feedForward(inputs, false)[0] + 1) * 5;
 
-            System.out.printf("Movie : %s, rating: %.1f%n", movies.get(i).getName(), rating);
-            System.out.printf("Predicted rating: %.1f%n%n", predictedRating);
+            if(i >= trainingSize){
+                System.out.printf("Movie : %s, rating: %.1f - predicted %.1f%n", movies.get(i).getName(), rating, predictedRating);
+            }
 
             if (Math.abs(rating - predictedRating) < 0.5) {
                 ++diffs[0];
@@ -219,6 +224,10 @@ public class Main {
             }
         }
 
+        printDiffsTable(diffs);
+    }
+
+    private static void printDiffsTable(int[] diffs) {
         int total = Arrays.stream(diffs).sum();
 
         System.out.printf("******************************%n");
