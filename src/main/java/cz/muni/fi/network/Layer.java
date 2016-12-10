@@ -85,12 +85,14 @@ public class Layer {
         return outputs;
     }
 
-    public void updateWeights(double learningRate) {
+    public void updateWeights(double learningRate, boolean dropoutOn) {
         for (int i = 0; i < weights.length; i++) {
             for (int j = 0; j < weights[i].length; j++) {
-                double deltaWeight = (-learningRate * errorDsRespectW[i][j]) + (mlp.momentumInfluence * previousDeltaWs[i][j]);
-                weights[i][j] += deltaWeight;
-                previousDeltaWs[i][j] = deltaWeight;
+                if (!dropoutOn || r.nextBoolean()) {
+                    double deltaWeight = (-learningRate * errorDsRespectW[i][j]) + (mlp.momentumInfluence * previousDeltaWs[i][j]);
+                    weights[i][j] += deltaWeight;
+                    previousDeltaWs[i][j] = deltaWeight;
+                }
             }
         }
     }

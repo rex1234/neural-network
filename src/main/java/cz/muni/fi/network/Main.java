@@ -16,8 +16,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
         //System.setOut(out);
-
-        trainOnMovies(500, 100, 2, true);
+        xorTraining();
+//        trainOnMovies(500, 100, 2, true);
     }
 
     private static void sinTraining() {
@@ -29,8 +29,8 @@ public class Main {
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
         MLP mlp = new MLP(1, 2, 1, 1000, true, "2",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
-                0.15, false, 10, 0.65, 30);
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
+                0.15, false, 10, 0.65, 30, true, true, 10);
 
         mlp.training(samples);
 
@@ -49,10 +49,20 @@ public class Main {
         samples.add(new Sample(new double[]{0, 1}, new double[]{1}));
         samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
 
+        samples.add(new Sample(new double[]{1, 1}, new double[]{0}));
+        samples.add(new Sample(new double[]{1, 0}, new double[]{1}));
+        samples.add(new Sample(new double[]{0, 1}, new double[]{1}));
+        samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
+
+        samples.add(new Sample(new double[]{1, 1}, new double[]{0}));
+        samples.add(new Sample(new double[]{1, 0}, new double[]{1}));
+        samples.add(new Sample(new double[]{0, 1}, new double[]{1}));
+        samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
+
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(2, 2, 1, 1000, true, "1",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
-                0.15, false, 10, 0.5, 15);
+        MLP mlp = new MLP(2, 2, 1, 3000, false, "1",
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate,Is dropout on, Is minibatch on, Minibatch size
+                0.3, false, 10, 0.5, 30, false, true, 10);
 
         mlp.training(samples);
 
@@ -105,7 +115,7 @@ public class Main {
 
         for (Movie movie : movies) {
             movie.getActors().removeAll(removedActors);
-            if(removedDirectors.contains(movie.getDirector())) {
+            if (removedDirectors.contains(movie.getDirector())) {
                 movie.setDirector(null);
             }
         }
@@ -125,7 +135,7 @@ public class Main {
 
         int done = 0;
         for (Movie movie : movies) {
-            if(done++ == trainingSize) {
+            if (done++ == trainingSize) {
                 break;
             }
 
@@ -136,14 +146,14 @@ public class Main {
             for (String actorId : movie.getActors()) {
                 int i = actors.indexOf(new Person(actorId));
 
-                if(i == -1) {
+                if (i == -1) {
                     ++missingActors;
                 } else {
                     inputs[i] = 1;
                 }
             }
 
-            if(useDummyNeurons) {
+            if (useDummyNeurons) {
                 int peopleNeurons = desiredActorCount + desiredDirectorsCount;
                 for (int i = peopleNeurons; i < peopleNeurons + missingActors; i++) {
                     inputs[i] = 1;
@@ -151,13 +161,13 @@ public class Main {
             }
 
             int directorIndex = directors.indexOf(new Person(movie.getDirector()));
-            if(directorIndex == -1) {
+            if (directorIndex == -1) {
                 inputs[inputs.length - 1] = 1;
             } else {
                 inputs[desiredActorCount + directorIndex] = 1;
             }
 
-            if(!useDummyNeurons && (directorIndex == -1 || missingActors > 0)) {
+            if (!useDummyNeurons && (directorIndex == -1 || missingActors > 0)) {
                 continue;
             }
 
@@ -168,15 +178,15 @@ public class Main {
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
         MLP mlp = new MLP(outputSize, 40, 1, 1000, true, "7",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate
-                0.2, false, 30, 0.7, 80);
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
+                0.2, false, 30, 0.7, 80, true, true, 10);
         mlp.training(samples);
 
-        int[] diffs = new int[] {0,0,0,0};
+        int[] diffs = new int[]{0, 0, 0, 0};
 
         for (int i = trainingSize; i < movies.size(); i++) {
 
-            if(i == trainingSize) {
+            if (i == trainingSize) {
                 System.out.println("***");
                 System.out.println((movies.size() - trainingSize) + "movies not from the training set:");
                 System.out.println("***");
@@ -198,11 +208,11 @@ public class Main {
             System.out.printf("Movie : %s, rating: %.1f%n", movies.get(i).getName(), rating);
             System.out.printf("Predicted rating: %.1f%n%n", predictedRating);
 
-            if(Math.abs(rating - predictedRating) < 0.5) {
+            if (Math.abs(rating - predictedRating) < 0.5) {
                 ++diffs[0];
-            } else if(Math.abs(rating - predictedRating) < 1) {
+            } else if (Math.abs(rating - predictedRating) < 1) {
                 ++diffs[1];
-            } else if(Math.abs(rating - predictedRating) < 2) {
+            } else if (Math.abs(rating - predictedRating) < 2) {
                 ++diffs[2];
             } else {
                 ++diffs[3];
@@ -223,6 +233,6 @@ public class Main {
     }
 
     private static float percent(int x, int total) {
-        return x/(float)total * 100f;
+        return x / (float) total * 100f;
     }
 }

@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -23,8 +22,12 @@ public class MLP {
     private String imgName;
     public boolean showGraph;
     private int decLearningRateFreq;
+    private int minibatchSize;
     private double hiddenWeights;
     private double outputWeights;
+    private boolean dropoutOn;
+    private boolean minibatchOn;
+    private Random r = new Random();
 
     public Layer outputLayer;
     public Layer hiddenLayer;
@@ -35,17 +38,20 @@ public class MLP {
     private JFrame f;
 
     public MLP(int numInputNeurons, int numHiddenNeurons, int numOutputNeurons, int numLearningSteps, boolean showGraph, String imgName,
-               double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq) {
+               double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq,
+               boolean dropoutOn, boolean minibatchOn, int minibatchSize) {
         System.out.println("----------------------------- NEW MLP INIT -----------------------------");
         System.out.println("----------------------------------  batch" + imgName + "  -----------------------------------");
         System.out.println("-----------------------------------  -----------------------------------");
         System.out.println("-----------------------------------  -----------------------------------");
         System.out.println("Num learning steps: " + numLearningSteps);
         System.out.println("Learning rate: " + learningRate);
+        System.out.println("Frequency of decreasing learning rate: " + decLearningRateFreq);
         System.out.println("Glorot and Bengio Weights: " + glorotBengioWeights);
         System.out.println("Momentum influence: " + momentumInfluence);
         System.out.println("Print status frequency: " + printStatusFreq);
-        System.out.println("Frequency of decreasing learning rate: " + decLearningRateFreq);
+        System.out.println("Dropout " + (dropoutOn ? "ON" : "OFF"));
+        System.out.println("Minibatch " + (minibatchOn ? "ON " + minibatchSize + " size" : "OFF"));
         if (glorotBengioWeights) {
             this.hiddenWeights = Math.sqrt(6 / (numInputNeurons + numOutputNeurons));
             this.outputWeights = Math.sqrt(6 / (numHiddenNeurons + 1));
@@ -57,7 +63,10 @@ public class MLP {
         System.out.println("Hidden weights: " + hiddenWeights);
         System.out.println("Output weights: " + outputWeights);
         this.momentumInfluence = momentumInfluence;
+        this.dropoutOn = dropoutOn;
         this.imgName = imgName;
+        this.minibatchOn = minibatchOn;
+        this.minibatchSize = minibatchSize;
         this.decLearningRateFreq = decLearningRateFreq;
         this.learningRate = learningRate;
         this.printStatusFreq = printStatusFreq;
@@ -80,13 +89,20 @@ public class MLP {
         f = prepareGraph();
         initWeights();
         int learningStep = 0;
-        double invertedSampleCount = 1d / samples.size();
+        double invertedSampleCount = minibatchOn ? 1d / minibatchSize : 1d / samples.size();
+        double preprocessed[] = new double[outputLayer.outputs.length];
+        int batchIteration = 0;
+        List<Sample> minibatch = samples;
         do {
             resetErrorDsRespectW();
-
-            List<Sample> minibatch = new ArrayList<>(samples);
-            Collections.shuffle(minibatch, new Random(learningStep));
-            minibatch = samples.subList(0, 100);
+            if (minibatchOn) {
+                if ((batchIteration + 1) * minibatchSize > samples.size()) {
+                    Collections.shuffle(samples, r);
+                    batchIteration = 0;
+                }
+                minibatch = samples.subList(batchIteration * minibatchSize, (batchIteration + 1) * minibatchSize);
+                batchIteration++;
+            }
             for (Sample sample : minibatch) {
                 feedForward(sample.inputs, false);
                 for (int i = 0; i < outputLayer.outputs.length; i++) {
@@ -94,7 +110,6 @@ public class MLP {
                     errors[learningStep] += invertedSampleCount * Math.pow(outputLayer.errorDsRespectY[i], 2);  // --------------------------- Len na vypisy
                 }
 
-                double preprocessed[] = new double[outputLayer.outputs.length];
                 for (int j = 0; j < outputLayer.outputs.length; j++) {
                     preprocessed[j] = outputLayer.errorDsRespectY[j] * outputLayer.dTanh(outputLayer.outputs[j]);
                 }
@@ -125,7 +140,7 @@ public class MLP {
                 System.out.println(String.format("Lning rate: %.6f ", learningRate) + String.format("| Error derivative: %.8f ", errorDerivatives[learningStep]) + String.format("| Err: %.8f", errors[learningStep]));
             }
             if (showGraph && learningStep % (5 * printStatusFreq) == 0) {
-//                drawGraph();
+                drawGraph();
             }
             if (learningStep % decLearningRateFreq == 0) {
                 learningRate *= 0.99;
@@ -134,7 +149,6 @@ public class MLP {
         } while (learningStep < numLearningSteps);
         System.out.println("--------------    TRAINING FINISHED   --------------");
         drawGraphAndWriteImg(imgName);
-
     }
 
     public double[] feedForward(double[] inputs, boolean printPotentials) {
@@ -159,8 +173,8 @@ public class MLP {
     }
 
     private void updateWeights(double learningRate) {
-        hiddenLayer.updateWeights(learningRate);
-        outputLayer.updateWeights(learningRate);
+        hiddenLayer.updateWeights(learningRate, dropoutOn);
+        outputLayer.updateWeights(learningRate, dropoutOn);
     }
 
     private void drawGraph() {
