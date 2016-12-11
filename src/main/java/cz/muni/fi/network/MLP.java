@@ -53,8 +53,8 @@ public class MLP {
         System.out.println("Dropout " + (dropoutOn ? "ON" : "OFF"));
         System.out.println("Minibatch " + (minibatchOn ? "ON " + minibatchSize + " size" : "OFF"));
         if (glorotBengioWeights) {
-            this.hiddenWeights = Math.sqrt(6 / (numInputNeurons + numOutputNeurons));
-            this.outputWeights = Math.sqrt(6 / (numHiddenNeurons + 1));
+            this.hiddenWeights = Math.sqrt(6d / (numInputNeurons + numOutputNeurons));
+            this.outputWeights = Math.sqrt(6d / (numHiddenNeurons + 1));
         } else {
             this.hiddenWeights = Math.sqrt(3) / Math.sqrt(numInputNeurons);
             this.outputWeights = Math.sqrt(3) / Math.sqrt(numHiddenNeurons);

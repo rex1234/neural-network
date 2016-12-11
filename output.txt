@@ -1,16 +1,2627 @@
+Training on 18276 movies
+18276
 ----------------------------- NEW MLP INIT -----------------------------
 ----------------------------------  batch1  -----------------------------------
 -----------------------------------  -----------------------------------
 -----------------------------------  -----------------------------------
-Num learning steps: 10000
-Learning rate: 0.1
-Glorot and Bengio Weights: false
-Momentum influence: 0.5
-Print status frequency: 30
+Num learning steps: 3000
+Learning rate: 0.05
 Frequency of decreasing learning rate: 50
+Glorot and Bengio Weights: true
+Momentum influence: 0.0
+Print status frequency: 10
+Dropout OFF
+Minibatch OFF
 --------- WEIGHTS BEING INITIALIZED RANDOMLY ---------------
-Hidden weights: 0.07745966692414832
-Output weights: 0.27386127875258304
-Lning rate: 0,100000 | Error derivative: 0,69143205 | Err: 0,18304698
-Lning rate: 0,099000 | Error derivative: 0,00795015 | Err: 0,04026922
-Lning rate: 0,098010 | Error derivative: 0,00743988 | Err: 0,03956621
+Hidden weights: 0.0736876126183612
+Output weights: 0.38254602783800296
+Lning rate: 0,050000 | Error derivative: 0,18358656 | Err: 0,07467369
+Lning rate: 0,049500 | Error derivative: 0,02288394 | Err: 0,07030612
+Lning rate: 0,049500 | Error derivative: 0,02249122 | Err: 0,06979638
+Lning rate: 0,049500 | Error derivative: 0,02212326 | Err: 0,06930336
+Lning rate: 0,049500 | Error derivative: 0,02176567 | Err: 0,06882626
+Lning rate: 0,049500 | Error derivative: 0,02141805 | Err: 0,06836436
+Lning rate: 0,049005 | Error derivative: 0,02108304 | Err: 0,06792099
+Lning rate: 0,049005 | Error derivative: 0,02075743 | Err: 0,06749173
+Lning rate: 0,049005 | Error derivative: 0,02044054 | Err: 0,06707556
+Lning rate: 0,049005 | Error derivative: 0,02013205 | Err: 0,06667193
+Lning rate: 0,049005 | Error derivative: 0,01983167 | Err: 0,06628032
+Lning rate: 0,048515 | Error derivative: 0,01954170 | Err: 0,06590363
+Lning rate: 0,048515 | Error derivative: 0,01925940 | Err: 0,06553818
+Lning rate: 0,048515 | Error derivative: 0,01898424 | Err: 0,06518315
+Lning rate: 0,048515 | Error derivative: 0,01871596 | Err: 0,06483815
+Lning rate: 0,048515 | Error derivative: 0,01845432 | Err: 0,06450278
+Lning rate: 0,048030 | Error derivative: 0,01820138 | Err: 0,06417957
+Lning rate: 0,048030 | Error derivative: 0,01795478 | Err: 0,06386543
+Lning rate: 0,048030 | Error derivative: 0,01771406 | Err: 0,06355970
+Lning rate: 0,048030 | Error derivative: 0,01747903 | Err: 0,06326208
+Lning rate: 0,048030 | Error derivative: 0,01724950 | Err: 0,06297226
+Lning rate: 0,047550 | Error derivative: 0,01702730 | Err: 0,06269248
+Lning rate: 0,047550 | Error derivative: 0,01681039 | Err: 0,06242009
+Lning rate: 0,047550 | Error derivative: 0,01659837 | Err: 0,06215457
+Lning rate: 0,047550 | Error derivative: 0,01639110 | Err: 0,06189568
+Lning rate: 0,047550 | Error derivative: 0,01618843 | Err: 0,06164318
+Lning rate: 0,047074 | Error derivative: 0,01599199 | Err: 0,06139904
+Lning rate: 0,047074 | Error derivative: 0,01579999 | Err: 0,06116101
+Lning rate: 0,047074 | Error derivative: 0,01561211 | Err: 0,06092864
+Lning rate: 0,047074 | Error derivative: 0,01542821 | Err: 0,06070173
+Lning rate: 0,047074 | Error derivative: 0,01524820 | Err: 0,06048011
+Lning rate: 0,046603 | Error derivative: 0,01507352 | Err: 0,06026554
+Lning rate: 0,046603 | Error derivative: 0,01490260 | Err: 0,06005605
+Lning rate: 0,046603 | Error derivative: 0,01473516 | Err: 0,05985126
+Lning rate: 0,046603 | Error derivative: 0,01457111 | Err: 0,05965102
+Lning rate: 0,046603 | Error derivative: 0,01441034 | Err: 0,05945520
+Lning rate: 0,046137 | Error derivative: 0,01425418 | Err: 0,05926537
+Lning rate: 0,046137 | Error derivative: 0,01410123 | Err: 0,05907980
+Lning rate: 0,046137 | Error derivative: 0,01395125 | Err: 0,05889817
+Lning rate: 0,046137 | Error derivative: 0,01380416 | Err: 0,05872037
+Lning rate: 0,046137 | Error derivative: 0,01365987 | Err: 0,05854628
+Lning rate: 0,045676 | Error derivative: 0,01351959 | Err: 0,05837731
+Lning rate: 0,045676 | Error derivative: 0,01338206 | Err: 0,05821196
+Lning rate: 0,045676 | Error derivative: 0,01324708 | Err: 0,05804993
+Lning rate: 0,045676 | Error derivative: 0,01311458 | Err: 0,05789115
+Lning rate: 0,045676 | Error derivative: 0,01298450 | Err: 0,05773551
+Lning rate: 0,045219 | Error derivative: 0,01285792 | Err: 0,05758429
+Lning rate: 0,045219 | Error derivative: 0,01273371 | Err: 0,05743615
+Lning rate: 0,045219 | Error derivative: 0,01261170 | Err: 0,05729084
+Lning rate: 0,045219 | Error derivative: 0,01249184 | Err: 0,05714829
+Lning rate: 0,045219 | Error derivative: 0,01237407 | Err: 0,05700843
+Lning rate: 0,044767 | Error derivative: 0,01225937 | Err: 0,05687241
+Lning rate: 0,044767 | Error derivative: 0,01214674 | Err: 0,05673902
+Lning rate: 0,044767 | Error derivative: 0,01203602 | Err: 0,05660806
+Lning rate: 0,044767 | Error derivative: 0,01192716 | Err: 0,05647947
+Lning rate: 0,044767 | Error derivative: 0,01182012 | Err: 0,05635319
+Lning rate: 0,044319 | Error derivative: 0,01171579 | Err: 0,05623026
+Lning rate: 0,044319 | Error derivative: 0,01161327 | Err: 0,05610961
+Lning rate: 0,044319 | Error derivative: 0,01151242 | Err: 0,05599105
+Lning rate: 0,044319 | Error derivative: 0,01141319 | Err: 0,05587453
+Lning rate: 0,044319 | Error derivative: 0,01131555 | Err: 0,05576001
+Lning rate: 0,043876 | Error derivative: 0,01122032 | Err: 0,05564844
+Lning rate: 0,043876 | Error derivative: 0,01112668 | Err: 0,05553884
+Lning rate: 0,043876 | Error derivative: 0,01103450 | Err: 0,05543105
+Lning rate: 0,043876 | Error derivative: 0,01094375 | Err: 0,05532504
+Lning rate: 0,043876 | Error derivative: 0,01085439 | Err: 0,05522076
+Lning rate: 0,043437 | Error derivative: 0,01076718 | Err: 0,05511908
+Lning rate: 0,043437 | Error derivative: 0,01068137 | Err: 0,05501913
+Lning rate: 0,043437 | Error derivative: 0,01059684 | Err: 0,05492076
+Lning rate: 0,043437 | Error derivative: 0,01051357 | Err: 0,05482393
+Lning rate: 0,043437 | Error derivative: 0,01043153 | Err: 0,05472862
+Lning rate: 0,043003 | Error derivative: 0,01035142 | Err: 0,05463562
+Lning rate: 0,043003 | Error derivative: 0,01027255 | Err: 0,05454413
+Lning rate: 0,043003 | Error derivative: 0,01019481 | Err: 0,05445402
+Lning rate: 0,043003 | Error derivative: 0,01011819 | Err: 0,05436527
+Lning rate: 0,043003 | Error derivative: 0,01004265 | Err: 0,05427785
+Lning rate: 0,042573 | Error derivative: 0,00996885 | Err: 0,05419249
+Lning rate: 0,042573 | Error derivative: 0,00989615 | Err: 0,05410846
+Lning rate: 0,042573 | Error derivative: 0,00982445 | Err: 0,05402564
+Lning rate: 0,042573 | Error derivative: 0,00975374 | Err: 0,05394402
+Lning rate: 0,042573 | Error derivative: 0,00968400 | Err: 0,05386357
+Lning rate: 0,042147 | Error derivative: 0,00961583 | Err: 0,05378497
+Lning rate: 0,042147 | Error derivative: 0,00954864 | Err: 0,05370754
+Lning rate: 0,042147 | Error derivative: 0,00948234 | Err: 0,05363119
+Lning rate: 0,042147 | Error derivative: 0,00941693 | Err: 0,05355590
+Lning rate: 0,042147 | Error derivative: 0,00935238 | Err: 0,05348163
+Lning rate: 0,041726 | Error derivative: 0,00928924 | Err: 0,05340904
+Lning rate: 0,041726 | Error derivative: 0,00922699 | Err: 0,05333748
+Lning rate: 0,041726 | Error derivative: 0,00916554 | Err: 0,05326689
+Lning rate: 0,041726 | Error derivative: 0,00910487 | Err: 0,05319722
+Lning rate: 0,041726 | Error derivative: 0,00904498 | Err: 0,05312847
+Lning rate: 0,041308 | Error derivative: 0,00898637 | Err: 0,05306123
+Lning rate: 0,041308 | Error derivative: 0,00892856 | Err: 0,05299492
+Lning rate: 0,041308 | Error derivative: 0,00887146 | Err: 0,05292946
+Lning rate: 0,041308 | Error derivative: 0,00881507 | Err: 0,05286483
+Lning rate: 0,041308 | Error derivative: 0,00875937 | Err: 0,05280102
+Lning rate: 0,040895 | Error derivative: 0,00870485 | Err: 0,05273857
+Lning rate: 0,040895 | Error derivative: 0,00865104 | Err: 0,05267696
+Lning rate: 0,040895 | Error derivative: 0,00859787 | Err: 0,05261610
+Lning rate: 0,040895 | Error derivative: 0,00854534 | Err: 0,05255599
+Lning rate: 0,040895 | Error derivative: 0,00849343 | Err: 0,05249661
+Lning rate: 0,040486 | Error derivative: 0,00844260 | Err: 0,05243847
+Lning rate: 0,040486 | Error derivative: 0,00839241 | Err: 0,05238108
+Lning rate: 0,040486 | Error derivative: 0,00834280 | Err: 0,05232437
+Lning rate: 0,040486 | Error derivative: 0,00829377 | Err: 0,05226833
+Lning rate: 0,040486 | Error derivative: 0,00824530 | Err: 0,05221294
+Lning rate: 0,040082 | Error derivative: 0,00819781 | Err: 0,05215868
+Lning rate: 0,040082 | Error derivative: 0,00815091 | Err: 0,05210510
+Lning rate: 0,040082 | Error derivative: 0,00810453 | Err: 0,05205213
+Lning rate: 0,040082 | Error derivative: 0,00805867 | Err: 0,05199976
+Lning rate: 0,040082 | Error derivative: 0,00801332 | Err: 0,05194798
+Lning rate: 0,039681 | Error derivative: 0,00796887 | Err: 0,05189724
+Lning rate: 0,039681 | Error derivative: 0,00792495 | Err: 0,05184711
+Lning rate: 0,039681 | Error derivative: 0,00788152 | Err: 0,05179752
+Lning rate: 0,039681 | Error derivative: 0,00783855 | Err: 0,05174848
+Lning rate: 0,039681 | Error derivative: 0,00779604 | Err: 0,05169997
+Lning rate: 0,039284 | Error derivative: 0,00775436 | Err: 0,05165241
+Lning rate: 0,039284 | Error derivative: 0,00771317 | Err: 0,05160541
+Lning rate: 0,039284 | Error derivative: 0,00767241 | Err: 0,05155890
+Lning rate: 0,039284 | Error derivative: 0,00763208 | Err: 0,05151288
+Lning rate: 0,039284 | Error derivative: 0,00759217 | Err: 0,05146734
+Lning rate: 0,038891 | Error derivative: 0,00755303 | Err: 0,05142268
+Lning rate: 0,038891 | Error derivative: 0,00751432 | Err: 0,05137853
+Lning rate: 0,038891 | Error derivative: 0,00747601 | Err: 0,05133482
+Lning rate: 0,038891 | Error derivative: 0,00743810 | Err: 0,05129156
+Lning rate: 0,038891 | Error derivative: 0,00740056 | Err: 0,05124873
+Lning rate: 0,038502 | Error derivative: 0,00736374 | Err: 0,05120671
+Lning rate: 0,038502 | Error derivative: 0,00732731 | Err: 0,05116515
+Lning rate: 0,038502 | Error derivative: 0,00729125 | Err: 0,05112400
+Lning rate: 0,038502 | Error derivative: 0,00725554 | Err: 0,05108326
+Lning rate: 0,038502 | Error derivative: 0,00722019 | Err: 0,05104291
+Lning rate: 0,038117 | Error derivative: 0,00718549 | Err: 0,05100331
+Lning rate: 0,038117 | Error derivative: 0,00715116 | Err: 0,05096412
+Lning rate: 0,038117 | Error derivative: 0,00711716 | Err: 0,05092531
+Lning rate: 0,038117 | Error derivative: 0,00708349 | Err: 0,05088687
+Lning rate: 0,038117 | Error derivative: 0,00705013 | Err: 0,05084879
+Lning rate: 0,037736 | Error derivative: 0,00701739 | Err: 0,05081141
+Lning rate: 0,037736 | Error derivative: 0,00698499 | Err: 0,05077441
+Lning rate: 0,037736 | Error derivative: 0,00695289 | Err: 0,05073774
+Lning rate: 0,037736 | Error derivative: 0,00692108 | Err: 0,05070142
+Lning rate: 0,037736 | Error derivative: 0,00688957 | Err: 0,05066542
+Lning rate: 0,037359 | Error derivative: 0,00685863 | Err: 0,05063007
+Lning rate: 0,037359 | Error derivative: 0,00682800 | Err: 0,05059507
+Lning rate: 0,037359 | Error derivative: 0,00679765 | Err: 0,05056039
+Lning rate: 0,037359 | Error derivative: 0,00676757 | Err: 0,05052601
+Lning rate: 0,037359 | Error derivative: 0,00673777 | Err: 0,05049193
+Lning rate: 0,036985 | Error derivative: 0,00670849 | Err: 0,05045845
+Lning rate: 0,036985 | Error derivative: 0,00667950 | Err: 0,05042530
+Lning rate: 0,036985 | Error derivative: 0,00665076 | Err: 0,05039243
+Lning rate: 0,036985 | Error derivative: 0,00662228 | Err: 0,05035985
+Lning rate: 0,036985 | Error derivative: 0,00659404 | Err: 0,05032754
+Lning rate: 0,036615 | Error derivative: 0,00656630 | Err: 0,05029579
+Lning rate: 0,036615 | Error derivative: 0,00653883 | Err: 0,05026434
+Lning rate: 0,036615 | Error derivative: 0,00651159 | Err: 0,05023316
+Lning rate: 0,036615 | Error derivative: 0,00648458 | Err: 0,05020223
+Lning rate: 0,036615 | Error derivative: 0,00645780 | Err: 0,05017156
+Lning rate: 0,036249 | Error derivative: 0,00643149 | Err: 0,05014141
+Lning rate: 0,036249 | Error derivative: 0,00640542 | Err: 0,05011154
+Lning rate: 0,036249 | Error derivative: 0,00637956 | Err: 0,05008191
+Lning rate: 0,036249 | Error derivative: 0,00635392 | Err: 0,05005251
+Lning rate: 0,036249 | Error derivative: 0,00632849 | Err: 0,05002335
+Lning rate: 0,035887 | Error derivative: 0,00630350 | Err: 0,04999469
+Lning rate: 0,035887 | Error derivative: 0,00627873 | Err: 0,04996628
+Lning rate: 0,035887 | Error derivative: 0,00625416 | Err: 0,04993809
+Lning rate: 0,035887 | Error derivative: 0,00622979 | Err: 0,04991012
+Lning rate: 0,035887 | Error derivative: 0,00620562 | Err: 0,04988236
+Lning rate: 0,035528 | Error derivative: 0,00618185 | Err: 0,04985507
+Lning rate: 0,035528 | Error derivative: 0,00615830 | Err: 0,04982802
+Lning rate: 0,035528 | Error derivative: 0,00613493 | Err: 0,04980117
+Lning rate: 0,035528 | Error derivative: 0,00611174 | Err: 0,04977452
+Lning rate: 0,035528 | Error derivative: 0,00608873 | Err: 0,04974807
+Lning rate: 0,035172 | Error derivative: 0,00606611 | Err: 0,04972206
+Lning rate: 0,035172 | Error derivative: 0,00604368 | Err: 0,04969627
+Lning rate: 0,035172 | Error derivative: 0,00602142 | Err: 0,04967066
+Lning rate: 0,035172 | Error derivative: 0,00599933 | Err: 0,04964525
+Lning rate: 0,035172 | Error derivative: 0,00597741 | Err: 0,04962002
+Lning rate: 0,034821 | Error derivative: 0,00595586 | Err: 0,04959519
+Lning rate: 0,034821 | Error derivative: 0,00593448 | Err: 0,04957057
+Lning rate: 0,034821 | Error derivative: 0,00591326 | Err: 0,04954613
+Lning rate: 0,034821 | Error derivative: 0,00589220 | Err: 0,04952186
+Lning rate: 0,034821 | Error derivative: 0,00587129 | Err: 0,04949777
+Lning rate: 0,034472 | Error derivative: 0,00585073 | Err: 0,04947405
+Lning rate: 0,034472 | Error derivative: 0,00583033 | Err: 0,04945053
+Lning rate: 0,034472 | Error derivative: 0,00581008 | Err: 0,04942717
+Lning rate: 0,034472 | Error derivative: 0,00578998 | Err: 0,04940398
+Lning rate: 0,034472 | Error derivative: 0,00577002 | Err: 0,04938094
+Lning rate: 0,034128 | Error derivative: 0,00575039 | Err: 0,04935826
+Lning rate: 0,034128 | Error derivative: 0,00573091 | Err: 0,04933577
+Lning rate: 0,034128 | Error derivative: 0,00571157 | Err: 0,04931342
+Lning rate: 0,034128 | Error derivative: 0,00569236 | Err: 0,04929123
+Lning rate: 0,034128 | Error derivative: 0,00567329 | Err: 0,04926918
+Lning rate: 0,033786 | Error derivative: 0,00565452 | Err: 0,04924748
+Lning rate: 0,033786 | Error derivative: 0,00563590 | Err: 0,04922594
+Lning rate: 0,033786 | Error derivative: 0,00561741 | Err: 0,04920454
+Lning rate: 0,033786 | Error derivative: 0,00559904 | Err: 0,04918329
+Lning rate: 0,033786 | Error derivative: 0,00558080 | Err: 0,04916217
+Lning rate: 0,033449 | Error derivative: 0,00556285 | Err: 0,04914138
+Lning rate: 0,033449 | Error derivative: 0,00554503 | Err: 0,04912074
+Lning rate: 0,033449 | Error derivative: 0,00552734 | Err: 0,04910023
+Lning rate: 0,033449 | Error derivative: 0,00550976 | Err: 0,04907985
+Lning rate: 0,033449 | Error derivative: 0,00549230 | Err: 0,04905961
+Lning rate: 0,033114 | Error derivative: 0,00547511 | Err: 0,04903967
+Lning rate: 0,033114 | Error derivative: 0,00545805 | Err: 0,04901987
+Lning rate: 0,033114 | Error derivative: 0,00544110 | Err: 0,04900020
+Lning rate: 0,033114 | Error derivative: 0,00542426 | Err: 0,04898065
+Lning rate: 0,033114 | Error derivative: 0,00540753 | Err: 0,04896122
+Lning rate: 0,032783 | Error derivative: 0,00539105 | Err: 0,04894209
+Lning rate: 0,032783 | Error derivative: 0,00537470 | Err: 0,04892309
+Lning rate: 0,032783 | Error derivative: 0,00535846 | Err: 0,04890420
+Lning rate: 0,032783 | Error derivative: 0,00534231 | Err: 0,04888543
+Lning rate: 0,032783 | Error derivative: 0,00532627 | Err: 0,04886677
+Lning rate: 0,032455 | Error derivative: 0,00531047 | Err: 0,04884839
+Lning rate: 0,032455 | Error derivative: 0,00529478 | Err: 0,04883013
+Lning rate: 0,032455 | Error derivative: 0,00527920 | Err: 0,04881199
+Lning rate: 0,032455 | Error derivative: 0,00526370 | Err: 0,04879395
+Lning rate: 0,032455 | Error derivative: 0,00524831 | Err: 0,04877601
+Lning rate: 0,032131 | Error derivative: 0,00523314 | Err: 0,04875834
+Lning rate: 0,032131 | Error derivative: 0,00521809 | Err: 0,04874079
+Lning rate: 0,032131 | Error derivative: 0,00520312 | Err: 0,04872334
+Lning rate: 0,032131 | Error derivative: 0,00518825 | Err: 0,04870599
+Lning rate: 0,032131 | Error derivative: 0,00517346 | Err: 0,04868874
+Lning rate: 0,031809 | Error derivative: 0,00515889 | Err: 0,04867174
+Lning rate: 0,031809 | Error derivative: 0,00514443 | Err: 0,04865486
+Lning rate: 0,031809 | Error derivative: 0,00513005 | Err: 0,04863807
+Lning rate: 0,031809 | Error derivative: 0,00511575 | Err: 0,04862137
+Lning rate: 0,031809 | Error derivative: 0,00510154 | Err: 0,04860476
+Lning rate: 0,031491 | Error derivative: 0,00508754 | Err: 0,04858840
+Lning rate: 0,031491 | Error derivative: 0,00507363 | Err: 0,04857214
+Lning rate: 0,031491 | Error derivative: 0,00505980 | Err: 0,04855597
+Lning rate: 0,031491 | Error derivative: 0,00504606 | Err: 0,04853988
+Lning rate: 0,031491 | Error derivative: 0,00503239 | Err: 0,04852389
+Lning rate: 0,031176 | Error derivative: 0,00501892 | Err: 0,04850812
+Lning rate: 0,031176 | Error derivative: 0,00500554 | Err: 0,04849245
+Lning rate: 0,031176 | Error derivative: 0,00499223 | Err: 0,04847687
+Lning rate: 0,031176 | Error derivative: 0,00497900 | Err: 0,04846137
+Lning rate: 0,031176 | Error derivative: 0,00496584 | Err: 0,04844595
+Lning rate: 0,030865 | Error derivative: 0,00495288 | Err: 0,04843075
+Lning rate: 0,030865 | Error derivative: 0,00494000 | Err: 0,04841565
+Lning rate: 0,030865 | Error derivative: 0,00492718 | Err: 0,04840062
+Lning rate: 0,030865 | Error derivative: 0,00491444 | Err: 0,04838567
+Lning rate: 0,030865 | Error derivative: 0,00490177 | Err: 0,04837080
+Lning rate: 0,030556 | Error derivative: 0,00488928 | Err: 0,04835614
+Lning rate: 0,030556 | Error derivative: 0,00487687 | Err: 0,04834156
+Lning rate: 0,030556 | Error derivative: 0,00486453 | Err: 0,04832706
+Lning rate: 0,030556 | Error derivative: 0,00485225 | Err: 0,04831264
+Lning rate: 0,030556 | Error derivative: 0,00484003 | Err: 0,04829828
+Lning rate: 0,030250 | Error derivative: 0,00482800 | Err: 0,04828413
+Lning rate: 0,030250 | Error derivative: 0,00481603 | Err: 0,04827006
+Lning rate: 0,030250 | Error derivative: 0,00480413 | Err: 0,04825606
+Lning rate: 0,030250 | Error derivative: 0,00479229 | Err: 0,04824213
+Lning rate: 0,030250 | Error derivative: 0,00478051 | Err: 0,04822827
+Lning rate: 0,029948 | Error derivative: 0,00476890 | Err: 0,04821460
+Lning rate: 0,029948 | Error derivative: 0,00475736 | Err: 0,04820101
+Lning rate: 0,029948 | Error derivative: 0,00474588 | Err: 0,04818748
+Lning rate: 0,029948 | Error derivative: 0,00473445 | Err: 0,04817402
+Lning rate: 0,029948 | Error derivative: 0,00472309 | Err: 0,04816063
+Lning rate: 0,029648 | Error derivative: 0,00471188 | Err: 0,04814742
+Lning rate: 0,029648 | Error derivative: 0,00470074 | Err: 0,04813428
+Lning rate: 0,029648 | Error derivative: 0,00468966 | Err: 0,04812121
+Lning rate: 0,029648 | Error derivative: 0,00467863 | Err: 0,04810819
+Lning rate: 0,029648 | Error derivative: 0,00466765 | Err: 0,04809524
+Lning rate: 0,029352 | Error derivative: 0,00465683 | Err: 0,04808247
+Lning rate: 0,029352 | Error derivative: 0,00464607 | Err: 0,04806977
+Lning rate: 0,029352 | Error derivative: 0,00463537 | Err: 0,04805712
+Lning rate: 0,029352 | Error derivative: 0,00462471 | Err: 0,04804454
+Lning rate: 0,029352 | Error derivative: 0,00461411 | Err: 0,04803201
+Lning rate: 0,029058 | Error derivative: 0,00460365 | Err: 0,04801965
+Lning rate: 0,029058 | Error derivative: 0,00459326 | Err: 0,04800736
+Lning rate: 0,029058 | Error derivative: 0,00458291 | Err: 0,04799512
+Lning rate: 0,029058 | Error derivative: 0,00457261 | Err: 0,04798294
+Lning rate: 0,029058 | Error derivative: 0,00456236 | Err: 0,04797082
+Lning rate: 0,028768 | Error derivative: 0,00455225 | Err: 0,04795886
+Lning rate: 0,028768 | Error derivative: 0,00454220 | Err: 0,04794696
+Lning rate: 0,028768 | Error derivative: 0,00453220 | Err: 0,04793511
+Lning rate: 0,028768 | Error derivative: 0,00452224 | Err: 0,04792332
+Lning rate: 0,028768 | Error derivative: 0,00451233 | Err: 0,04791158
+Lning rate: 0,028480 | Error derivative: 0,00450255 | Err: 0,04789999
+Lning rate: 0,028480 | Error derivative: 0,00449282 | Err: 0,04788847
+Lning rate: 0,028480 | Error derivative: 0,00448314 | Err: 0,04787699
+Lning rate: 0,028480 | Error derivative: 0,00447351 | Err: 0,04786557
+Lning rate: 0,028480 | Error derivative: 0,00446391 | Err: 0,04785419
+Lning rate: 0,028195 | Error derivative: 0,00445445 | Err: 0,04784297
+Lning rate: 0,028195 | Error derivative: 0,00444504 | Err: 0,04783180
+Lning rate: 0,028195 | Error derivative: 0,00443567 | Err: 0,04782068
+Lning rate: 0,028195 | Error derivative: 0,00442634 | Err: 0,04780961
+Lning rate: 0,028195 | Error derivative: 0,00441705 | Err: 0,04779858
+Lning rate: 0,027913 | Error derivative: 0,00440789 | Err: 0,04778770
+Lning rate: 0,027913 | Error derivative: 0,00439878 | Err: 0,04777687
+Lning rate: 0,027913 | Error derivative: 0,00438970 | Err: 0,04776609
+Lning rate: 0,027913 | Error derivative: 0,00438067 | Err: 0,04775536
+Lning rate: 0,027913 | Error derivative: 0,00437167 | Err: 0,04774466
+Lning rate: 0,027634 | Error derivative: 0,00436279 | Err: 0,04773411
+Lning rate: 0,027634 | Error derivative: 0,00435396 | Err: 0,04772361
+Lning rate: 0,027634 | Error derivative: 0,00434517 | Err: 0,04771316
+Lning rate: 0,027634 | Error derivative: 0,00433641 | Err: 0,04770274
+Lning rate: 0,027634 | Error derivative: 0,00432769 | Err: 0,04769237
+Lning rate: 0,027358 | Error derivative: 0,00431909 | Err: 0,04768213
+Lning rate: 0,027358 | Error derivative: 0,00431053 | Err: 0,04767194
+Lning rate: 0,027358 | Error derivative: 0,00430201 | Err: 0,04766179
+Lning rate: 0,027358 | Error derivative: 0,00429352 | Err: 0,04765169
+--------------    TRAINING FINISHED   --------------
+******************************
+*    < 0.5       *    37.95 %  *
+******************************
+*    < 1         *    28.85 %  *
+******************************
+*    < 2         *    26.43 %  *
+******************************
+*    >= 2        *    6.77 %  *
+******************************
+***
+2031movies not from the training set:
+***
+Movie : For the Love of God, rating: 7.3 - predicted 7.2
+Movie : Tri barvy: Cerven�, rating: 8.1 - predicted 6.9
+Movie : This Week Live, rating: 7.9 - predicted 6.9
+Movie : Under Siege, rating: 7.2 - predicted 7.0
+Movie : Ah, Wilderness!, rating: 7.0 - predicted 6.4
+Movie : Hrdost a sl�va, rating: 6.7 - predicted 7.7
+Movie : Showtime Championship Boxing, rating: 7.2 - predicted 6.7
+Movie : Music for Middle-Earth, rating: 7.6 - predicted 6.6
+Movie : My Uncle Silas, rating: 8.0 - predicted 7.1
+Movie : The Last Movie, rating: 6.2 - predicted 6.7
+Movie : Cannery Row, rating: 6.6 - predicted 6.3
+Movie : Three's Company, rating: 7.5 - predicted 6.6
+Movie : The Unseen, rating: 6.2 - predicted 7.2
+Movie : Clara Bow: Discovering the It Girl, rating: 7.4 - predicted 7.5
+Movie : Harry Potter and the Forbidden Journey, rating: 8.1 - predicted 7.3
+Movie : American Rap Stars, rating: 4.5 - predicted 6.0
+Movie : Incognito, rating: 6.6 - predicted 7.1
+Movie : Behind the Scenes with 'Thunderball', rating: 7.4 - predicted 6.9
+Movie : The Gift, rating: 6.8 - predicted 6.8
+Movie : Killing Season, rating: 5.4 - predicted 6.7
+Movie : Dead End, rating: 7.5 - predicted 6.8
+Movie : Tomorrowland, rating: 6.5 - predicted 6.9
+Movie : Laughing Sinners, rating: 4.9 - predicted 5.4
+Movie : Hilary and Jackie, rating: 7.4 - predicted 7.5
+Movie : Welcome to the Captain, rating: 6.1 - predicted 6.8
+Movie : BNow!, rating: 3.6 - predicted 6.8
+Movie : Mirage, rating: 7.4 - predicted 7.4
+Movie : The Ryan White Story, rating: 7.4 - predicted 6.8
+Movie : Slapshot 2: Behind the Glass, rating: 4.2 - predicted 6.1
+Movie : The Enemy, rating: 8.6 - predicted 6.8
+Movie : Kalifornia, rating: 6.7 - predicted 7.1
+Movie : Togetherness, rating: 7.5 - predicted 6.7
+Movie : The Interrogation of Leo and Lisa, rating: 6.7 - predicted 6.8
+Movie : The Virgin Suicides, rating: 7.2 - predicted 6.6
+Movie : Hemingway's Adventures of a Young Man, rating: 6.5 - predicted 6.6
+Movie : Cowboy Up, rating: 5.8 - predicted 6.5
+Movie : That Dog, rating: 7.4 - predicted 7.4
+Movie : Strength and Honor: Creating the World of 'Gladiator', rating: 7.6 - predicted 7.3
+Movie : American Splendor, rating: 7.5 - predicted 7.1
+Movie : Who Is Harry Nilsson (And Why Is Everybody Talkin' About Him?), rating: 7.7 - predicted 7.0
+Movie : True Colors, rating: 6.3 - predicted 6.5
+Movie : The Desilu Story, rating: 6.7 - predicted 7.1
+Movie : Best Sellers or: Peter Sellers and Dr. Strangelove, rating: 6.6 - predicted 7.1
+Movie : New Rose Hotel, rating: 4.8 - predicted 6.9
+Movie : Tell Me a Riddle, rating: 6.7 - predicted 7.2
+Movie : Tony Orlando and Dawn, rating: 6.8 - predicted 7.2
+Movie : The Secrets of Skyfall, rating: 7.8 - predicted 7.4
+Movie : S�zka na smrt, rating: 6.3 - predicted 7.1
+Movie : Divok� kocky, rating: 5.6 - predicted 6.3
+Movie : Mafi�novi, rating: 6.3 - predicted 6.5
+Movie : Marlene Dietrich: Shadow and Light, rating: 7.2 - predicted 7.3
+Movie : Aspen, rating: 7.6 - predicted 7.4
+Movie : Sci Fi Inside: Sci Fi Friday, rating: 4.7 - predicted 6.9
+Movie : Jackie Bouvier Kennedy Onassis, rating: 6.1 - predicted 6.8
+Movie : Get on the Bus, rating: 6.8 - predicted 6.8
+Movie : Alien Encounters: Superior Fan Power Since 1979, rating: 8.7 - predicted 7.0
+Movie : In Search of James Bond with Jonathan Ross, rating: 6.5 - predicted 7.2
+Movie : Gentleman's Agreement, rating: 7.4 - predicted 7.1
+Movie : Lolita, rating: 7.6 - predicted 7.3
+Movie : Jim Carrey: Extreme Yes Man, rating: 7.4 - predicted 7.0
+Movie : Creating the World of Harry Potter, Part 6: Magical Effects, rating: 6.9 - predicted 7.3
+Movie : Inside TV Land: African Americans in Television, rating: 5.6 - predicted 6.0
+Movie : The Black Marble, rating: 6.3 - predicted 6.7
+Movie : Nasty Habits, rating: 6.5 - predicted 7.2
+Movie : End of the World, rating: 2.9 - predicted 6.9
+Movie : Love, Honour and Obey, rating: 6.5 - predicted 7.2
+Movie : That Lady, rating: 5.5 - predicted 6.5
+Movie : Making 'Wild Child', rating: 8.1 - predicted 6.5
+Movie : Friends with Benefits, rating: 6.8 - predicted 7.4
+Movie : The Singing Detective, rating: 8.8 - predicted 7.1
+Movie : Garfield ve filmu, rating: 5.0 - predicted 7.0
+Movie : Ice Princess, rating: 6.0 - predicted 6.3
+Movie : Watch the Skies!: Science Fiction, the 1950s and Us, rating: 6.7 - predicted 6.9
+Movie : The Making of 'Atlantis: The Lost Empire', rating: 6.5 - predicted 6.9
+Movie : Happy Anniversary 007: 25 Years of James Bond, rating: 6.8 - predicted 6.7
+Movie : Madea's Witness Protection, rating: 4.8 - predicted 6.0
+Movie : Mr. Wonderful, rating: 5.9 - predicted 6.9
+Movie : The Scribbler, rating: 5.4 - predicted 6.6
+Movie : The D Train, rating: 5.0 - predicted 6.9
+Movie : My Favorite Brunette, rating: 6.9 - predicted 7.0
+Movie : Those Lips, Those Eyes, rating: 6.7 - predicted 6.8
+Movie : The Colour of Magic, rating: 7.1 - predicted 7.1
+Movie : Screen Snapshots Series 17, No. 9, rating: 9.2 - predicted 8.0
+Movie : Soudn� den, rating: 6.0 - predicted 6.7
+Movie : Martian Child, rating: 6.8 - predicted 6.9
+Movie : The X Files: I Want to Believe, rating: 5.9 - predicted 6.7
+Movie : For Love or Money, rating: 6.2 - predicted 7.0
+Movie : The Tim Conway Comedy Hour, rating: 6.5 - predicted 5.3
+Movie : The 20th Annual Grammy Awards, rating: 6.7 - predicted 6.8
+Movie : The Prince & Me, rating: 5.9 - predicted 6.3
+Movie : Hot Fuzz Special, rating: 7.9 - predicted 7.0
+Movie : Frozen, rating: 7.6 - predicted 7.1
+Movie : In Search of America, rating: 5.6 - predicted 7.1
+Movie : Naked in New York, rating: 5.7 - predicted 6.4
+Movie : Telling the Story of Us, rating: 3.8 - predicted 6.1
+Movie : Listen Up: The Lives of Quincy Jones, rating: 5.4 - predicted 7.2
+Movie : The Impatient Maiden, rating: 6.8 - predicted 7.0
+Movie : A Terrible Beauty, rating: 6.2 - predicted 7.2
+Movie : Thief, rating: 7.6 - predicted 7.3
+Movie : Business and Pleasure, rating: 6.4 - predicted 7.0
+Movie : A Devil with Women, rating: 7.2 - predicted 6.8
+Movie : Life in Pieces, rating: 7.6 - predicted 6.8
+Movie : Happiness Isn't Everything, rating: 5.3 - predicted 6.8
+Movie : Stormbreaker, rating: 5.1 - predicted 6.4
+Movie : Miracles and Mystery: Creating 'The Green Mile', rating: 6.1 - predicted 7.1
+Movie : The Heart of America Tour, rating: 8.5 - predicted 6.5
+Movie : Black in the 80s, rating: 5.8 - predicted 7.0
+Movie : North and South, Book II, rating: 8.1 - predicted 7.2
+Movie : Fotr je lotr, rating: 7.0 - predicted 6.8
+Movie : Fried Green Tomatoes, rating: 7.6 - predicted 6.4
+Movie : Garbo Talks, rating: 6.4 - predicted 7.5
+Movie : Oldboy, rating: 5.8 - predicted 6.6
+Movie : Big Business, rating: 6.3 - predicted 7.2
+Movie : Trinity and Beyond: The Atomic Bomb Movie, rating: 8.0 - predicted 6.8
+Movie : A Life Without Limits: The Making of 'The Aviator', rating: 5.9 - predicted 6.9
+Movie : Days of Wine and Roses, rating: 7.9 - predicted 7.2
+Movie : Lightningface, rating: 8.6 - predicted 6.8
+Movie : Mister Sterling, rating: 8.1 - predicted 6.5
+Movie : Logo Movie Special: 'Brokeback Mountain', rating: 7.9 - predicted 6.7
+Movie : Le grand restaurant, rating: 5.6 - predicted 6.8
+Movie : Plnou parou vzad!, rating: 4.9 - predicted 6.7
+Movie : Corrina, Corrina, rating: 6.5 - predicted 6.5
+Movie : �tek z vezen�, rating: 8.5 - predicted 6.2
+Movie : Pushover, rating: 7.0 - predicted 6.8
+Movie : Love Letters, rating: 6.1 - predicted 6.6
+Movie : Super Mario Bros., rating: 4.0 - predicted 6.4
+Movie : Hot Tub Time Machine, rating: 6.4 - predicted 6.2
+Movie : The King's Speech: An Inspirational Story of an Unlikely Friendship, rating: 8.0 - predicted 7.1
+Movie : Vykoupen� z veznice Shawshank, rating: 9.3 - predicted 6.7
+Movie : Southpaw, rating: 7.4 - predicted 6.8
+Movie : Taste of Flesh, rating: 3.0 - predicted 7.1
+Movie : E! Hollywood Hold'em, rating: 6.4 - predicted 6.5
+Movie : The Golden Age of Comedy, rating: 7.3 - predicted 7.1
+Movie : Lawn Dogs, rating: 7.7 - predicted 6.4
+Movie : Nightmares & Dreamscapes: From the Stories of Stephen King, rating: 7.0 - predicted 6.9
+Movie : The Runnin' Kind, rating: 6.2 - predicted 7.0
+Movie : My Karma, rating: 8.7 - predicted 6.4
+Movie : Young Cassidy, rating: 6.6 - predicted 6.9
+Movie : Comic Relief, rating: 6.8 - predicted 6.9
+Movie : What Not to Wear on the Red Carpet, rating: 6.6 - predicted 6.4
+Movie : Bridge School News, rating: 5.9 - predicted 6.4
+Movie : The Hot Spot, rating: 6.4 - predicted 6.6
+Movie : Dalziel and Pascoe, rating: 7.3 - predicted 6.8
+Movie : Sling Blade, rating: 8.0 - predicted 7.0
+Movie : The Men's Club, rating: 4.5 - predicted 6.6
+Movie : One Day at a Time, rating: 6.6 - predicted 7.0
+Movie : Dishonored, rating: 8.5 - predicted 7.2
+Movie : The Mask of Zorro, rating: 6.7 - predicted 6.3
+Movie : The Interns, rating: 7.6 - predicted 6.6
+Movie : A-List, rating: 6.2 - predicted 6.3
+Movie : Exposed, rating: 4.2 - predicted 7.0
+Movie : The Many Faces of Catwoman, rating: 6.7 - predicted 6.3
+Movie : 3 Days to Kill, rating: 6.2 - predicted 6.2
+Movie : Deep Sea, rating: 7.6 - predicted 6.9
+Movie : The Joe Buck Show, rating: 1.9 - predicted 7.0
+Movie : Ring of the Nibelungs, rating: 6.7 - predicted 6.9
+Movie : Troy: In the Thick of Battle, rating: 6.5 - predicted 7.0
+Movie : Akeelah and the Bee, rating: 7.5 - predicted 6.7
+Movie : Six Pack, rating: 5.8 - predicted 6.6
+Movie : Miles Ahead, rating: 6.5 - predicted 6.4
+Movie : Butch Cassidy and the Sundance Kid, rating: 8.1 - predicted 6.9
+Movie : SNL Remembers John Belushi, rating: 7.4 - predicted 7.0
+Movie : Almost Human, rating: 8.1 - predicted 6.5
+Movie : Hammer House of Horror, rating: 7.8 - predicted 7.2
+Movie : Dal: Yma/Nawr, rating: 7.7 - predicted 6.7
+Movie : Ice & Coco, rating: 6.5 - predicted 6.2
+Movie : The Rosemary Clooney Show, rating: 8.6 - predicted 7.3
+Movie : Annie Laurie, rating: 7.9 - predicted 6.8
+Movie : 500 Nations, rating: 8.6 - predicted 7.0
+Movie : The Six Wives of Henry Lefay, rating: 5.2 - predicted 6.6
+Movie : Parab�ns, rating: 6.1 - predicted 6.5
+Movie : Nanny and the Professor, rating: 7.2 - predicted 7.3
+Movie : The Seventh Cross, rating: 7.4 - predicted 6.8
+Movie : Heartsounds, rating: 7.2 - predicted 7.3
+Movie : A Free Soul, rating: 6.7 - predicted 6.5
+Movie : Rebecca of Sunnybrook Farm, rating: 7.1 - predicted 7.5
+Movie : A Dairy Tale, rating: 5.0 - predicted 7.1
+Movie : Tom & Viv, rating: 6.5 - predicted 6.7
+Movie : Animaci, rating: 7.9 - predicted 7.2
+Movie : True Memoirs of an International Assassin, rating: 6.0 - predicted 6.8
+Movie : Noc v muzeu, rating: 6.4 - predicted 6.8
+Movie : Dogtown and Z-Boys, rating: 7.7 - predicted 6.6
+Movie : Sicario, rating: 7.6 - predicted 6.6
+Movie : The Boy Who Loved Trolls, rating: 7.5 - predicted 7.0
+Movie : Death Game, rating: 5.2 - predicted 7.0
+Movie : A Very Murray Christmas, rating: 5.5 - predicted 6.4
+Movie : The 50 Greatest Television Dramas, rating: 6.0 - predicted 7.5
+Movie : Mad About Mambo, rating: 6.0 - predicted 7.3
+Movie : Texasville, rating: 6.0 - predicted 6.9
+Movie : Come Back, Little Sheba, rating: 7.1 - predicted 7.5
+Movie : Java Heat, rating: 5.2 - predicted 6.1
+Movie : I Am Steve McQueen, rating: 7.1 - predicted 7.3
+Movie : Mongo's Back in Town, rating: 6.8 - predicted 7.0
+Movie : The London Palladium Show, rating: 6.9 - predicted 6.6
+Movie : Likvid�tor, rating: 6.1 - predicted 6.8
+Movie : Miracle at Midnight, rating: 7.0 - predicted 7.1
+Movie : Anna Christie, rating: 6.9 - predicted 7.2
+Movie : Being Charlie, rating: 6.2 - predicted 6.5
+Movie : Booking Agents, rating: 5.4 - predicted 6.5
+Movie : Transformers: Dark of the Moon - 35mm Special, rating: 5.8 - predicted 6.6
+Movie : Fanatik, rating: 5.8 - predicted 6.7
+Movie : Havana, rating: 6.0 - predicted 7.1
+Movie : Meteor, rating: 4.9 - predicted 7.0
+Movie : Guapas, rating: 6.8 - predicted 6.7
+Movie : The Cry of the Owl, rating: 6.0 - predicted 6.3
+Movie : Sierra, rating: 6.7 - predicted 7.1
+Movie : Kill the Messenger, rating: 7.0 - predicted 7.1
+Movie : Zustan hladov�, rating: 5.7 - predicted 6.9
+Movie : Difficult People, rating: 6.7 - predicted 6.4
+Movie : Cry Wolf, rating: 6.6 - predicted 6.7
+Movie : Toast of London, rating: 8.2 - predicted 7.0
+Movie : The Commissioner, rating: 6.2 - predicted 7.1
+Movie : Uncovering the Real Gangs of New York, rating: 6.7 - predicted 7.0
+Movie : Screen Snapshots, rating: 4.9 - predicted 7.0
+Movie : The Rum Diary, rating: 6.2 - predicted 6.6
+Movie : Elizabeth I, rating: 8.1 - predicted 7.6
+Movie : The Golden Honeymoon, rating: 5.8 - predicted 7.0
+Movie : Montana Amazon, rating: 4.8 - predicted 6.9
+Movie : Scarecrow and Mrs. King, rating: 7.2 - predicted 6.6
+Movie : Alfie, rating: 6.2 - predicted 7.1
+Movie : Tilt, rating: 7.4 - predicted 6.9
+Movie : Bucky Larson: Born to Be a Star, rating: 3.3 - predicted 5.8
+Movie : La corrispondenza, rating: 5.9 - predicted 7.2
+Movie : Family Ties, rating: 7.2 - predicted 7.0
+Movie : The Seventh Coin, rating: 4.9 - predicted 7.0
+Movie : Kotch, rating: 6.7 - predicted 7.2
+Movie : 10 Years, rating: 6.1 - predicted 6.9
+Movie : The Return of a Man Called Horse, rating: 6.1 - predicted 7.3
+Movie : The Making of Madagascar 2, rating: 5.9 - predicted 6.7
+Movie : Holy Smoke, rating: 5.9 - predicted 6.6
+Movie : Home of the Horse Lords, rating: 7.8 - predicted 7.0
+Movie : Kings Row, rating: 7.9 - predicted 7.0
+Movie : Billy Bathgate, rating: 5.9 - predicted 6.7
+Movie : Sphere, rating: 6.0 - predicted 6.7
+Movie : Inside the Third Reich, rating: 7.5 - predicted 6.7
+Movie : The Man from Laramie, rating: 7.4 - predicted 7.3
+Movie : Lonesome Dove, rating: 8.8 - predicted 7.0
+Movie : Intruders, rating: 6.7 - predicted 6.5
+Movie : Labyrint lz�, rating: 7.1 - predicted 6.8
+Movie : Clarkworld, rating: 7.5 - predicted 7.0
+Movie : Spring/Fall, rating: 7.3 - predicted 6.5
+Movie : So Ends Our Night, rating: 6.9 - predicted 6.7
+Movie : Fry and Laurie Reunited, rating: 7.6 - predicted 7.7
+Movie : Creed, rating: 7.7 - predicted 7.0
+Movie : The Life Before Her Eyes, rating: 6.4 - predicted 6.8
+Movie : The Making of 'Scott Pilgrim vs. the World', rating: 7.2 - predicted 6.5
+Movie : The Mod Squad, rating: 4.2 - predicted 6.7
+Movie : Dr. Vegas, rating: 5.3 - predicted 7.0
+Movie : Background, rating: 8.1 - predicted 6.9
+Movie : The Life of David Gale, rating: 7.6 - predicted 6.3
+Movie : I Love You Too, rating: 6.1 - predicted 7.1
+Movie : Spanglish, rating: 6.4 - predicted 6.2
+Movie : Always Open, rating: 6.8 - predicted 7.3
+Movie : The Woody Woodbury Show, rating: 8.7 - predicted 7.0
+Movie : Will Penny, rating: 7.2 - predicted 6.7
+Movie : The Wild One, rating: 6.9 - predicted 7.0
+Movie : Pr�sern� kocovina, rating: 7.4 - predicted 6.7
+Movie : The Awesomes, rating: 7.4 - predicted 6.6
+Movie : American Ultra, rating: 6.1 - predicted 6.4
+Movie : The Edge, rating: 6.8 - predicted 6.5
+Movie : Wonderland, rating: 7.5 - predicted 7.0
+Movie : Sergeant York, rating: 7.8 - predicted 7.3
+Movie : Soul Deep: The Story of Black Popular Music, rating: 8.5 - predicted 6.4
+Movie : Creating the World of Harry Potter, Part 3: Creatures, rating: 7.7 - predicted 7.3
+Movie : Breathe In, rating: 6.4 - predicted 6.3
+Movie : Co se vlastne stalo, rating: 5.7 - predicted 6.8
+Movie : Kokuriko-zaka kara, rating: 7.4 - predicted 6.7
+Movie : Surfside 6, rating: 8.3 - predicted 7.3
+Movie : The Diary of Anne Frank, rating: 7.4 - predicted 6.6
+Movie : Jak byl dobyt Divok� z�pad, rating: 7.1 - predicted 7.2
+Movie : She Hate Me, rating: 5.3 - predicted 7.1
+Movie : Criminal Activities, rating: 5.8 - predicted 6.6
+Movie : The Light Between Oceans, rating: 7.2 - predicted 6.8
+Movie : Terapie l�skou, rating: 7.8 - predicted 7.0
+Movie : Circle of Friends, rating: 6.6 - predicted 6.6
+Movie : Martin, rating: 7.4 - predicted 6.7
+Movie : The Jim Gaffigan Show, rating: 7.6 - predicted 6.5
+Movie : Amazing Love, rating: 6.7 - predicted 6.7
+Movie : The Kennedy Center Honors: A Celebration of the Performing Arts, rating: 6.3 - predicted 6.7
+Movie : Swing Out, Sweet Land, rating: 6.9 - predicted 7.3
+Movie : The Samaritan, rating: 5.6 - predicted 6.6
+Movie : Spike Island, rating: 6.4 - predicted 7.7
+Movie : Meine Schwester Maria, rating: 6.9 - predicted 6.9
+Movie : The Fear of God: 25 Years of 'The Exorcist', rating: 8.1 - predicted 7.1
+Movie : Five Golden Dragons, rating: 5.0 - predicted 7.0
+Movie : A Christmas Without Snow, rating: 6.0 - predicted 7.1
+Movie : Madame Butterfly, rating: 5.3 - predicted 6.4
+Movie : Rose-Marie, rating: 7.2 - predicted 6.9
+Movie : Dialing Up 'Cellular', rating: 7.0 - predicted 6.1
+Movie : Welcome Home, Roxy Carmichael, rating: 5.9 - predicted 6.5
+Movie : Reunion in France, rating: 6.1 - predicted 5.5
+Movie : Stupidity, rating: 5.5 - predicted 6.1
+Movie : Something for the Weekend, rating: 7.1 - predicted 6.6
+Movie : Game Over, rating: 6.8 - predicted 6.2
+Movie : A Powerful Rage: Behind 'The Grudge', rating: 5.5 - predicted 6.6
+Movie : Moderato cantabile, rating: 7.0 - predicted 6.7
+Movie : Widows' Peak, rating: 6.8 - predicted 7.1
+Movie : The 100 Most Memorable TV Moments, rating: 7.1 - predicted 6.8
+Movie : Chasers, rating: 5.0 - predicted 6.3
+Movie : Cartoon Cartoon Fridays, rating: 8.4 - predicted 7.5
+Movie : Artists of Hell's Kitchen, rating: 6.0 - predicted 6.6
+Movie : Mary, rating: 5.9 - predicted 6.6
+Movie : The Bare Necessities: The Making of 'The Jungle Book', rating: 7.9 - predicted 7.0
+Movie : Enrique Iglesias: Hero, rating: 6.8 - predicted 6.6
+Movie : Tohle je v�lka!, rating: 6.3 - predicted 6.4
+Movie : �tek z MS-1, rating: 6.1 - predicted 7.2
+Movie : Untamed, rating: 5.6 - predicted 6.9
+Movie : Letters to Juliet: A Courtyard in Verona, rating: 8.7 - predicted 7.5
+Movie : Spatn� Chlapci II, rating: 6.6 - predicted 6.1
+Movie : Bitter Victory, rating: 6.9 - predicted 6.8
+Movie : Midnight Cowboy, rating: 7.9 - predicted 7.1
+Movie : Before Stonewall, rating: 7.7 - predicted 6.8
+Movie : Jungle Fever, rating: 6.5 - predicted 6.2
+Movie : The Journey of August King, rating: 6.6 - predicted 7.1
+Movie : Days of Thrills and Laughter, rating: 7.0 - predicted 7.2
+Movie : A Message to Garcia, rating: 6.2 - predicted 6.6
+Movie : On the Nose, rating: 6.1 - predicted 7.0
+Movie : The Divide, rating: 7.5 - predicted 6.9
+Movie : Clair de femme, rating: 6.6 - predicted 6.7
+Movie : Intermission, rating: 6.9 - predicted 7.3
+Movie : Men at Work, rating: 7.1 - predicted 7.1
+Movie : The Players: The Cast of 'Extinction', rating: 7.9 - predicted 6.8
+Movie : Los amantes pasajeros, rating: 5.6 - predicted 6.1
+Movie : Robot & Frank, rating: 7.1 - predicted 6.6
+Movie : Terminator Genisys, rating: 6.5 - predicted 7.5
+Movie : The Maldonado Miracle, rating: 6.7 - predicted 6.3
+Movie : Men Don't Leave, rating: 6.7 - predicted 6.5
+Movie : Knight Rider, rating: 5.7 - predicted 6.5
+Movie : Payback, rating: 7.1 - predicted 7.0
+Movie : The Black Watch, rating: 6.3 - predicted 6.8
+Movie : The Event, rating: 6.3 - predicted 6.4
+Movie : The Cemetery Club, rating: 5.9 - predicted 6.7
+Movie : Victoria Wood's Nice Cup of Tea, rating: 9.7 - predicted 6.9
+Movie : Twelve, rating: 5.7 - predicted 6.7
+Movie : Avalanche Express, rating: 4.8 - predicted 7.3
+Movie : En passion, rating: 7.8 - predicted 7.2
+Movie : Mary Tyler Moore, rating: 8.2 - predicted 7.0
+Movie : Woman in Gold, rating: 7.3 - predicted 6.8
+Movie : Legit, rating: 8.2 - predicted 7.1
+Movie : Cold Steel, rating: 4.5 - predicted 6.5
+Movie : Mademoiselle C, rating: 5.7 - predicted 6.5
+Movie : Violets Are Blue..., rating: 5.7 - predicted 7.1
+Movie : A Further Gesture, rating: 5.9 - predicted 6.9
+Movie : The Facts of Life, rating: 6.7 - predicted 6.6
+Movie : Madagaskar 2 - �tek do Afriky, rating: 6.7 - predicted 6.7
+Movie : Doin' Time on Planet Earth, rating: 4.7 - predicted 7.3
+Movie : Ringens disipler, rating: 6.3 - predicted 6.9
+Movie : Casablanca, rating: 8.6 - predicted 7.1
+Movie : The Liver Birds, rating: 6.3 - predicted 6.7
+Movie : Firepower, rating: 4.9 - predicted 6.8
+Movie : The High Fructose Adventures of Annoying Orange, rating: 2.6 - predicted 6.8
+Movie : Billu, rating: 6.1 - predicted 6.8
+Movie : 3 Geezers!, rating: 3.4 - predicted 7.2
+Movie : After Lately, rating: 6.9 - predicted 6.7
+Movie : Fail Safe, rating: 7.3 - predicted 6.4
+Movie : Fast & Furious 6 Special, rating: 8.2 - predicted 6.5
+Movie : True Story, rating: 6.3 - predicted 6.8
+Movie : Comanche blanco, rating: 4.1 - predicted 6.9
+Movie : Futureworld, rating: 5.8 - predicted 6.3
+Movie : Idle Hands, rating: 6.2 - predicted 6.9
+Movie : Planes: Fire & Rescue, rating: 6.0 - predicted 7.2
+Movie : Treasure Island, rating: 7.1 - predicted 7.0
+Movie : CMT: The Greatest - Sexiest Southern Men, rating: 6.8 - predicted 6.4
+Movie : The New Adventures of Old Christine, rating: 7.1 - predicted 7.3
+Movie : Visions of Grace: Robert Redford and 'The Horse Whisperer', rating: 6.6 - predicted 7.2
+Movie : Total Access 24/7, rating: 7.9 - predicted 6.5
+Movie : Basic, rating: 6.5 - predicted 6.6
+Movie : xXx: State of the Union, rating: 4.3 - predicted 6.5
+Movie : Circus World, rating: 6.2 - predicted 6.8
+Movie : Steve Coogan: The Man Who Thinks He's It, rating: 7.6 - predicted 7.1
+Movie : Money Talks, rating: 6.1 - predicted 6.6
+Movie : The Vintner's Luck, rating: 5.7 - predicted 7.2
+Movie : Carrie, rating: 5.9 - predicted 6.7
+Movie : Daughters Courageous, rating: 6.7 - predicted 6.9
+Movie : Madonna: Celebration - The Video Collection, rating: 8.3 - predicted 6.8
+Movie : Jak dob�t Hollywood..., rating: 3.5 - predicted 7.2
+Movie : The Art of Organized Noize, rating: 7.2 - predicted 6.4
+Movie : Ramadan Mabrouk Abul-Alamein Hamouda, rating: 6.3 - predicted 6.0
+Movie : How to Survive the 70s and Maybe Even Bump Into Happiness, rating: 5.7 - predicted 7.1
+Movie : Made in Canada, rating: 7.9 - predicted 6.9
+Movie : The 13th Annual People's Choice Awards, rating: 6.1 - predicted 7.2
+Movie : Avalon, rating: 7.3 - predicted 6.9
+Movie : The Wait, rating: 4.7 - predicted 6.6
+Movie : Coca Cola Pop Music Backstage Pass to Summer, rating: 7.2 - predicted 6.8
+Movie : The Trench, rating: 6.1 - predicted 7.3
+Movie : VH1 Divas Live 2, rating: 5.5 - predicted 6.7
+Movie : I Love You, Man, rating: 7.1 - predicted 7.0
+Movie : Masters of Illusion: The Wizards of Special Effects, rating: 5.0 - predicted 7.0
+Movie : Verejn� nepr�tel�, rating: 7.0 - predicted 7.6
+Movie : Beau Brummell, rating: 6.5 - predicted 7.2
+Movie : Man-Proof, rating: 5.9 - predicted 6.7
+Movie : Lil' Pimp, rating: 4.8 - predicted 6.3
+Movie : National Movie Awards, rating: 7.2 - predicted 6.8
+Movie : Where God Left His Shoes, rating: 7.2 - predicted 6.7
+Movie : Jake and the Fatman, rating: 6.4 - predicted 6.8
+Movie : Grim & Evil, rating: 7.7 - predicted 6.6
+Movie : Love Story, rating: 6.9 - predicted 6.6
+Movie : 2004 World Series, rating: 6.9 - predicted 7.2
+Movie : Warren the Ape, rating: 8.4 - predicted 6.6
+Movie : Be Kind Rewind, rating: 6.4 - predicted 7.0
+Movie : Keep the Aspidistra Flying, rating: 6.4 - predicted 6.9
+Movie : Bloopers of the Caribbean, rating: 7.8 - predicted 7.3
+Movie : Gods of Egypt, rating: 5.5 - predicted 7.1
+Movie : Golden Earrings, rating: 6.7 - predicted 6.9
+Movie : Nothing Like the Holidays, rating: 6.2 - predicted 6.1
+Movie : Hot Spell, rating: 7.3 - predicted 6.7
+Movie : Horns, rating: 6.5 - predicted 7.0
+Movie : Molly Moon and the Incredible Book of Hypnotism, rating: 5.6 - predicted 7.7
+Movie : A Case of the Cold War: Bridge of Spies, rating: 6.5 - predicted 6.5
+Movie : The Salton Sea, rating: 7.2 - predicted 6.8
+Movie : Moby Dick, rating: 6.1 - predicted 7.0
+Movie : Dillinger, rating: 6.6 - predicted 6.5
+Movie : Arbitrage, rating: 6.6 - predicted 7.3
+Movie : Hearts Divided, rating: 7.5 - predicted 7.0
+Movie : Les plus belles escroqueries du monde, rating: 5.9 - predicted 7.2
+Movie : And Ya Don't Stop: Hip Hop's Greatest Videos, Vol. 1, rating: 4.2 - predicted 6.5
+Movie : Hal Ashby: A Man Out of Time, rating: 5.7 - predicted 6.8
+Movie : Juice, rating: 7.1 - predicted 6.7
+Movie : Ashes and Snow, rating: 8.4 - predicted 7.2
+Movie : The Back-up Plan, rating: 5.3 - predicted 6.2
+Movie : The Honeymoon Machine, rating: 6.2 - predicted 7.3
+Movie : California's Gold, rating: 8.9 - predicted 7.1
+Movie : Foodfight!, rating: 1.7 - predicted 6.5
+Movie : Jasper, Texas, rating: 6.4 - predicted 6.9
+Movie : Estrenos Cr�ticos, rating: 5.4 - predicted 7.4
+Movie : Iron Jawed Angels, rating: 7.6 - predicted 6.6
+Movie : Screen Snapshots: Hollywood Awards, rating: 5.4 - predicted 7.1
+Movie : There Goes the Neighborhood, rating: 5.8 - predicted 6.5
+Movie : Catch Me a Spy, rating: 5.2 - predicted 6.8
+Movie : Veronica Guerin, rating: 6.9 - predicted 7.1
+Movie : Le nouveau monde, rating: 6.3 - predicted 7.2
+Movie : Too Young to Be a Dad, rating: 6.5 - predicted 6.3
+Movie : Judy and Liza at the Palladium, rating: 8.7 - predicted 6.9
+Movie : 3000 mil na �teku, rating: 5.9 - predicted 6.8
+Movie : Nostradamus, rating: 5.8 - predicted 6.9
+Movie : The Lady from Shanghai, rating: 7.7 - predicted 7.2
+Movie : The Making of 'Speed', rating: 7.2 - predicted 6.9
+Movie : Strike Up the Band, rating: 7.0 - predicted 7.1
+Movie : Swing Kids, rating: 6.8 - predicted 7.3
+Movie : Computerman, rating: 7.5 - predicted 7.2
+Movie : The Lionhearts, rating: 6.2 - predicted 6.6
+Movie : When Hell Was in Session, rating: 8.2 - predicted 7.0
+Movie : The Proprietor, rating: 5.8 - predicted 7.2
+Movie : Damien: Omen II, rating: 6.3 - predicted 6.9
+Movie : Matthew's Best Hit TV, rating: 8.2 - predicted 7.1
+Movie : Gruen Planet, rating: 8.0 - predicted 5.9
+Movie : 2008 INDYCar Series Season Preview, rating: 7.2 - predicted 6.9
+Movie : Goin' South, rating: 6.3 - predicted 6.9
+Movie : Az tak moc te nezere, rating: 6.4 - predicted 7.1
+Movie : Nairobi Affair, rating: 5.3 - predicted 6.9
+Movie : Mississippi Burning, rating: 7.8 - predicted 6.6
+Movie : Will Ferrell and Kevin Hart's Failed Audition Tapes, rating: 6.0 - predicted 6.3
+Movie : Guess Who's Coming to Dinner, rating: 7.8 - predicted 7.4
+Movie : Macy's Thanksgiving Day Parade, rating: 8.2 - predicted 6.8
+Movie : The Crimson Pirate, rating: 7.3 - predicted 7.1
+Movie : The Wild Geese, rating: 6.8 - predicted 6.9
+Movie : Simon Birch, rating: 6.9 - predicted 6.7
+Movie : The Very Best of the Ed Sullivan Show 2, rating: 7.7 - predicted 6.9
+Movie : Dick, rating: 6.1 - predicted 6.6
+Movie : Timepiece, rating: 6.8 - predicted 7.1
+Movie : The 36th Annual Grammy Awards, rating: 6.6 - predicted 6.4
+Movie : Real World/Road Rules Challenge, rating: 7.5 - predicted 6.9
+Movie : Love and a .45, rating: 6.1 - predicted 6.4
+Movie : Star Trek Into Darkness Special, rating: 7.9 - predicted 7.3
+Movie : HBO First Look: The Making of 'Panic Room', rating: 2.8 - predicted 7.0
+Movie : America Beyond the Color Line with Henry Louis Gates Jr., rating: 7.5 - predicted 6.9
+Movie : Free Angela and All Political Prisoners, rating: 6.9 - predicted 6.3
+Movie : Wet Hot American Summer, rating: 6.7 - predicted 6.9
+Movie : The 43rd Annual Grammy Awards, rating: 5.8 - predicted 6.7
+Movie : Getting Close to the Show, rating: 6.7 - predicted 7.3
+Movie : All About People, rating: 5.9 - predicted 7.0
+Movie : Three, rating: 6.0 - predicted 7.3
+Movie : John Mayer: Say, rating: 7.2 - predicted 6.9
+Movie : The Fashion Side of Hollywood, rating: 5.9 - predicted 7.0
+Movie : All-Star Party for Frank Sinatra, rating: 7.4 - predicted 7.1
+Movie : Simply Irresistible, rating: 5.3 - predicted 6.7
+Movie : Destination Lost, rating: 7.3 - predicted 7.3
+Movie : MTV Europe Music Awards 2001, rating: 4.8 - predicted 6.5
+Movie : Brit Awards 2008, rating: 5.5 - predicted 6.7
+Movie : Shrink, rating: 6.7 - predicted 7.0
+Movie : The Slammin' Salmon, rating: 6.5 - predicted 6.4
+Movie : Swelter, rating: 4.6 - predicted 6.5
+Movie : The Voice of Hollywood No. 13 (Second Series), rating: 4.2 - predicted 7.2
+Movie : Finnegan Begin Again, rating: 7.2 - predicted 7.5
+Movie : Angel, rating: 8.0 - predicted 7.0
+Movie : Location: Far from the Madding Crowd, rating: 6.4 - predicted 7.2
+Movie : No Good Deed, rating: 5.6 - predicted 6.2
+Movie : The Border, rating: 6.4 - predicted 6.7
+Movie : Dobr� Will Hunting, rating: 8.3 - predicted 6.7
+Movie : Bull, rating: 7.7 - predicted 6.8
+Movie : The 'Burbs, rating: 6.8 - predicted 7.2
+Movie : Super Bowl XXXI, rating: 7.3 - predicted 6.6
+Movie : Gideon, rating: 9.0 - predicted 7.2
+Movie : The 2008 European Film Awards, rating: 8.3 - predicted 6.9
+Movie : The King and I, rating: 7.5 - predicted 6.4
+Movie : Crossing Criminal Cultures, rating: 7.0 - predicted 7.0
+Movie : The LEGO Movie Videogame, rating: 7.5 - predicted 7.0
+Movie : Humphrey Bogart and Lauren Bacall, rating: 7.9 - predicted 7.2
+Movie : Rampart, rating: 5.8 - predicted 6.7
+Movie : Le fil, rating: 6.9 - predicted 6.8
+Movie : My Body, My Child, rating: 7.5 - predicted 7.2
+Movie : The Newsroom: Season 1 - Invitation to the Set, rating: 8.2 - predicted 6.8
+Movie : On the Set: The Princess Diaries 2 - Royal Engagement, rating: 7.2 - predicted 7.5
+Movie : Choices, rating: 6.4 - predicted 6.7
+Movie : Ceta, rating: 8.1 - predicted 7.1
+Movie : Where the Truth Lies, rating: 6.5 - predicted 6.8
+Movie : Rise, rating: 4.9 - predicted 6.2
+Movie : Picnic, rating: 5.2 - predicted 6.7
+Movie : Pravdiv� lzi, rating: 7.2 - predicted 6.4
+Movie : An Audience with Mel Brooks, rating: 8.0 - predicted 6.9
+Movie : An Adventure in Space and Time, rating: 8.3 - predicted 7.6
+Movie : Hammers Over the Anvil, rating: 5.9 - predicted 7.0
+Movie : Moses, rating: 6.7 - predicted 7.1
+Movie : Question Time, rating: 7.3 - predicted 6.9
+Movie : Family Feud, rating: 7.2 - predicted 6.7
+Movie : MGM Sing-Alongs: Friends, rating: 5.4 - predicted 7.0
+Movie : Lila & Eve, rating: 5.8 - predicted 6.3
+Movie : Reflections on the Fourth Film, rating: 8.0 - predicted 7.3
+Movie : The Commies, rating: 4.8 - predicted 6.2
+Movie : Spelling Bee, rating: 6.9 - predicted 5.9
+Movie : Tempo, rating: 4.7 - predicted 6.6
+Movie : Major Lazer, rating: 7.7 - predicted 7.5
+Movie : The Real Adventures of Jonny Quest, rating: 7.9 - predicted 7.0
+Movie : Comptes ? rebours, rating: 6.5 - predicted 7.2
+Movie : Roseanna's Grave, rating: 7.2 - predicted 6.8
+Movie : Pevn� pouto, rating: 6.7 - predicted 6.4
+Movie : Late Friday, rating: 5.5 - predicted 5.5
+Movie : Batman Begins, rating: 8.2 - predicted 7.2
+Movie : Vzpom�nka na tit�ny, rating: 7.8 - predicted 7.1
+Movie : Looks Familiar, rating: 8.1 - predicted 7.3
+Movie : Anger Management, rating: 6.7 - predicted 6.4
+Movie : Glory, rating: 7.9 - predicted 6.9
+Movie : Bride of Frankenstein, rating: 7.9 - predicted 7.1
+Movie : Going Overboard, rating: 1.9 - predicted 6.4
+Movie : Bye Bye Birdie, rating: 6.6 - predicted 7.1
+Movie : The Making of 'Amistad', rating: 5.4 - predicted 6.8
+Movie : Over Easy, rating: 7.2 - predicted 6.6
+Movie : Australian Story, rating: 8.2 - predicted 7.1
+Movie : The Sinking of the Laconia, rating: 7.0 - predicted 7.2
+Movie : Tu xia chuan qi, rating: 3.2 - predicted 6.4
+Movie : Arrowsmith, rating: 6.2 - predicted 6.4
+Movie : Bad Boy Kummer, rating: 6.6 - predicted 6.7
+Movie : The Path of the Dragon, rating: 6.1 - predicted 7.6
+Movie : Hollywood & Wine, rating: 3.7 - predicted 6.9
+Movie : Pravda zab�j�, rating: 6.6 - predicted 6.7
+Movie : Everything Must Go, rating: 6.4 - predicted 6.5
+Movie : The Preppie Murder, rating: 5.6 - predicted 6.4
+Movie : Livers Ain't Cheap, rating: 4.9 - predicted 6.4
+Movie : Our Kind of Traitor, rating: 6.2 - predicted 6.7
+Movie : Hello Down There, rating: 6.1 - predicted 6.8
+Movie : Open Access, rating: 8.0 - predicted 6.8
+Movie : 2011 New Now Next Awards, rating: 6.9 - predicted 6.6
+Movie : WWE: Greatest Stars of the '90s, rating: 7.9 - predicted 6.3
+Movie : I Never Promised You a Rose Garden, rating: 6.6 - predicted 6.3
+Movie : 'Calendar Girls': Creating the Calendar, rating: 7.6 - predicted 6.9
+Movie : The New 7 Wonders of the World, rating: 7.7 - predicted 6.2
+Movie : Against the Odds, rating: 7.8 - predicted 6.6
+Movie : Prime Suspect 6: The Last Witness, rating: 8.3 - predicted 6.8
+Movie : Pocket Listing, rating: 5.6 - predicted 6.5
+Movie : Chapter 27, rating: 5.8 - predicted 6.9
+Movie : Monstra versus vetrelci, rating: 6.5 - predicted 6.4
+Movie : The Plague Dogs, rating: 7.9 - predicted 7.3
+Movie : Andersonovy nahr�vky, rating: 6.4 - predicted 6.6
+Movie : Survival of the Fittest: The Making of 'Shooter', rating: 7.1 - predicted 6.5
+Movie : Nickelodeon, rating: 6.3 - predicted 6.1
+Movie : Der gro�e Preis, rating: 7.5 - predicted 6.9
+Movie : The Odd Couple, rating: 7.7 - predicted 7.2
+Movie : Henry & Me, rating: 6.7 - predicted 6.4
+Movie : Source Awards 2001, rating: 2.8 - predicted 6.5
+Movie : Enterprise, rating: 7.5 - predicted 7.0
+Movie : Stephen King: Shining in the Dark, rating: 7.3 - predicted 7.0
+Movie : Nebraska, rating: 7.7 - predicted 6.3
+Movie : Bloody Business, rating: 7.7 - predicted 6.9
+Movie : On the Line, rating: 4.1 - predicted 6.5
+Movie : The Oblongs..., rating: 7.0 - predicted 6.9
+Movie : Eight Is Enough, rating: 6.5 - predicted 7.0
+Movie : Balto, rating: 7.1 - predicted 6.7
+Movie : The Pickle, rating: 4.4 - predicted 5.9
+Movie : The Dean Martin Celebrity Roast: Telly Savalas, rating: 7.9 - predicted 6.5
+Movie : Oz, rating: 8.8 - predicted 7.5
+Movie : Eskimo Day, rating: 7.9 - predicted 6.7
+Movie : Whiplash, rating: 8.5 - predicted 7.3
+Movie : In the Deep Woods, rating: 5.5 - predicted 6.8
+Movie : Angel and the Badman, rating: 7.0 - predicted 6.7
+Movie : International Ghost Investigators, rating: 6.6 - predicted 7.0
+Movie : The Making of 'Sneakers', rating: 6.4 - predicted 7.0
+Movie : The Frozen Ground, rating: 6.4 - predicted 6.1
+Movie : Love & Sex, rating: 6.3 - predicted 6.8
+Movie : Prophet of Evil: The Ervil LeBaron Story, rating: 5.6 - predicted 6.9
+Movie : The Boys of Twilight, rating: 8.4 - predicted 6.4
+Movie : The Hulk: An MTV Movie Special, rating: 2.5 - predicted 6.6
+Movie : A New Madonna: The Making of 'Evita', rating: 6.8 - predicted 6.4
+Movie : Pred pulnoc�, rating: 7.9 - predicted 6.7
+Movie : Pocahontas, rating: 6.7 - predicted 7.2
+Movie : Elvis and Anabelle, rating: 7.4 - predicted 7.4
+Movie : Doogie Howser, M.D., rating: 6.5 - predicted 6.9
+Movie : The Kapil Sharma Show, rating: 8.6 - predicted 6.8
+Movie : Room 222, rating: 7.7 - predicted 7.0
+Movie : High Chaparall, rating: 8.4 - predicted 6.1
+Movie : Captain Fury, rating: 6.1 - predicted 6.6
+Movie : Hysteria, rating: 6.7 - predicted 6.5
+Movie : The Cookout, rating: 3.6 - predicted 6.0
+Movie : Macao, rating: 6.7 - predicted 7.2
+Movie : Love Among the Ruins, rating: 8.1 - predicted 7.4
+Movie : In Enemy Hands, rating: 6.0 - predicted 6.8
+Movie : The Neverending Story III, rating: 3.1 - predicted 6.8
+Movie : Now and Then, rating: 6.7 - predicted 6.4
+Movie : Lillian Gish, rating: 7.9 - predicted 6.8
+Movie : The Yin and the Yang of Mr. Go, rating: 3.5 - predicted 6.8
+Movie : A Star for Two, rating: 7.2 - predicted 7.0
+Movie : Intolerance: Love's Struggle Throughout the Ages, rating: 8.0 - predicted 6.8
+Movie : Lions and Monkeys and Pods... Oh My!: The Special Effects of 'Jumanji', rating: 5.2 - predicted 6.6
+Movie : Twelfth Night, or What You Will, rating: 7.4 - predicted 7.0
+Movie : Br�no, rating: 5.8 - predicted 6.7
+Movie : Picking Up the Pieces, rating: 4.7 - predicted 6.7
+Movie : Poor Little Rich Girl: The Barbara Hutton Story, rating: 7.2 - predicted 7.4
+Movie : Ebert Presents: At the Movies, rating: 7.4 - predicted 6.8
+Movie : Afro Samurai: Resurrection, rating: 7.3 - predicted 6.7
+Movie : At the Circus, rating: 6.9 - predicted 7.5
+Movie : Heaven Can Wait, rating: 7.5 - predicted 7.1
+Movie : The Death Squad, rating: 4.8 - predicted 6.8
+Movie : The Perfect Age of Rock 'n' Roll, rating: 6.0 - predicted 7.1
+Movie : 8 Seconds, rating: 6.5 - predicted 6.4
+Movie : One Against the Wind, rating: 7.0 - predicted 7.0
+Movie : Punchline, rating: 5.8 - predicted 7.0
+Movie : Woundings, rating: 4.1 - predicted 6.9
+Movie : The Penguins of Madagascar, rating: 7.7 - predicted 7.2
+Movie : Happy Birthday, Bugs!: 50 Looney Years, rating: 7.4 - predicted 7.1
+Movie : The Passage, rating: 6.2 - predicted 7.4
+Movie : Mary Hartman, Mary Hartman, rating: 7.9 - predicted 6.8
+Movie : Friends with Kids, rating: 6.2 - predicted 6.4
+Movie : Navzdy spolu, rating: 6.8 - predicted 6.5
+Movie : Toxick� mstitel 4: Masakr ve m�st�, rating: 6.4 - predicted 7.2
+Movie : Biloxi Blues, rating: 6.6 - predicted 6.7
+Movie : Hnev Titanu, rating: 5.8 - predicted 7.2
+Movie : Kocic� zlato, rating: 3.7 - predicted 6.5
+Movie : Nejmlads� kmotr, rating: 6.7 - predicted 6.9
+Movie : Moonwalking: The True Story of Michael Jackson - Uncensored, rating: 5.3 - predicted 6.6
+Movie : Carve Her Name with Pride, rating: 7.3 - predicted 6.6
+Movie : The War of the Worlds: Great Books, rating: 7.8 - predicted 7.3
+Movie : Journeys in Black, rating: 6.8 - predicted 6.3
+Movie : The Leisure Class, rating: 3.9 - predicted 6.4
+Movie : My Coolest Years, rating: 7.6 - predicted 7.1
+Movie : Gypsy, rating: 9.1 - predicted 7.4
+Movie : Gentlemen Broncos, rating: 6.1 - predicted 6.4
+Movie : Great Expectations, rating: 8.0 - predicted 6.9
+Movie : Frank, rating: 7.0 - predicted 6.7
+Movie : Greenberg, rating: 6.1 - predicted 7.4
+Movie : Mrs. Miniver, rating: 7.6 - predicted 6.9
+Movie : I Am Not an Animal, rating: 7.9 - predicted 7.1
+Movie : Captured on Film: The True Story of Marion Davies, rating: 6.8 - predicted 7.4
+Movie : The Hollywood Reporter Emmy Roundtable, rating: 7.8 - predicted 6.6
+Movie : Chris Rock: Bring the Pain, rating: 8.3 - predicted 6.2
+Movie : Miss Tatlock's Millions, rating: 7.2 - predicted 7.2
+Movie : Television's Greatest Performances I, rating: 7.7 - predicted 6.7
+Movie : L�on Morin, pr?tre, rating: 7.8 - predicted 6.3
+Movie : The Making of 'Drunken Angel', rating: 5.0 - predicted 7.3
+Movie : De battre mon coeur s'est arr?t�, rating: 7.3 - predicted 6.2
+Movie : The New Centurions, rating: 7.0 - predicted 7.0
+Movie : Bull Durham, rating: 7.1 - predicted 6.6
+Movie : Tap Roots, rating: 6.9 - predicted 6.9
+Movie : The New Breed, rating: 8.4 - predicted 6.9
+Movie : Shakespeare: The Animated Tales, rating: 8.4 - predicted 6.4
+Movie : The Music Never Stopped, rating: 7.6 - predicted 7.4
+Movie : Annie McGuire, rating: 6.0 - predicted 7.1
+Movie : The Vote, rating: 8.1 - predicted 7.4
+Movie : Tribeca Film Festival Awards, rating: 6.5 - predicted 6.5
+Movie : The Making of Fast & Furious 6, rating: 7.8 - predicted 6.8
+Movie : Free Spirit, rating: 7.9 - predicted 7.0
+Movie : Akahige, rating: 8.3 - predicted 7.3
+Movie : The Big Sleep, rating: 5.8 - predicted 7.3
+Movie : Kristen Stewart and Jesse Eisenberg's Awkward Interview, rating: 8.2 - predicted 6.7
+Movie : Brass Target, rating: 5.9 - predicted 6.8
+Movie : The Magic Box, rating: 7.1 - predicted 7.5
+Movie : The Twilight of the Golds, rating: 6.8 - predicted 6.4
+Movie : Bomber, rating: 6.4 - predicted 6.9
+Movie : The Venture Bros., rating: 8.6 - predicted 7.3
+Movie : Brewer Breakfast, rating: 7.4 - predicted 7.0
+Movie : The Formula, rating: 5.6 - predicted 7.5
+Movie : Kmotr II, rating: 9.0 - predicted 7.1
+Movie : The Book of Life, rating: 7.3 - predicted 6.5
+Movie : The Only Game in Town, rating: 5.8 - predicted 7.2
+Movie : The Real Glory, rating: 6.7 - predicted 6.9
+Movie : Purple Violets, rating: 6.5 - predicted 6.9
+Movie : The 100 Scariest Movie Moments, rating: 8.8 - predicted 6.5
+Movie : Kate & Leopold, rating: 6.4 - predicted 6.6
+Movie : Great Expectations, rating: 7.6 - predicted 7.0
+Movie : Lucky Lady, rating: 5.2 - predicted 6.6
+Movie : Devil's Knot, rating: 6.1 - predicted 6.6
+Movie : Sabotage, rating: 6.0 - predicted 7.0
+Movie : Evening in Byzantium, rating: 7.0 - predicted 6.9
+Movie : Cold Feet, rating: 4.7 - predicted 6.5
+Movie : Journey to the Screen: The Making of 'Pearl Harbor', rating: 3.9 - predicted 6.8
+Movie : Burnt Offerings, rating: 6.5 - predicted 7.4
+Movie : Nouvelle-France, rating: 5.4 - predicted 6.7
+Movie : 'Fried Green Tomatoes': The Moments of Discovery, rating: 7.6 - predicted 6.4
+Movie : Mal� Miss Sunshine, rating: 7.8 - predicted 6.7
+Movie : The Magic Bracelet, rating: 9.4 - predicted 7.3
+Movie : Circus of the Stars #14, rating: 6.2 - predicted 6.7
+Movie : Blankman, rating: 4.8 - predicted 6.4
+Movie : Marilyn, derni?res s�ances, rating: 6.9 - predicted 7.1
+Movie : Michael Mann: Making 'Public Enemies', rating: 8.2 - predicted 7.5
+Movie : All the King's Men, rating: 6.2 - predicted 6.7
+Movie : An Epic at Sea: The Making of 'Pirates of the Caribbean: The Curse of the Black Pearl', rating: 7.6 - predicted 7.3
+Movie : That Girl, rating: 7.1 - predicted 6.8
+Movie : ...First Do No Harm, rating: 6.9 - predicted 6.8
+Movie : A Season for Miracles, rating: 7.7 - predicted 6.8
+Movie : The Private Lives of Pippa Lee, rating: 6.4 - predicted 6.9
+Movie : A Safe Place, rating: 5.3 - predicted 7.3
+Movie : Mantrap, rating: 8.0 - predicted 6.5
+Movie : Summerslam, rating: 6.9 - predicted 6.8
+Movie : An Inspector Calls, rating: 7.8 - predicted 6.6
+Movie : C�dric Klapisch, ce qui le meut, rating: 5.2 - predicted 6.3
+Movie : Nebezpecn� hry, rating: 6.5 - predicted 7.0
+Movie : P.U.N.K.S., rating: 4.6 - predicted 6.8
+Movie : Hurry Sundown, rating: 5.6 - predicted 6.7
+Movie : I Walk the Line, rating: 6.7 - predicted 7.1
+Movie : Shoot the Moon, rating: 7.0 - predicted 6.9
+Movie : The Roosevelts: An Intimate History, rating: 8.9 - predicted 7.1
+Movie : America's Top Sleuths, rating: 8.1 - predicted 6.5
+Movie : The Making of 'The Bounty', rating: 4.7 - predicted 6.6
+Movie : CBGB, rating: 6.6 - predicted 7.0
+Movie : Celebrity Sex Tapes Unwound, rating: 6.7 - predicted 7.1
+Movie : The List, rating: 7.8 - predicted 7.1
+Movie : The Making of 'Dick', rating: 6.4 - predicted 6.7
+Movie : The Black Windmill, rating: 6.3 - predicted 7.1
+Movie : The People Speak UK, rating: 6.0 - predicted 7.2
+Movie : Le grand d�lire, rating: 6.1 - predicted 6.9
+Movie : Mardi Gras: Spring Break, rating: 9.7 - predicted 6.7
+Movie : Monster-in-Law, rating: 5.5 - predicted 6.3
+Movie : Attention Shoppers, rating: 5.1 - predicted 6.3
+Movie : Mr. Deeds Goes to Town, rating: 8.0 - predicted 7.5
+Movie : The Big Red One, rating: 7.2 - predicted 7.3
+Movie : VH1 Honors, rating: 8.5 - predicted 6.6
+Movie : Hollywood Goes to Hell, rating: 4.2 - predicted 6.2
+Movie : Filmography, rating: 6.3 - predicted 6.5
+Movie : Yoidore tenshi, rating: 7.8 - predicted 7.3
+Movie : Bad Influence, rating: 6.2 - predicted 6.6
+Movie : Mimic, rating: 5.9 - predicted 6.7
+Movie : The Ballad of Lucy Whipple, rating: 6.4 - predicted 6.9
+Movie : The Wrecking Crew!, rating: 7.6 - predicted 7.1
+Movie : Straight Time, rating: 7.4 - predicted 6.4
+Movie : The Moguls, rating: 6.3 - predicted 6.8
+Movie : Flawless, rating: 6.4 - predicted 7.2
+Movie : Bruce Lee and Kung Fu Mania, rating: 6.7 - predicted 7.4
+Movie : Toy Story 2: Pr�beh hracek, rating: 7.9 - predicted 6.9
+Movie : Film-Fest DVD: Issue 5 - Cannes 2000 & SXSW, rating: 7.8 - predicted 6.6
+Movie : Wing Commander IV: The Price of Freedom, rating: 8.8 - predicted 7.3
+Movie : Operation Homecoming: Writing the Wartime Experience, rating: 7.3 - predicted 7.1
+Movie : The Dreamers, rating: 7.2 - predicted 7.4
+Movie : 2013 CMT Music Awards, rating: 7.4 - predicted 6.6
+Movie : Term Life, rating: 5.5 - predicted 6.4
+Movie : Ca$h, rating: 6.0 - predicted 6.5
+Movie : The Elgin Hour, rating: 7.3 - predicted 7.1
+Movie : Hon na carodejnice, rating: 5.4 - predicted 6.6
+Movie : Cern� labut, rating: 8.0 - predicted 6.9
+Movie : Shooting 'Panic Room', rating: 7.6 - predicted 6.6
+Movie : The Disappearance of Kevin Johnson, rating: 5.7 - predicted 7.0
+Movie : Freddie as F.R.O.7., rating: 5.1 - predicted 7.0
+Movie : Comic Relief VI, rating: 5.9 - predicted 6.9
+Movie : Alfie, rating: 7.1 - predicted 6.7
+Movie : Lost Angels, rating: 6.1 - predicted 7.0
+Movie : Jake and the Giants, rating: 7.3 - predicted 6.8
+Movie : Blood Sport, rating: 6.8 - predicted 6.2
+Movie : Bottle Rocket, rating: 7.1 - predicted 6.3
+Movie : Hollywood Mom, rating: 6.6 - predicted 6.4
+Movie : The Murders in the Rue Morgue, rating: 5.9 - predicted 7.1
+Movie : The Yellow Rolls-Royce, rating: 6.5 - predicted 7.2
+Movie : My Name Is Bill W., rating: 7.3 - predicted 7.1
+Movie : Smosh, rating: 7.5 - predicted 6.9
+Movie : MovieReal: We Are Marshall, rating: 8.1 - predicted 6.6
+Movie : Friend Request Pending, rating: 7.5 - predicted 7.1
+Movie : Arnold Schwarzenegger: Hollywood Hero, rating: 5.0 - predicted 6.9
+Movie : Just Peck, rating: 6.3 - predicted 6.9
+Movie : Mary and Martha, rating: 6.8 - predicted 6.9
+Movie : To the Core and Back, rating: 5.4 - predicted 7.0
+Movie : Ryan Reynolds Becomes the Green Lantern, rating: 8.2 - predicted 7.5
+Movie : Love in Paris, rating: 2.7 - predicted 6.5
+Movie : Jonathan Demme and the Making of 'The Manchurian Candidate', rating: 6.7 - predicted 7.1
+Movie : The Guard, rating: 7.3 - predicted 6.9
+Movie : La science des r?ves, rating: 7.3 - predicted 7.2
+Movie : Mr. North, rating: 5.9 - predicted 7.3
+Movie : Screen Snapshots Series 18, No. 8, rating: 1.5 - predicted 5.5
+Movie : Crossings, rating: 6.7 - predicted 7.0
+Movie : Building the 'House of D', rating: 6.4 - predicted 6.4
+Movie : Dear Eleanor, rating: 6.0 - predicted 6.5
+Movie : Cold Sassy Tree, rating: 6.3 - predicted 6.9
+Movie : This Is Your Life, rating: 7.7 - predicted 7.3
+Movie : Brimstone, rating: 6.7 - predicted 6.8
+Movie : Mansome, rating: 5.4 - predicted 7.2
+Movie : Granite Flats, rating: 8.1 - predicted 5.8
+Movie : The Trip, rating: 6.1 - predicted 6.6
+Movie : Great Expectations, rating: 7.3 - predicted 6.8
+Movie : Night of Too Many Stars, rating: 5.3 - predicted 5.9
+Movie : The Magic Hour, rating: 3.5 - predicted 6.3
+Movie : The American Movie Awards, rating: 5.6 - predicted 7.1
+Movie : 'Catch Me If You Can': Behind the Camera, rating: 6.1 - predicted 7.1
+Movie : The Best of the Martial Arts Films, rating: 7.3 - predicted 7.3
+Movie : The Blues Brothers Animated Series, rating: 3.3 - predicted 7.2
+Movie : Caia Quem Caia, rating: 7.6 - predicted 6.8
+Movie : Sweet Revenge, rating: 6.2 - predicted 7.0
+Movie : M�d�e, rating: 8.0 - predicted 6.4
+Movie : Crazy on the Outside, rating: 5.6 - predicted 7.0
+Movie : Dredd, rating: 7.1 - predicted 7.1
+Movie : Duel in the Sun, rating: 6.9 - predicted 7.5
+Movie : The Ultimate Hollywood Blonde, rating: 4.9 - predicted 6.3
+Movie : The Uncanny Suspects, rating: 5.7 - predicted 7.0
+Movie : An All-Star Toast to the Improv, rating: 7.2 - predicted 6.7
+Movie : Blade Runner, rating: 8.2 - predicted 6.9
+Movie : The Wayans Bros., rating: 7.3 - predicted 6.4
+Movie : Something to Live for: The Alison Gertz Story, rating: 6.5 - predicted 6.6
+Movie : Go Man Go, rating: 7.2 - predicted 7.3
+Movie : Tonight Show Starring Johnny Carson 20th Anniversary, rating: 7.6 - predicted 6.8
+Movie : Nepr�tel pred branami, rating: 7.6 - predicted 7.1
+Movie : Brit Awards 2009, rating: 4.4 - predicted 7.0
+Movie : Garden of Evil, rating: 6.8 - predicted 7.1
+Movie : Strangers: The Story of a Mother and Daughter, rating: 9.1 - predicted 7.7
+Movie : Harry and Walter Go to New York, rating: 5.3 - predicted 6.7
+Movie : The Dangerous Lives of Altar Boys, rating: 7.1 - predicted 6.9
+Movie : The Key, rating: 6.7 - predicted 6.7
+Movie : Mozn�, rating: 5.8 - predicted 6.2
+Movie : ESPY Awards, rating: 5.1 - predicted 6.5
+Movie : The Chisholms, rating: 7.6 - predicted 6.6
+Movie : Igby Goes Down: In Search of Igby, rating: 6.6 - predicted 6.5
+Movie : Star Trek Beyond, rating: 7.2 - predicted 7.3
+Movie : American Heist, rating: 5.2 - predicted 6.8
+Movie : Good Vibes, rating: 7.4 - predicted 6.6
+Movie : Ein Leben wie im Flug, rating: 6.0 - predicted 6.7
+Movie : LOL, rating: 4.3 - predicted 6.4
+Movie : Man, Woman and Child, rating: 6.2 - predicted 6.6
+Movie : Love in the Time of Money, rating: 5.4 - predicted 6.9
+Movie : The Ballad of Greenwich Village, rating: 5.4 - predicted 6.3
+Movie : Your Favorite Story, rating: 8.1 - predicted 7.2
+Movie : The Celebrity Guide to Entertaining, rating: 4.4 - predicted 7.0
+Movie : Big Sur, rating: 5.9 - predicted 6.6
+Movie : Diner, rating: 7.2 - predicted 6.5
+Movie : Tintin: In the Volume, rating: 7.6 - predicted 7.1
+Movie : Italians in America, rating: 8.0 - predicted 6.8
+Movie : Whoever Slew Auntie Roo?, rating: 6.3 - predicted 6.6
+Movie : Catwoman, rating: 3.3 - predicted 6.5
+Movie : Barton Fink, rating: 7.7 - predicted 6.8
+Movie : Tenacious D: Time Fixers, rating: 7.2 - predicted 7.0
+Movie : BAFTA Televsion Awards 2016, rating: 8.2 - predicted 6.0
+Movie : 4 Fanboys & 1 Fangirl, rating: 7.6 - predicted 7.0
+Movie : How to Become a Hollywood Stuntman, rating: 7.7 - predicted 7.3
+Movie : Young America, rating: 6.6 - predicted 7.2
+Movie : Vrahouni, rating: 5.4 - predicted 6.3
+Movie : Rufus! Rufus! Rufus! Does Judy! Judy! Judy!, rating: 7.8 - predicted 7.3
+Movie : Fast Track, rating: 3.8 - predicted 6.3
+Movie : Frenchie, rating: 6.4 - predicted 6.5
+Movie : Doll & Em, rating: 6.4 - predicted 7.0
+Movie : Keepers of the Frame, rating: 7.3 - predicted 6.6
+Movie : Spise med Price, rating: 8.4 - predicted 6.4
+Movie : Alas Smith & Jones, rating: 7.6 - predicted 6.7
+Movie : Bunyan and Babe, rating: 6.9 - predicted 6.8
+Movie : Tron: Dedictvi, rating: 6.8 - predicted 7.3
+Movie : Major Barbara, rating: 7.0 - predicted 7.1
+Movie : Dvoj� obvinen�, rating: 6.4 - predicted 6.4
+Movie : Brainstorm, rating: 6.5 - predicted 7.3
+Movie : Just Go with It, rating: 6.4 - predicted 6.5
+Movie : The Life and Times of Arthur Erickson, rating: 7.8 - predicted 6.8
+Movie : Kong's New York, 1933, rating: 6.5 - predicted 7.0
+Movie : National Theatre Live: A Streetcar Named Desire, rating: 8.7 - predicted 7.0
+Movie : Dead Girl, rating: 5.4 - predicted 7.2
+Movie : Au th��tre ce soir, rating: 8.2 - predicted 6.5
+Movie : Advice, rating: 3.1 - predicted 6.5
+Movie : A Private Little Party for a Few Chums, rating: 7.3 - predicted 7.0
+Movie : Masterpiece Theatre, rating: 8.5 - predicted 6.8
+Movie : The Guilt Trip, rating: 5.8 - predicted 6.8
+Movie : X-Men: The Official Game, rating: 6.7 - predicted 6.9
+Movie : No Place Like Home, rating: 6.8 - predicted 6.5
+Movie : Making 'The Score', rating: 6.5 - predicted 7.4
+Movie : How Sweet It Is!, rating: 6.0 - predicted 7.1
+Movie : ESPY Awards, rating: 4.4 - predicted 6.6
+Movie : Planeta opic, rating: 8.0 - predicted 7.0
+Movie : Old Acquaintance, rating: 7.6 - predicted 7.6
+Movie : Zero Dark Thirty, rating: 7.4 - predicted 7.1
+Movie : Powder Town, rating: 5.6 - predicted 6.9
+Movie : Hollywood Salutes Bruce Willis: An American Cinematheque Tribute, rating: 7.7 - predicted 6.8
+Movie : Cops and Robbersons, rating: 5.0 - predicted 7.0
+Movie : You Kill Me, rating: 6.5 - predicted 6.4
+Movie : Smoke, rating: 7.4 - predicted 6.6
+Movie : Billy Connolly: Erect for 30 Years, rating: 7.6 - predicted 7.3
+Movie : Larceny, Inc., rating: 7.4 - predicted 7.0
+Movie : Betty White's 90th Birthday: A Tribute to America's Golden Girl, rating: 8.4 - predicted 7.2
+Movie : The Thing Called Love, rating: 6.3 - predicted 6.6
+Movie : Airwolf, rating: 6.8 - predicted 6.8
+Movie : The Naked Face, rating: 5.4 - predicted 7.2
+Movie : B�jecn� svet shopaholiku, rating: 5.9 - predicted 7.2
+Movie : Extrakt, rating: 6.2 - predicted 7.0
+Movie : Lily in Love, rating: 5.9 - predicted 7.1
+Movie : Tusk, rating: 5.4 - predicted 7.0
+Movie : Resident Evil, rating: 6.7 - predicted 6.5
+Movie : The Sessions, rating: 7.2 - predicted 6.9
+Movie : Jamie Foxx: I Might Need Security, rating: 6.8 - predicted 6.5
+Movie : Detective, rating: 8.7 - predicted 7.3
+Movie : One Foot in the Grave, rating: 7.9 - predicted 6.8
+Movie : A Conversation with Dinah, rating: 7.1 - predicted 7.3
+Movie : The World's Most Photographed, rating: 7.9 - predicted 7.4
+Movie : The Rose Tattoo, rating: 7.2 - predicted 7.5
+Movie : The January Man, rating: 5.6 - predicted 7.0
+Movie : AFI Life Achievement Award: A Tribute to Mel Brooks, rating: 6.8 - predicted 7.1
+Movie : No Tomorrow, rating: 4.0 - predicted 6.2
+Movie : Odds Against Tomorrow, rating: 7.4 - predicted 6.7
+Movie : Radetzkymarsch, rating: 8.2 - predicted 7.1
+Movie : Field of Dreams 2: NFL Lockout with Taylor Lautner: Deleted Scenes, rating: 6.7 - predicted 6.8
+Movie : The One I Love, rating: 7.1 - predicted 7.2
+Movie : Royal Flash, rating: 6.7 - predicted 6.7
+Movie : Hop, rating: 5.5 - predicted 6.2
+Movie : Theater Talk, rating: 8.0 - predicted 7.7
+Movie : Cabin Pressure: Designing the Aalto E-474, rating: 6.6 - predicted 6.9
+Movie : Almost Famous, rating: 7.9 - predicted 6.9
+Movie : 'T4' in Narnia, rating: 7.6 - predicted 6.9
+Movie : The Fortune, rating: 5.7 - predicted 7.0
+Movie : The Wrestler, rating: 7.9 - predicted 6.7
+Movie : Aftenshowet, rating: 4.8 - predicted 6.9
+Movie : If These Walls Could Talk 2, rating: 7.1 - predicted 6.6
+Movie : The Nina Foch Course for Filmmakers and Actors, rating: 8.4 - predicted 6.9
+Movie : Ramona and Beezus, rating: 6.7 - predicted 6.5
+Movie : Mission Action: Inside the Action Unit, rating: 6.3 - predicted 6.8
+Movie : The Iceman, rating: 6.9 - predicted 6.6
+Movie : Battlefield Earth, rating: 2.4 - predicted 7.0
+Movie : TV's Believe It or Not, rating: 3.9 - predicted 6.0
+Movie : For Auld Lang Syne, rating: 8.7 - predicted 8.0
+Movie : Conan Unchained: The Making of 'Conan', rating: 7.5 - predicted 6.7
+Movie : The Hollywood Revue of 1929, rating: 7.6 - predicted 5.5
+Movie : The Cobweb, rating: 6.5 - predicted 7.7
+Movie : Bettie Page Reveals All, rating: 7.1 - predicted 6.0
+Movie : It's All About Love... og Thomas Vinterberg, rating: 6.7 - predicted 7.1
+Movie : De 'Los Serrano' a 'Cuenta atr�s', rating: 8.4 - predicted 6.9
+Movie : Lolly-Madonna XXX, rating: 6.4 - predicted 6.5
+Movie : The Package, rating: 6.4 - predicted 6.8
+Movie : It's in the Bag!, rating: 7.0 - predicted 6.8
+Movie : Urban Legends: Bloody Mary, rating: 4.3 - predicted 6.4
+Movie : The Substance of Fire, rating: 6.0 - predicted 6.8
+Movie : Coronet Blue, rating: 8.8 - predicted 7.4
+Movie : Silicon Valley, rating: 8.5 - predicted 6.5
+Movie : Terminator Salvation: A G4 Special, rating: 5.3 - predicted 6.7
+Movie : Medianeras, rating: 7.5 - predicted 7.1
+Movie : Maude, rating: 7.2 - predicted 7.0
+Movie : Balls of Steel, rating: 7.5 - predicted 5.6
+Movie : The 3rd Annual TV Land Awards, rating: 7.0 - predicted 7.0
+Movie : Newton's Apple, rating: 7.8 - predicted 6.5
+Movie : The Convincer, rating: 6.2 - predicted 6.5
+Movie : The Tehuacan Project, rating: 5.0 - predicted 7.0
+Movie : Making of 'The Hitchhiker's Guide to the Galaxy', rating: 6.9 - predicted 6.9
+Movie : The Source: The Story of the Beats and the Beat Generation, rating: 7.5 - predicted 7.6
+Movie : Dans le labyrinthe de Marienbad, rating: 6.8 - predicted 6.7
+Movie : The Palm Beach Story, rating: 7.7 - predicted 6.6
+Movie : Fun in Acapulco, rating: 5.8 - predicted 6.9
+Movie : Close to the Enemy, rating: 5.3 - predicted 6.4
+Movie : F?rst & sist, rating: 5.9 - predicted 6.7
+Movie : Premios Principales 2007, rating: 8.1 - predicted 5.8
+Movie : Weird Science, rating: 6.6 - predicted 6.7
+Movie : Crash, rating: 6.4 - predicted 7.0
+Movie : Podfukari 2, rating: 6.5 - predicted 7.4
+Movie : Imperium: Augustus, rating: 6.4 - predicted 7.0
+Movie : The 46th Annual NAACP Image Awards, rating: 6.4 - predicted 6.3
+Movie : H.E.L.P., rating: 6.5 - predicted 6.6
+Movie : All Saints: The Video, rating: 7.0 - predicted 7.0
+Movie : Modigliani, rating: 7.4 - predicted 6.8
+Movie : Art School Confidential, rating: 6.3 - predicted 7.3
+Movie : Spicks and Specks, rating: 8.4 - predicted 7.2
+Movie : Hammy's Boomerang Adventure, rating: 6.3 - predicted 6.6
+Movie : That Moment: Magnolia Diary, rating: 7.6 - predicted 6.7
+Movie : Unsolved Mysteries, rating: 8.3 - predicted 6.7
+Movie : Rien de 9, rating: 6.1 - predicted 6.8
+Movie : Thirteen at Dinner, rating: 6.2 - predicted 6.8
+Movie : Once Upon a Time in America, rating: 8.4 - predicted 6.8
+Movie : Dial M for Murder, rating: 8.2 - predicted 6.7
+Movie : Death of Celebrity, rating: 4.9 - predicted 6.5
+Movie : Homeless to Harvard: The Liz Murray Story, rating: 7.3 - predicted 6.6
+Movie : The Millers, rating: 6.0 - predicted 6.5
+Movie : A Prairie Home Companion: Exclusive Sneak Peek, rating: 6.6 - predicted 7.0
+Movie : Cavett Remembers the Comic Legends, rating: 6.5 - predicted 7.6
+Movie : Say Anything..., rating: 7.4 - predicted 6.5
+Movie : Reflections in a Golden Eye, rating: 7.0 - predicted 7.0
+Movie : Hard Lovin' Woman, rating: 6.5 - predicted 6.5
+Movie : Todo sobre mi madre, rating: 7.9 - predicted 7.3
+Movie : The Kennedy Center Honors: A Celebration of the Performing Arts, rating: 5.8 - predicted 7.0
+Movie : Scott Pilgrim vs. The World vs. Funny or Die, rating: 6.8 - predicted 6.6
+Movie : Making 'Scary Movie 3', rating: 5.2 - predicted 5.9
+Movie : Zaklet� v case, rating: 7.1 - predicted 7.0
+Movie : Grace Quigley, rating: 5.7 - predicted 7.1
+Movie : When You Remember Me, rating: 6.7 - predicted 6.7
+Movie : High School Musical Cast: I Can't Take My Eyes Off of You, rating: 6.9 - predicted 6.5
+Movie : Spinning Into Butter, rating: 4.2 - predicted 6.4
+Movie : Collection Fred Vargas, rating: 6.9 - predicted 7.0
+Movie : The Mysteries of Laura, rating: 6.8 - predicted 6.5
+Movie : The 38th Annual Grammy Awards, rating: 6.2 - predicted 6.7
+Movie : The Walking Dead, rating: 6.7 - predicted 7.0
+Movie : The Neon Ceiling, rating: 8.4 - predicted 6.9
+Movie : Rizzoli & Isles, rating: 7.6 - predicted 6.9
+Movie : In Secret, rating: 6.1 - predicted 6.7
+Movie : The Amazing Dr. Clitterhouse, rating: 7.0 - predicted 7.1
+Movie : The Making of Steven Spielberg's 'Jaws', rating: 7.8 - predicted 7.1
+Movie : The Roaring Twenties, rating: 7.9 - predicted 7.2
+Movie : The Cat's Meow, rating: 6.4 - predicted 6.0
+Movie : In a Child's Name, rating: 8.0 - predicted 6.7
+Movie : Je proste b�jecn�, rating: 6.2 - predicted 7.1
+Movie : Soul Food, rating: 7.5 - predicted 6.1
+Movie : The Wide World of Mystery, rating: 7.1 - predicted 7.1
+Movie : Prop 8: The Musical, rating: 7.4 - predicted 6.8
+Movie : Premios Goya 30 edici�n, rating: 7.8 - predicted 6.5
+Movie : Mary Tyler Moore: The 20th Anniversary Show, rating: 7.6 - predicted 7.1
+Movie : The World in His Arms, rating: 7.2 - predicted 6.9
+Movie : Red River, rating: 7.8 - predicted 7.1
+Movie : How to Steal a Million, rating: 7.6 - predicted 7.1
+Movie : An Evening with Lily Savage, rating: 8.4 - predicted 6.9
+Movie : Warren Ellis: Captured Ghosts, rating: 7.2 - predicted 6.7
+Movie : The Voice UK, rating: 6.3 - predicted 7.0
+Movie : Cave In!, rating: 5.5 - predicted 6.5
+Movie : Wilder Napalm, rating: 5.5 - predicted 6.2
+Movie : Video Nasties: Moral Panic, Censorship & Videotape, rating: 8.0 - predicted 7.4
+Movie : Toothless, rating: 6.0 - predicted 6.5
+Movie : Kung Fu Choreography, rating: 4.0 - predicted 6.9
+Movie : The Thief Lord, rating: 6.0 - predicted 6.8
+Movie : The Specials, rating: 6.0 - predicted 6.6
+Movie : Happily N'Ever After, rating: 4.5 - predicted 7.1
+Movie : Blue Juice, rating: 5.2 - predicted 6.6
+Movie : The Great Man, rating: 7.2 - predicted 7.1
+Movie : Arli$$, rating: 7.1 - predicted 7.1
+Movie : Stolen Lives, rating: 6.1 - predicted 6.6
+Movie : Vice Principals, rating: 7.9 - predicted 6.5
+Movie : David Cross: Let America Laugh, rating: 7.0 - predicted 6.3
+Movie : The Chuck Woolery Show, rating: 5.8 - predicted 6.7
+Movie : Stand Up and Cheer!, rating: 5.7 - predicted 7.0
+Movie : The Making of 'Absence of Malice', rating: 6.5 - predicted 7.0
+Movie : Ca$h, rating: 6.0 - predicted 6.3
+Movie : Life Goes to the Movies, rating: 7.5 - predicted 7.0
+Movie : Spider-Man, rating: 7.3 - predicted 7.2
+Movie : Choreography: Creating Vincent Paterson's Dance Sequences, rating: 5.7 - predicted 7.1
+Movie : Tulsa, rating: 6.2 - predicted 6.8
+Movie : Sidekicks, rating: 6.8 - predicted 7.0
+Movie : King of the Jungle, rating: 6.1 - predicted 6.5
+Movie : Marcy, rating: 6.6 - predicted 7.0
+Movie : Past na Zraloka, rating: 4.2 - predicted 6.9
+Movie : Stealing Harvard, rating: 5.1 - predicted 6.1
+Movie : Far from the Madding Crowd, rating: 7.2 - predicted 7.2
+Movie : Comedy Central Roast of Joan Rivers, rating: 7.1 - predicted 7.1
+Movie : Sci-Fi Channel: The Lowdown - The Chronicles of Riddick, rating: 7.9 - predicted 6.9
+Movie : The Piano, rating: 7.6 - predicted 7.3
+Movie : Bette, rating: 6.7 - predicted 7.0
+Movie : The Shoes of the Fisherman, rating: 7.5 - predicted 7.0
+Movie : Torrance Rises, rating: 6.7 - predicted 6.3
+Movie : Somebody or The Rise and Fall of Philosophy, rating: 4.6 - predicted 7.0
+Movie : Temn� vzpom�nky, rating: 6.8 - predicted 6.7
+Movie : The Boys Next Door, rating: 7.3 - predicted 6.2
+Movie : Obvykl� podezrel�, rating: 8.6 - predicted 7.0
+Movie : The Unseen Alistair Cooke, rating: 8.2 - predicted 7.4
+Movie : Donkey's Christmas Shrektacular, rating: 5.4 - predicted 6.2
+Movie : Ha-Shminiya, rating: 6.6 - predicted 6.8
+Movie : Deadly Advice, rating: 6.3 - predicted 6.8
+Movie : Roberto Rossellini: Frammenti e battute, rating: 7.0 - predicted 6.9
+Movie : E! Behind the Scenes, rating: 6.2 - predicted 6.3
+Movie : Meet Dave, rating: 4.9 - predicted 6.6
+Movie : Unknown, rating: 6.5 - predicted 7.3
+Movie : Higglety Pigglety Pop! or There Must Be More to Life, rating: 6.9 - predicted 6.7
+Movie : Mel Gibson's Video Diary 2: Lethal Weapon 3, rating: 6.1 - predicted 6.8
+Movie : Transamerica, rating: 7.4 - predicted 6.8
+Movie : White Lies, rating: 6.2 - predicted 6.9
+Movie : White Fang 2: Myth of the White Wolf, rating: 5.4 - predicted 6.2
+Movie : Babe: Galantn� pras�tko, rating: 6.8 - predicted 6.9
+Movie : Who's Afraid of Virginia Woolf?, rating: 8.1 - predicted 6.9
+Movie : Ferris Bueller's Day Off, rating: 7.8 - predicted 6.4
+Movie : Eiko e no 5,000 kiro, rating: 6.1 - predicted 7.3
+Movie : Titus, rating: 7.2 - predicted 6.5
+Movie : On the Edge, rating: 5.0 - predicted 6.8
+Movie : Some Girl(s), rating: 4.6 - predicted 7.2
+Movie : The Internecine Project, rating: 6.3 - predicted 7.1
+Movie : Day Zero, rating: 6.0 - predicted 6.5
+Movie : Person of Interest, rating: 8.5 - predicted 6.6
+Movie : Commando, rating: 6.7 - predicted 6.7
+Movie : Ghostbusters, rating: 8.7 - predicted 7.2
+Movie : Pat Neal Is Back, rating: 6.2 - predicted 7.3
+Movie : Who's That Girl, rating: 4.6 - predicted 6.9
+Movie : Don't Leave Me This Way, rating: 6.0 - predicted 6.6
+Movie : James Bond: A BAFTA Tribute, rating: 6.8 - predicted 6.8
+Movie : Escobar: Paradise Lost, rating: 6.6 - predicted 7.2
+Movie : Confessions of a Superhero, rating: 7.2 - predicted 6.4
+Movie : Vecn� svit neposkvrnen� mysli, rating: 8.3 - predicted 6.5
+Movie : The Lord of the Rings: The Battle for Middle-Earth II, rating: 8.7 - predicted 7.3
+Movie : Martin Chuzzlewit, rating: 8.2 - predicted 6.3
+Movie : The Nut Job, rating: 5.8 - predicted 6.2
+Movie : The Last Dragon, rating: 6.9 - predicted 6.7
+Movie : If Tomorrow Comes, rating: 7.9 - predicted 6.8
+Movie : It's Always Sunny in Philadelphia Season 3: Sunny Side Up, rating: 8.4 - predicted 6.8
+Movie : The Dating Scene, rating: 5.7 - predicted 6.4
+Movie : Recount, rating: 7.5 - predicted 7.0
+Movie : Knife Fight, rating: 6.0 - predicted 6.7
+Movie : The Last American Hero, rating: 6.4 - predicted 6.1
+Movie : The Magician of Lublin, rating: 5.7 - predicted 6.5
+Movie : 42nd Annual Country Music Association Awards, rating: 7.6 - predicted 6.5
+Movie : Anna Karenina, rating: 7.1 - predicted 7.4
+Movie : Honky Tonk Freeway, rating: 5.1 - predicted 7.0
+Movie : From Rocky to Creed: The Legacy Continues, rating: 7.2 - predicted 7.0
+Movie : Water and Power, rating: 6.6 - predicted 7.2
+Movie : Raquel!, rating: 6.1 - predicted 7.0
+Movie : Termin�tor 4, rating: 6.6 - predicted 7.3
+Movie : Arthur and the Invisibles: The Making of the Year's Greatest Adventure, rating: 5.9 - predicted 6.7
+Movie : Celebrity Golf, rating: 8.8 - predicted 6.7
+Movie : BET's Comicview, rating: 7.1 - predicted 6.3
+Movie : Dvere v podlaze, rating: 6.7 - predicted 6.7
+Movie : Aerosmith: Amazing, rating: 7.4 - predicted 6.8
+Movie : The Kennedy Center Honors: A Celebration of the Performing Arts, rating: 9.2 - predicted 7.7
+Movie : Life with Bonnie, rating: 6.5 - predicted 7.0
+Movie : The Gallant Legion, rating: 6.8 - predicted 7.0
+Movie : Marlon Brando: The Wild One, rating: 7.9 - predicted 6.7
+Movie : G. I. Joe, rating: 5.8 - predicted 6.5
+Movie : The April Fools, rating: 6.4 - predicted 7.0
+Movie : Queens Supreme, rating: 7.4 - predicted 6.1
+Movie : Mr. Hobbs Takes a Vacation, rating: 6.9 - predicted 6.9
+Movie : Small Steps, Big Strides: The Black Experience in Hollywood, rating: 6.7 - predicted 6.9
+Movie : I Am Your Child, rating: 6.6 - predicted 6.7
+Movie : Blood and Wine, rating: 6.1 - predicted 7.1
+Movie : Awesome; I Fuckin' Shot That!, rating: 7.5 - predicted 6.7
+Movie : Legenda o m�m synovi, rating: 7.3 - predicted 7.6
+Movie : Jackie Chan: My Story, rating: 7.0 - predicted 6.7
+Movie : G-Force, rating: 6.8 - predicted 6.8
+Movie : Who Do You Think You Are?, rating: 8.0 - predicted 7.4
+Movie : The Childhood of a Leader, rating: 6.2 - predicted 6.3
+Movie : RTL Boulevard, rating: 3.5 - predicted 6.9
+Movie : The Careless Years, rating: 6.2 - predicted 7.1
+Movie : There's Only One Paul McCartney, rating: 8.0 - predicted 6.6
+Movie : Candid Camera's 50th Anniversary, rating: 6.0 - predicted 6.9
+Movie : Cutting Edge, rating: 7.2 - predicted 6.6
+Movie : On Golden Pond, rating: 6.6 - predicted 7.4
+Movie : Cross of Iron, rating: 7.5 - predicted 7.3
+Movie : Madeline, rating: 5.9 - predicted 6.7
+Movie : The Three Musketeers, rating: 5.9 - predicted 7.3
+Movie : Victor Victoria, rating: 7.6 - predicted 7.6
+Movie : The Yellow Ticket, rating: 6.6 - predicted 6.9
+Movie : The Sheltering Sky, rating: 6.8 - predicted 6.6
+Movie : Rango, rating: 7.2 - predicted 7.2
+Movie : Three Little Words, rating: 7.1 - predicted 6.9
+Movie : The Decorator, rating: 8.8 - predicted 7.5
+Movie : Los m�s, rating: 3.8 - predicted 6.2
+Movie : Rescued from the Closet, rating: 6.3 - predicted 6.9
+Movie : Toy Story 3: The Gang's All Here, rating: 5.2 - predicted 6.8
+Movie : Bob, rating: 7.6 - predicted 6.8
+Movie : The Portrait of a Lady, rating: 6.3 - predicted 7.0
+Movie : September 30, 1955, rating: 6.6 - predicted 6.5
+Movie : Cry_Wolf, rating: 5.9 - predicted 7.1
+Movie : How I Met Your Dad, rating: 5.7 - predicted 7.0
+Movie : Personal Velocity: In Conversation Rebecca, Parker, Fairuza, and Kyra, rating: 7.4 - predicted 6.5
+Movie : �preuves d'artistes, rating: 3.9 - predicted 7.2
+Movie : America Divided, rating: 8.0 - predicted 7.5
+Movie : V mes�cn�m svitu, rating: 7.5 - predicted 7.1
+Movie : Robot Chicken: Star Wars Episode III, rating: 8.1 - predicted 6.6
+Movie : Basements, rating: 5.4 - predicted 6.9
+Movie : Harriet the Spy, rating: 5.9 - predicted 6.1
+Movie : ?ngel Casas Show, rating: 7.8 - predicted 7.0
+Movie : Road House, rating: 6.5 - predicted 7.1
+Movie : Das Geheimnis der gelben Narzissen, rating: 5.6 - predicted 7.0
+Movie : Nine Lives, rating: 5.2 - predicted 6.8
+Movie : Willkommen bei Carmen Nebel, rating: 3.5 - predicted 7.0
+Movie : The 25 Hottest Stars Under 25, rating: 3.5 - predicted 6.6
+Movie : Meeting Evil, rating: 5.3 - predicted 6.6
+Movie : Greatest Ever Christmas Movies, rating: 4.6 - predicted 7.2
+Movie : In the Valley of Elah, rating: 7.2 - predicted 6.6
+Movie : Lucy: The Evolution of Lucy, rating: 7.0 - predicted 6.5
+Movie : 3-D Rarities, rating: 8.1 - predicted 7.0
+Movie : Starting Over, rating: 6.5 - predicted 6.2
+Movie : Evolution, rating: 6.0 - predicted 6.8
+Movie : Sugarfoot, rating: 7.6 - predicted 6.9
+Movie : 21 Days, rating: 6.3 - predicted 6.6
+Movie : Steve McQueen: The Essence of Cool, rating: 7.6 - predicted 7.0
+Movie : Stepford: The Architects, rating: 4.5 - predicted 6.6
+Movie : Young Ones, rating: 5.9 - predicted 6.6
+Movie : The Unbeatable Bruce Lee, rating: 7.4 - predicted 7.6
+Movie : Cinemax Special: Anchorman - The Legend of Ron Burgundy, rating: 5.8 - predicted 6.6
+Movie : 2001 ALMA Awards, rating: 4.4 - predicted 6.5
+Movie : Great Books, rating: 8.3 - predicted 7.0
+Movie : Trapped in Silence, rating: 7.1 - predicted 7.0
+Movie : Roar, rating: 7.6 - predicted 6.7
+Movie : Law & Order: Trial by Jury, rating: 6.4 - predicted 6.9
+Movie : Beyonc�: Lemonade, rating: 8.1 - predicted 6.1
+Movie : Young Americans, rating: 7.9 - predicted 6.9
+Movie : Big Train, rating: 8.0 - predicted 7.0
+Movie : Fast Food Nation, rating: 6.3 - predicted 6.3
+Movie : In Search of Peace, rating: 6.7 - predicted 6.5
+Movie : Max Payne, rating: 5.4 - predicted 7.0
+Movie : The Commission, rating: 6.4 - predicted 7.0
+Movie : 2012 ALMA Awards, rating: 7.9 - predicted 7.1
+Movie : O. Henry's Full House, rating: 7.3 - predicted 7.0
+Movie : Chain of Fools, rating: 6.2 - predicted 6.4
+Movie : Kennedys' Home Movies, rating: 7.6 - predicted 6.6
+Movie : Every Little Step, rating: 7.5 - predicted 6.6
+Movie : La storia vera della signora dalle camelie, rating: 6.8 - predicted 7.1
+Movie : The Amazing Miss Cummings: An Actress at Work and Play, rating: 5.5 - predicted 6.8
+Movie : Loose Cannons, rating: 4.8 - predicted 6.9
+Movie : The Couch Trip, rating: 5.6 - predicted 7.2
+Movie : Design in Motion: The Look of 'Men in Black II', rating: 5.4 - predicted 6.4
+Movie : HSM3: Senior Awards, rating: 6.7 - predicted 6.5
+Movie : The Oxford Murders, rating: 6.1 - predicted 6.9
+Movie : Summer of Sam, rating: 6.6 - predicted 6.9
+Movie : The Positively True Adventures of the Alleged Texas Cheerleader-Murdering Mom, rating: 6.7 - predicted 7.2
+Movie : The Making of Frost/Nixon, rating: 7.0 - predicted 6.6
+Movie : 87th Precinct, rating: 8.7 - predicted 7.2
+Movie : The New Show, rating: 7.9 - predicted 6.9
+Movie : Die linksh�ndige Frau, rating: 6.8 - predicted 7.1
+Movie : The Next Three Days, rating: 7.4 - predicted 7.1
+Movie : Red Hot and Blue, rating: 7.7 - predicted 7.1
+Movie : Hector: Portrait of a Psychofan, rating: 6.4 - predicted 6.1
+Movie : Un jour dans la vie du cin�ma fran�ais, rating: 4.7 - predicted 6.7
+Movie : Rated 'R': Republicans in Hollywood, rating: 5.1 - predicted 6.8
+Movie : Excess Baggage, rating: 5.2 - predicted 6.7
+Movie : The Long Duel, rating: 5.8 - predicted 6.7
+Movie : Far and Away, rating: 6.5 - predicted 6.3
+Movie : Vr�skot 4, rating: 6.2 - predicted 7.1
+Movie : The Kentuckian, rating: 6.3 - predicted 7.3
+Movie : September Affair, rating: 7.0 - predicted 7.1
+Movie : Sibling Rivalry, rating: 5.4 - predicted 7.1
+Movie : The Client List, rating: 6.7 - predicted 6.8
+Movie : Anastasia: The Mystery of Anna, rating: 7.0 - predicted 7.4
+Movie : Human Giant, rating: 8.4 - predicted 6.8
+Movie : Stuck in Love, rating: 7.3 - predicted 6.0
+Movie : Saturday Night Special, rating: 5.8 - predicted 6.4
+Movie : The Natural, rating: 7.5 - predicted 7.2
+Movie : Man on the Train, rating: 5.5 - predicted 6.8
+Movie : High School Musical: The Concert - Extreme Access Pass, rating: 4.8 - predicted 6.5
+Movie : The Sea Bat, rating: 5.5 - predicted 6.8
+Movie : La scoumoune, rating: 6.4 - predicted 6.3
+Movie : Serena, rating: 6.5 - predicted 6.4
+Movie : Ogin-sama, rating: 7.5 - predicted 7.3
+Movie : The Alibi, rating: 6.4 - predicted 6.2
+Movie : The Path, rating: 7.5 - predicted 6.9
+Movie : The Peace! DVD, rating: 7.4 - predicted 6.4
+Movie : The Beautiful Country, rating: 7.5 - predicted 6.5
+Movie : Silk, rating: 5.9 - predicted 6.5
+Movie : Tooth, rating: 2.5 - predicted 7.0
+Movie : Wild at Heart, rating: 7.2 - predicted 6.6
+Movie : The Lion in Winter, rating: 8.1 - predicted 7.3
+Movie : Who Do You Think You're Fooling?, rating: 5.2 - predicted 6.9
+Movie : Specialista, rating: 5.5 - predicted 6.8
+Movie : The Romantics, rating: 5.1 - predicted 6.6
+Movie : Sense and Sensibility, rating: 7.7 - predicted 6.8
+Movie : Tim and Eric Nite Live, rating: 8.0 - predicted 7.2
+Movie : The Bill Engvall Show, rating: 5.6 - predicted 6.4
+Movie : Flightplan, rating: 6.2 - predicted 6.8
+Movie : The Rack, rating: 6.8 - predicted 7.2
+Movie : The War Wagon, rating: 6.9 - predicted 6.9
+Movie : The Wild Thornberrys Movie, rating: 5.2 - predicted 6.9
+Movie : Kaylien, rating: 7.4 - predicted 6.9
+Movie : Pals, rating: 5.7 - predicted 7.1
+Movie : Pal Joey, rating: 6.8 - predicted 6.7
+Movie : The Awakening Land, rating: 8.4 - predicted 7.0
+Movie : Nash Airflyte Theatre, rating: 6.6 - predicted 6.8
+Movie : Stick It, rating: 6.4 - predicted 6.4
+Movie : Why I Love 'Bewitched', rating: 4.9 - predicted 6.6
+Movie : Attila, rating: 6.7 - predicted 7.0
+Movie : Making 'The Man Who Wasn't There', rating: 6.9 - predicted 6.7
+Movie : Changing Habits, rating: 5.8 - predicted 6.8
+Movie : Fade to Black, rating: 5.9 - predicted 7.0
+Movie : Nelson Freire, rating: 7.8 - predicted 6.9
+Movie : Happy Feet, rating: 6.5 - predicted 6.7
+Movie : This Hour Has 22 Minutes, rating: 6.6 - predicted 6.4
+Movie : Radio Flyer, rating: 6.9 - predicted 6.9
+Movie : The Fall Guy, rating: 7.1 - predicted 6.8
+Movie : Making the Connection: Untold Stories of 'The French Connection', rating: 6.9 - predicted 7.0
+Movie : In the Mix, rating: 2.6 - predicted 6.5
+Movie : Isadora, rating: 7.7 - predicted 7.3
+Movie : The Landlord, rating: 6.9 - predicted 6.9
+Movie : A Galaxy Far, Far Away, rating: 5.3 - predicted 7.0
+Movie : Another Thin Man, rating: 7.5 - predicted 6.5
+Movie : Taxi!!, rating: 7.2 - predicted 6.6
+Movie : Introducing Cameron Diaz, rating: 6.6 - predicted 7.0
+Movie : The Miser's Heart, rating: 6.5 - predicted 6.9
+Movie : American Crude, rating: 3.8 - predicted 6.1
+Movie : Bright Eyes, rating: 7.3 - predicted 7.3
+Movie : The Company Men, rating: 6.8 - predicted 6.9
+Movie : The Shopworn Angel, rating: 7.0 - predicted 7.0
+Movie : Unchained Memories: Readings from the Slave Narratives, rating: 8.2 - predicted 6.7
+Movie : A Passage to India, rating: 7.4 - predicted 6.9
+Movie : Meet Wally Sparks, rating: 5.1 - predicted 6.6
+Movie : Who's Doing the Dishes?, rating: 4.1 - predicted 6.2
+Movie : Ripper, rating: 7.8 - predicted 7.0
+Movie : Horalka, rating: 7.9 - predicted 6.2
+Movie : This Is Us, rating: 8.9 - predicted 6.8
+Movie : This Is Zodiac, rating: 7.1 - predicted 7.3
+Movie : N�dhern� bytosti, rating: 6.2 - predicted 7.4
+Movie : Secret of the Wings, rating: 7.2 - predicted 6.5
+Movie : Driftwood, rating: 7.0 - predicted 7.3
+Movie : Knife Fight, rating: 5.1 - predicted 6.9
+Movie : Law & Order: Los Angeles, rating: 6.7 - predicted 6.5
+Movie : Stroj casu, rating: 5.9 - predicted 7.1
+Movie : Dan August, rating: 7.2 - predicted 6.2
+Movie : De la part des copains, rating: 5.8 - predicted 7.1
+Movie : Three Warriors, rating: 6.8 - predicted 6.7
+Movie : The Omega Man, rating: 6.6 - predicted 6.4
+Movie : Hollywood Confidential, rating: 5.3 - predicted 6.8
+Movie : Fade-In, rating: 5.9 - predicted 6.4
+Movie : Happy Days, rating: 7.2 - predicted 6.1
+Movie : Dracula, rating: 7.5 - predicted 7.0
+Movie : Mary Tyler Moore: A Celebration, rating: 8.2 - predicted 7.6
+Movie : Perfect Strangers, rating: 6.1 - predicted 6.7
+Movie : The Take, rating: 7.9 - predicted 7.5
+Movie : Songs from Dawson's Creek, rating: 6.5 - predicted 6.8
+Movie : Sleepy Hollow, rating: 7.5 - predicted 6.5
+Movie : The Demon Murder Case, rating: 5.2 - predicted 6.8
+Movie : A Murderous Affair: The Carolyn Warmus Story, rating: 5.2 - predicted 6.7
+Movie : The New Lot, rating: 7.3 - predicted 7.3
+Movie : No, rating: 7.4 - predicted 7.1
+Movie : In a New Light: Sex Unplugged, rating: 7.1 - predicted 6.6
+Movie : In Love and War, rating: 6.0 - predicted 6.5
+Movie : Bell Book and Candle, rating: 6.9 - predicted 6.9
+Movie : Kingdom Hearts II: Final Mix+, rating: 9.6 - predicted 7.1
+Movie : The Andy Dick Show, rating: 6.6 - predicted 6.5
+Movie : Van Gogh: Darkness Into Light, rating: 6.4 - predicted 7.2
+Movie : The Making of 'Changing Lanes', rating: 5.3 - predicted 6.6
+Movie : The Debtors, rating: 5.5 - predicted 6.9
+Movie : B�l� V�noce, rating: 7.6 - predicted 6.7
+Movie : Alex Cross, rating: 5.1 - predicted 6.2
+Movie : Plots with a View, rating: 6.7 - predicted 7.0
+Movie : Shutter Island: Behind the Shutters, rating: 7.9 - predicted 7.1
+Movie : Saturday Night Live: The Best of Adam Sandler, rating: 7.1 - predicted 6.4
+Movie : Extraction, rating: 4.8 - predicted 6.4
+Movie : Racing Daylight, rating: 4.6 - predicted 6.9
+Movie : Monkey Business, rating: 7.0 - predicted 7.2
+Movie : Na lince je vrah, rating: 5.0 - predicted 6.9
+Movie : The Arrow, rating: 7.6 - predicted 7.0
+Movie : Dead Presidents, rating: 6.8 - predicted 6.7
+Movie : The Broken Chain, rating: 5.7 - predicted 6.9
+Movie : Jane Eyre, rating: 7.6 - predicted 7.3
+Movie : Life After, rating: 7.9 - predicted 6.4
+Movie : Paranoia, rating: 5.7 - predicted 6.6
+Movie : Goy, rating: 4.6 - predicted 6.9
+Movie : NRJ 12 Grammys Awards 2010, rating: 5.2 - predicted 5.6
+Movie : 2009 Soul Train Awards, rating: 6.5 - predicted 6.0
+Movie : The Last Castle, rating: 6.9 - predicted 7.3
+Movie : Kdopak to mluv�, rating: 5.8 - predicted 6.3
+Movie : Stuntmen, rating: 5.5 - predicted 7.2
+Movie : This Is My Affair, rating: 6.7 - predicted 6.7
+Movie : The Alan Titchmarsh Show, rating: 4.0 - predicted 7.2
+Movie : Wanted, rating: 7.7 - predicted 6.9
+Movie : Late Night with Conan O'Brien: 5, rating: 8.5 - predicted 6.4
+Movie : Justine, rating: 5.7 - predicted 6.8
+Movie : Joseph: King of Dreams, rating: 6.5 - predicted 6.9
+Movie : Candy, rating: 5.4 - predicted 7.2
+Movie : Trespassing Bergman, rating: 7.4 - predicted 7.3
+Movie : Four Men and a Prayer, rating: 6.1 - predicted 6.2
+Movie : Mandzusk� kandid�t, rating: 8.0 - predicted 6.9
+Movie : Archie Bunker's Place, rating: 6.4 - predicted 6.9
+Movie : Steve McQueen: Man on the Edge, rating: 7.6 - predicted 6.9
+Movie : Top o' the Morning, rating: 6.3 - predicted 7.5
+Movie : Comic Relief 2007: The Big One, rating: 6.8 - predicted 7.0
+Movie : The 2010 World Music Awards, rating: 6.9 - predicted 5.9
+Movie : Pandora and the Flying Dutchman, rating: 7.1 - predicted 7.0
+Movie : One Day Since Yesterday: Peter Bogdanovich & the Lost American Film, rating: 7.5 - predicted 6.8
+Movie : Aqua Teen Hunger Force, rating: 7.7 - predicted 6.8
+Movie : Red Eye, rating: 7.7 - predicted 6.6
+Movie : Riziko, rating: 7.0 - predicted 6.9
+Movie : Zkazen� �ca, rating: 5.7 - predicted 6.2
+Movie : The Sound of 'A.I.', rating: 6.1 - predicted 7.0
+Movie : Look Who's Talking Now, rating: 4.2 - predicted 6.4
+Movie : Kr�lovstv�, rating: 7.1 - predicted 7.0
+Movie : Leo, rating: 6.7 - predicted 6.7
+Movie : Strangerland, rating: 5.2 - predicted 6.8
+Movie : Best Men, rating: 5.7 - predicted 6.8
+Movie : The Mascot, rating: 6.4 - predicted 6.9
+Movie : The Outlaw Josey Wales, rating: 7.9 - predicted 6.7
+Movie : Bringing Up Bobby, rating: 5.2 - predicted 7.0
+Movie : Skum Rocks!, rating: 7.7 - predicted 6.7
+Movie : The Kinsey Report: Sex on Film, rating: 6.8 - predicted 6.5
+Movie : The Fashion Fund, rating: 7.1 - predicted 6.6
+Movie : Safe Harbor, rating: 7.1 - predicted 6.8
+Movie : The Big Picture, rating: 6.3 - predicted 7.1
+Movie : Elmer Gantry, rating: 7.9 - predicted 7.0
+Movie : The Little Foxes, rating: 8.2 - predicted 7.6
+Movie : Ruby Gentry, rating: 6.8 - predicted 6.8
+Movie : Mr. Smith Goes to Washington, rating: 7.0 - predicted 6.9
+Movie : Frank Sinatra: The Voice of Our Time, rating: 8.7 - predicted 7.1
+Movie : Thank God It's Friday, rating: 5.1 - predicted 6.4
+Movie : When You're in Love, rating: 6.3 - predicted 7.2
+Movie : When She Says No, rating: 6.3 - predicted 6.5
+Movie : NBC: The First Fifty Years - A Closer Look, Part Two, rating: 6.7 - predicted 7.4
+Movie : Ticket Out, rating: 4.7 - predicted 6.5
+Movie : Jamie Foxx: Unpredictable, rating: 5.5 - predicted 6.7
+Movie : Hollywood Homicide, rating: 5.3 - predicted 6.6
+Movie : The Kennedy Center Honors: A Celebration of the Performing Arts, rating: 6.9 - predicted 7.0
+Movie : Smrtonosn� past: Opet v akci, rating: 5.3 - predicted 6.8
+Movie : Soul Plane, rating: 4.4 - predicted 5.8
+Movie : Agent Smart, rating: 8.3 - predicted 6.5
+Movie : Enchanted April, rating: 7.4 - predicted 6.6
+Movie : MTV News, rating: 4.9 - predicted 6.8
+Movie : Imaginary Heroes, rating: 7.3 - predicted 6.8
+Movie : Husbands and Wives, rating: 7.6 - predicted 6.9
+Movie : Showdown at Ulcer Gulch, rating: 7.4 - predicted 7.6
+Movie : Valerie, rating: 6.5 - predicted 7.1
+Movie : The Man with a Cloak, rating: 6.7 - predicted 6.9
+Movie : Real Women II, rating: 6.9 - predicted 7.3
+Movie : Hollywood Remembers Walter Matthau, rating: 7.9 - predicted 7.1
+Movie : Hello, Sister!, rating: 6.7 - predicted 6.6
+Movie : The Making of 'Space Cowboys', rating: 5.8 - predicted 6.9
+Movie : Angels in Stardust, rating: 5.4 - predicted 7.2
+Movie : Kakushi-toride no san-akunin, rating: 8.1 - predicted 7.3
+Movie : Quicksand, rating: 5.2 - predicted 7.0
+Movie : A Man of No Importance, rating: 6.9 - predicted 6.6
+Movie : The Heart of Show Business, rating: 5.6 - predicted 7.4
+Movie : Killer Force, rating: 5.5 - predicted 6.7
+Movie : The Trials of O'Brien, rating: 8.5 - predicted 6.8
+Movie : Why Shakespeare?, rating: 7.0 - predicted 7.3
+Movie : The Secret Life of the American Teenager, rating: 5.0 - predicted 6.5
+Movie : VH1 Rock Honors: The Who, rating: 8.2 - predicted 6.6
+Movie : La luna, rating: 6.7 - predicted 6.4
+Movie : Sabrina, the Teenage Witch, rating: 6.6 - predicted 6.6
+Movie : North Shore, rating: 7.0 - predicted 6.6
+Movie : Taylor Swift: The 1989 World Tour Live, rating: 8.2 - predicted 6.3
+Movie : Up the River, rating: 6.1 - predicted 7.1
+Movie : You Can Count on Me, rating: 7.7 - predicted 7.1
+Movie : Dan Rather Reports, rating: 7.7 - predicted 6.7
+Movie : The Subject Was Roses, rating: 7.1 - predicted 7.3
+Movie : Nurses, rating: 6.9 - predicted 6.4
+Movie : Rock of Ages, rating: 5.9 - predicted 6.5
+Movie : Le locataire, rating: 7.8 - predicted 7.1
+Movie : Victim of Love, rating: 5.5 - predicted 7.0
+Movie : The V.I.P.s, rating: 6.3 - predicted 7.4
+Movie : Just a Dream, rating: 6.5 - predicted 6.6
+Movie : Sleeper, rating: 7.3 - predicted 6.7
+Movie : Laurel Canyon, rating: 6.5 - predicted 7.0
+Movie : House of Bodies, rating: 4.3 - predicted 6.4
+Movie : It Was an Accident, rating: 5.8 - predicted 7.0
+Movie : The 17th Annual Primetime Emmy Awards, rating: 2.7 - predicted 5.9
+Movie : Too Many Kisses, rating: 7.8 - predicted 6.4
+Movie : L'attentat, rating: 6.9 - predicted 7.3
+Movie : Family Guy: Ground Breaking Gags, rating: 8.2 - predicted 7.1
+Movie : Mulholland Falls, rating: 6.2 - predicted 6.3
+Movie : Box of Moon Light, rating: 7.3 - predicted 6.4
+Movie : Smashed, rating: 6.8 - predicted 6.9
+Movie : Alice in Wonderland, rating: 6.5 - predicted 7.2
+Movie : Ain't Them Bodies Saints, rating: 6.4 - predicted 6.7
+Movie : Poor Boy's Game, rating: 6.5 - predicted 6.5
+Movie : Jumper, rating: 6.1 - predicted 6.6
+Movie : Savage Dawn, rating: 4.7 - predicted 6.9
+Movie : The Gift: A Look Inside, rating: 5.7 - predicted 6.7
+Movie : 4 Clowns, rating: 7.5 - predicted 7.4
+Movie : Orange Is the New Black, rating: 8.3 - predicted 7.0
+Movie : The Whole Town's Talking, rating: 7.4 - predicted 7.4
+Movie : King of Jazz, rating: 7.6 - predicted 7.2
+Movie : Second Serve, rating: 8.1 - predicted 6.9
+Movie : Gossip Girl: XO XO, rating: 8.8 - predicted 7.4
+Movie : Forces of Nature, rating: 5.4 - predicted 6.5
+Movie : Road to Sundance, rating: 6.0 - predicted 6.8
+Movie : Frances, rating: 7.4 - predicted 6.8
+Movie : Tom and Jerry Meet Sherlock Holmes, rating: 6.6 - predicted 7.0
+Movie : Mork & Mindy/Laverne & Shirley/Fonz Hour, rating: 6.8 - predicted 6.7
+Movie : Likely Stories, Vol. 3, rating: 6.5 - predicted 7.1
+Movie : Ultimate Film Fanatic, rating: 7.7 - predicted 6.1
+Movie : Miles from Home, rating: 5.6 - predicted 6.9
+Movie : Don Siegel: Last of the Independents, rating: 7.2 - predicted 6.7
+Movie : Kidnapped, rating: 6.8 - predicted 7.2
+Movie : Vine Talk, rating: 7.2 - predicted 7.0
+Movie : My VH1 Music Awards, rating: 5.0 - predicted 7.1
+Movie : The Attic: The Hiding of Anne Frank, rating: 6.9 - predicted 6.3
+Movie : NFL Monday Night Football, rating: 8.5 - predicted 6.8
+Movie : The Trigger Effect, rating: 5.7 - predicted 6.8
+Movie : Chernobyl: The Final Warning, rating: 6.4 - predicted 7.1
+Movie : E! Special: Oz - The Great and Powerful, rating: 7.8 - predicted 6.9
+Movie : A Look Inside: The Others, rating: 4.7 - predicted 6.3
+Movie : Public Hero #1, rating: 6.8 - predicted 7.1
+Movie : John Travolta: The Inside Story, rating: 6.3 - predicted 6.2
+Movie : Tous les jours dimanche, rating: 6.0 - predicted 7.0
+Movie : Rash�mon, rating: 8.3 - predicted 7.3
+Movie : Starz Inside: Ladies or Gentlemen, rating: 7.5 - predicted 6.8
+Movie : 2011 MuchMusic Awards, rating: 7.6 - predicted 7.0
+Movie : Idlewild, rating: 6.2 - predicted 6.8
+Movie : Brighton Rock, rating: 5.8 - predicted 7.2
+Movie : 84 Charing Cross Road, rating: 7.5 - predicted 7.2
+Movie : The Big Show, rating: 4.9 - predicted 6.6
+Movie : Asteroid Kassandra, rating: 4.2 - predicted 6.8
+Movie : On Being a Cowboy, rating: 7.6 - predicted 6.7
+Movie : The Closer, rating: 7.6 - predicted 7.1
+Movie : City Slickers II: The Legend of Curly's Gold, rating: 5.4 - predicted 6.9
+Movie : Legendary Nights, rating: 8.8 - predicted 6.7
+Movie : Kingdom Hearts II, rating: 9.5 - predicted 7.1
+Movie : The Burly Man Chronicles, rating: 7.2 - predicted 7.1
+Movie : Cool Women in History, rating: 3.5 - predicted 6.9
+Movie : Premiere, rating: 8.3 - predicted 6.6
+Movie : Planet of the Apes, rating: 5.7 - predicted 6.6
+Movie : There Was a Crooked Man..., rating: 7.1 - predicted 7.1
+Movie : The Shining Future, rating: 6.2 - predicted 7.1
+Movie : Bleed for This, rating: 6.8 - predicted 7.1
+Movie : Cosby, rating: 6.5 - predicted 7.0
+Movie : Duets, rating: 6.0 - predicted 6.7
+Movie : The Family That Preys, rating: 5.3 - predicted 6.0
+Movie : A Mother's Prayer, rating: 7.1 - predicted 7.1
+Movie : The Hot Rock, rating: 6.8 - predicted 7.2
+Movie : The Secret Life of Marilyn Monroe, rating: 7.0 - predicted 7.2
+Movie : The Road to El Dorado, rating: 6.9 - predicted 7.4
+Movie : Inside Story: The Silence of the Lambs, rating: 8.4 - predicted 6.9
+Movie : Winning, rating: 6.0 - predicted 7.0
+Movie : Saving Grace, rating: 7.0 - predicted 7.0
+Movie : Gimme Shelter, rating: 6.5 - predicted 6.6
+Movie : The Best of the Dean Martin Celebrity Roasts, rating: 7.5 - predicted 7.5
+Movie : Field of Dreams 2: Lockout, rating: 6.6 - predicted 6.8
+Movie : The Wings of the Dove, rating: 7.2 - predicted 7.1
+Movie : Jeden svet nestac�, rating: 6.4 - predicted 6.8
+Movie : Marlon Brando tuli Suomeen, rating: 6.8 - predicted 7.2
+Movie : Smiley's People, rating: 8.7 - predicted 6.9
+Movie : Death and the Maiden, rating: 7.3 - predicted 6.9
+Movie : That Certain Woman, rating: 7.0 - predicted 8.0
+Movie : Bad News Bears, rating: 5.8 - predicted 6.8
+Movie : Strike!, rating: 6.7 - predicted 6.4
+Movie : Fast Five, rating: 7.3 - predicted 6.8
+Movie : Safari 3000, rating: 4.6 - predicted 6.8
+Movie : Shangri-La Suite, rating: 4.7 - predicted 7.2
+Movie : R.I.P.D., rating: 5.6 - predicted 7.0
+Movie : Heartbeeps, rating: 4.2 - predicted 7.1
+Movie : Dragons: Race to the Edge, rating: 8.5 - predicted 6.4
+Movie : Dirty Laundry Live, rating: 7.0 - predicted 6.9
+Movie : Army Wives, rating: 7.2 - predicted 6.6
+Movie : Triple Cross, rating: 6.4 - predicted 6.7
+Movie : The Cutting Edge, rating: 6.7 - predicted 6.8
+Movie : Parashat Ha-Shavua, rating: 7.6 - predicted 7.1
+Movie : Blind Date, rating: 5.9 - predicted 6.5
+Movie : Better Living Through Chemistry, rating: 6.3 - predicted 7.0
+Movie : First Impressions with Dana Carvey, rating: 6.8 - predicted 7.0
+Movie : Joe Dirt 2: Beautiful Loser, rating: 4.2 - predicted 6.5
+Movie : The Drug Store Cowboy, rating: 6.6 - predicted 7.5
+Movie : Alice's Adventures in Wonderland, rating: 5.8 - predicted 6.9
+Movie : Just Buried, rating: 6.1 - predicted 6.9
+Movie : Lost in the Thinking, rating: 7.6 - predicted 7.4
+Movie : Kramer vs. Kramer, rating: 7.8 - predicted 7.0
+Movie : Punch-Drunk Love, rating: 7.3 - predicted 7.1
+Movie : The Farm, rating: 7.4 - predicted 7.2
+Movie : The Red Maple Leaf, rating: 5.6 - predicted 6.7
+Movie : Picture People No. 3: Hobbies of the Stars, rating: 7.0 - predicted 6.7
+Movie : Auggie Rose, rating: 6.3 - predicted 6.5
+Movie : The Handmaid's Tale, rating: 6.0 - predicted 6.7
+Movie : Scott of the Antarctic, rating: 7.0 - predicted 7.0
+Movie : Christopher Columbus: The Discovery, rating: 4.4 - predicted 7.0
+Movie : The Gamechangers, rating: 6.3 - predicted 7.4
+Movie : The Nines, rating: 6.4 - predicted 6.8
+Movie : Shout at the Devil, rating: 6.3 - predicted 7.0
+Movie : Creative Accuracy: The Scholars Speak, rating: 6.3 - predicted 6.6
+Movie : Fukkatsu no hi, rating: 6.4 - predicted 7.1
+Movie : Inmates: A Love Story, rating: 6.0 - predicted 6.5
+Movie : The Chronicles of Riddick: Escape from Butcher Bay, rating: 8.8 - predicted 7.1
+Movie : Magician: The Astonishing Life and Work of Orson Welles, rating: 6.8 - predicted 7.4
+Movie : Marilyn Hotchkiss' Ballroom Dancing and Charm School, rating: 7.0 - predicted 7.1
+Movie : The Chalk Garden, rating: 7.6 - predicted 6.8
+Movie : Middle Men, rating: 6.6 - predicted 6.4
+Movie : Congo, rating: 5.0 - predicted 6.6
+Movie : Believe, rating: 7.2 - predicted 7.4
+Movie : The Funeral, rating: 6.6 - predicted 7.0
+Movie : Sylvia Scarlett, rating: 6.3 - predicted 7.4
+Movie : Miami Vice: Undercover, rating: 6.8 - predicted 6.9
+Movie : Billions for Boris, rating: 6.3 - predicted 7.0
+Movie : Into the Wild: The Experience, rating: 8.8 - predicted 7.1
+Movie : All About 'The Birds', rating: 8.0 - predicted 6.8
+Movie : The End of the Affair, rating: 7.2 - predicted 7.0
+Movie : Far North, rating: 6.2 - predicted 6.8
+Movie : 'Pulp Fiction' on a Dime: A 10th Anniversary Retrospect, rating: 5.6 - predicted 6.3
+Movie : Indiana Jones a kr�lovstv� krist�lov� lebky, rating: 6.2 - predicted 7.3
+Movie : Nickelodeon Kids' Choice Awards '95, rating: 6.6 - predicted 6.6
+Movie : The Alan Thicke Show, rating: 5.8 - predicted 6.4
+Movie : The Cave, rating: 5.1 - predicted 6.8
+Movie : Coming Back Home, rating: 6.9 - predicted 6.8
+Movie : The 5th Annual CNN Heroes: An All-Star Tribute, rating: 7.5 - predicted 6.3
+Movie : Star Fish of 'Shark Tale', rating: 3.2 - predicted 6.2
+Movie : Forever Lulu, rating: 5.7 - predicted 6.8
+Movie : The Cool School, rating: 7.1 - predicted 7.0
+Movie : Indiana Jones 4: The Return of a Legend, rating: 7.6 - predicted 7.0
+Movie : The 39th Annual Academy of Country Music Awards, rating: 5.2 - predicted 6.6
+Movie : And When Did You Last See Your Father?, rating: 6.9 - predicted 7.5
+Movie : Above the Law, rating: 5.9 - predicted 6.7
+Movie : 'Angel': Season One, rating: 8.5 - predicted 7.0
+Movie : Touching Home, rating: 5.9 - predicted 6.7
+Movie : Midnight in the Garden of Good and Evil, rating: 6.6 - predicted 6.9
+Movie : X Factor, rating: 4.6 - predicted 6.8
+Movie : Saint-Ex, rating: 5.4 - predicted 6.8
+Movie : The Late Bloomer, rating: 5.2 - predicted 7.4
+Movie : Hawthorne, rating: 6.2 - predicted 6.9
+Movie : Return to Jurassic Park: Dawn of a New Era, rating: 7.3 - predicted 6.7
+Movie : Dirty Little Billy, rating: 6.1 - predicted 6.0
+Movie : Bruno the Kid: The Animated Movie, rating: 6.0 - predicted 6.9
+Movie : Chicago Cab, rating: 6.6 - predicted 6.8
+Movie : Leg Work, rating: 8.2 - predicted 6.5
+Movie : Drtiv� dopad, rating: 6.1 - predicted 7.1
+Movie : Mr. Incredible and Pals, rating: 7.1 - predicted 6.5
+Movie : Stealing Home, rating: 6.8 - predicted 6.5
+Movie : The Indian in the Cupboard, rating: 5.9 - predicted 6.7
+Movie : The Love Letter, rating: 7.4 - predicted 7.0
+Movie : Guilty Hearts, rating: 6.2 - predicted 6.8
+Movie : Land of the Blind, rating: 6.6 - predicted 7.0
+Movie : Miracle in the Rain, rating: 7.2 - predicted 6.7
+Movie : Majo no takky?bin, rating: 7.9 - predicted 6.6
+Movie : I Will Survive, rating: 7.1 - predicted 7.0
+Movie : The Senator Was Indiscreet, rating: 6.8 - predicted 6.5
+Movie : Et si on vivait tous ensemble?, rating: 6.7 - predicted 7.0
+Movie : Undeclared, rating: 8.0 - predicted 6.3
+Movie : Valentino: The Last Emperor, rating: 7.2 - predicted 6.6
+Movie : Purpurov� reky, rating: 6.9 - predicted 6.4
+Movie : 100 Greatest Songs of the 90s, rating: 7.7 - predicted 6.0
+Movie : Victoria Wood's All Day Breakfast, rating: 8.1 - predicted 6.7
+Movie : Baseball, rating: 9.2 - predicted 6.9
+Movie : Daltry Calhoun, rating: 5.2 - predicted 7.0
+Movie : Swingers, rating: 7.4 - predicted 6.2
+Movie : Wrong Is Right, rating: 5.8 - predicted 6.6
+Movie : Legend�rios, rating: 4.3 - predicted 6.8
+Movie : Blackadder's Most Cunning Moments, rating: 8.2 - predicted 7.2
+Movie : Human Target, rating: 7.8 - predicted 6.5
+Movie : Management, rating: 5.9 - predicted 6.8
+Movie : Doctor Who Greatest Moments, rating: 8.0 - predicted 7.2
+Movie : Heist, rating: 6.5 - predicted 6.5
+Movie : When Stand-Up Comics Ruled the World, rating: 5.8 - predicted 6.8
+Movie : A Foreign Affair, rating: 7.4 - predicted 7.4
+Movie : Tribute to Burgess Meredith, rating: 6.6 - predicted 6.8
+Movie : Chocolate com Pimenta, rating: 7.3 - predicted 7.1
+Movie : F. Scott Fitzgerald in Hollywood, rating: 6.8 - predicted 6.5
+Movie : Ch�ri, rating: 6.2 - predicted 5.9
+Movie : Brother's Justice, rating: 4.7 - predicted 6.7
+Movie : For Me and My Gal, rating: 7.2 - predicted 7.0
+Movie : See No Evil, Hear No Evil, rating: 6.8 - predicted 6.9
+Movie : The Billion Dollar Bubble, rating: 7.4 - predicted 7.1
+Movie : Mr. Wrong, rating: 3.7 - predicted 6.8
+Movie : Brooklyn's Finest, rating: 6.7 - predicted 6.4
+Movie : SpongeBob ve filmu: Houba na suchu, rating: 6.0 - predicted 6.3
+Movie : Dynamo: Magician Impossible, rating: 8.1 - predicted 6.9
+Movie : Lancer Spy, rating: 6.4 - predicted 6.6
+Movie : Trust, rating: 7.0 - predicted 6.6
+Movie : Let's Do It Again, rating: 5.9 - predicted 6.8
+Movie : Blood on the Land: The Making of a King, rating: 6.4 - predicted 6.8
+Movie : Oh, Men! Oh, Women!, rating: 5.4 - predicted 6.9
+Movie : The Bloopers of Narnia, rating: 6.7 - predicted 6.9
+Movie : Quicksand: No Escape, rating: 5.7 - predicted 6.7
+Movie : Black History: Lost Stolen, or Strayed, rating: 7.7 - predicted 7.4
+Movie : Please Give, rating: 6.6 - predicted 6.0
+Movie : Soul Men, rating: 6.5 - predicted 6.2
+Movie : Taken 2, rating: 6.3 - predicted 7.1
+Movie : Harley-Davidson: The American Motorcycle, rating: 6.2 - predicted 6.5
+Movie : Making the Movie, rating: 6.3 - predicted 6.7
+Movie : Odstrelovac, rating: 7.2 - predicted 6.1
+Movie : San Francisco, rating: 7.3 - predicted 6.9
+Movie : One Romantic Night, rating: 6.5 - predicted 6.5
+Movie : Rocco's Dinner Party, rating: 5.2 - predicted 6.9
+Movie : Talking Bad, rating: 7.5 - predicted 6.9
+Movie : Roots Remembered, rating: 5.8 - predicted 6.9
+Movie : Attaining International Stardom, rating: 5.3 - predicted 6.9
+Movie : Fur on the Asphalt: The Greg the Bunny Reunion Show, rating: 8.5 - predicted 6.7
+Movie : Buzz Lightyear of Star Command, rating: 6.7 - predicted 7.1
+Movie : Rock Legends: Platinum Weird, rating: 5.3 - predicted 6.8
+Movie : Rock Hudson's Home Movies, rating: 6.0 - predicted 7.0
+Movie : Behind the Scenes with 'Goldfinger', rating: 7.4 - predicted 6.8
+Movie : Hardcastle and McCormick, rating: 6.6 - predicted 6.5
+Movie : The Dark End of the Street, rating: 4.6 - predicted 6.6
+Movie : Let It Ride, rating: 6.9 - predicted 6.7
+Movie : Dogma, rating: 7.4 - predicted 6.9
+Movie : My Son, My Son, What Have Ye Done, rating: 6.3 - predicted 6.7
+Movie : Terror Train, rating: 5.9 - predicted 6.8
+Movie : Trojan Eddie, rating: 6.4 - predicted 7.1
+Movie : Being Julia, rating: 7.1 - predicted 6.9
+Movie : Overboard, rating: 6.8 - predicted 6.7
+Movie : Sister Cities, rating: 7.5 - predicted 6.2
+Movie : Mel Gibson: God's Lethal Weapon, rating: 7.1 - predicted 6.7
+Movie : The Outpost, rating: 4.0 - predicted 6.8
+Movie : The Asset, rating: 7.5 - predicted 6.8
+Movie : Are We There Yet?, rating: 4.6 - predicted 6.7
+Movie : 40 dn� a 40 noc�, rating: 5.6 - predicted 6.3
+Movie : The Sisters of Charity, rating: 6.4 - predicted 7.0
+Movie : Jason and the Argonauts, rating: 5.9 - predicted 6.9
+Movie : Hart's War, rating: 6.3 - predicted 6.7
+Movie : Hotel Splendide, rating: 6.5 - predicted 6.9
+Movie : Flock of Dudes, rating: 5.2 - predicted 6.0
+Movie : Nech�pu, jak to dok�ze, rating: 4.9 - predicted 6.6
+Movie : Hannibal, rating: 6.8 - predicted 6.4
+Movie : Bates Motel Inside the Casting Room, rating: 8.9 - predicted 6.6
+Movie : Sch�ner Gigolo, armer Gigolo, rating: 5.7 - predicted 6.8
+Movie : Dome Project, rating: 9.1 - predicted 7.2
+Movie : Inside the Labyrinth: The Making of 'The Silence of the Lambs', rating: 7.1 - predicted 6.9
+Movie : True Crime: The Movie, rating: 9.1 - predicted 6.2
+Movie : The Mountain, rating: 6.8 - predicted 6.8
+Movie : Suburgatory, rating: 7.2 - predicted 6.7
+Movie : The Hottest State, rating: 6.2 - predicted 6.6
+Movie : Nymfomanka, c�st I., rating: 7.0 - predicted 6.8
+Movie : It Takes Two, rating: 7.2 - predicted 7.4
+Movie : Shizukanaru kett�, rating: 7.5 - predicted 7.3
+Movie : Klaus Kinski - Ich bin kein Schauspieler, rating: 7.4 - predicted 7.4
+Movie : The Cowboy and the Ballerina, rating: 6.5 - predicted 6.7
+Movie : This Side of Heaven, rating: 6.5 - predicted 6.3
+Movie : Bobby's World: The Making of 'Beyond the Sea', rating: 7.5 - predicted 6.5
+Movie : Part Two: The Warm Mission, rating: 7.8 - predicted 6.6
+Movie : Canned Ham: The Dr. Evil Story, rating: 6.4 - predicted 6.5
+Movie : Facing Ali, rating: 8.1 - predicted 6.7
+Movie : Best Ever Bond, rating: 6.7 - predicted 7.0
+Movie : Mary and Rhoda, rating: 5.1 - predicted 7.2
+Movie : Princess of Thieves, rating: 5.8 - predicted 6.8
+Movie : Staying Gold: A Look Back at 'The Outsiders', rating: 7.8 - predicted 6.7
+Movie : Young Justice, rating: 8.7 - predicted 6.8
+Movie : Everything Is Copy, rating: 7.4 - predicted 7.0
+Movie : Saturday Night Clive, rating: 8.1 - predicted 6.9
+Movie : Don't Drink the Water, rating: 5.8 - predicted 6.9
+Movie : Five Nights in Maine, rating: 4.2 - predicted 6.9
+Movie : Frankenstein: The True Story, rating: 7.5 - predicted 7.1
+Movie : Juggernaut, rating: 6.6 - predicted 7.1
+Movie : N�vrat do budoucnosti 3, rating: 7.4 - predicted 7.0
+Movie : Going the Distance, rating: 6.3 - predicted 6.7
+Movie : The Longest Yard, rating: 6.4 - predicted 6.2
+Movie : Lad�me 2, rating: 6.5 - predicted 6.3
+Movie : The Shoes of the Fisherman, rating: 7.2 - predicted 7.0
+Movie : Music and Lyrics, rating: 6.5 - predicted 6.8
+Movie : What's New Pussycat, rating: 6.2 - predicted 7.1
+Movie : Government Girl, rating: 5.5 - predicted 7.1
+Movie : Path to War, rating: 7.5 - predicted 6.9
+Movie : Andere Tijden, rating: 8.2 - predicted 6.4
+Movie : The Six Million Dollar Man, rating: 7.1 - predicted 7.1
+Movie : Il grande attacco, rating: 4.8 - predicted 7.4
+Movie : The Five-Year Engagement, rating: 6.2 - predicted 6.7
+Movie : City Hall, rating: 6.2 - predicted 6.9
+Movie : Stories from My Childhood, rating: 7.6 - predicted 6.9
+Movie : 1960, rating: 6.8 - predicted 6.5
+Movie : September, rating: 6.7 - predicted 7.2
+Movie : The Diary of a Teenage Girl, rating: 6.9 - predicted 7.1
+Movie : Very Good Girls, rating: 6.0 - predicted 6.4
+Movie : Main Street, rating: 4.7 - predicted 7.2
+Movie : Kamufl�z, rating: 4.5 - predicted 6.6
+Movie : Top Fighter 2, rating: 7.2 - predicted 7.2
+Movie : Hvezdn� prach, rating: 7.7 - predicted 7.2
+Movie : Conjuring a Scene, rating: 6.9 - predicted 7.3
+Movie : Krvav� stopa, rating: 6.4 - predicted 6.6
+Movie : Dillinger, rating: 7.0 - predicted 6.8
+Movie : The Making of 'The Bridge on the River Kwai', rating: 7.2 - predicted 6.9
+Movie : The 23rd Annual Grammy Awards, rating: 8.4 - predicted 7.4
+Movie : Up the Down Staircase, rating: 7.6 - predicted 6.7
+Movie : Land of the Dead: A Day with the Living Dead, rating: 7.6 - predicted 6.4
+Movie : And So They Were Married, rating: 6.1 - predicted 7.1
+Movie : Dirt, rating: 7.0 - predicted 6.8
+Movie : Little Murder, rating: 4.8 - predicted 6.5
+Movie : North by Northwest, rating: 8.4 - predicted 6.9
+Movie : Kilroy, rating: 4.9 - predicted 6.7
+Movie : Quiz Show, rating: 7.5 - predicted 7.0
+Movie : For Richer, for Poorer, rating: 6.3 - predicted 7.0
+Movie : Death Race: Start Your Engines - Making a Death Race, rating: 6.3 - predicted 6.1
+Movie : Lions for Lambs: World Premiere Special, rating: 4.7 - predicted 6.9
+Movie : The Making of 'World Trade Center', rating: 6.9 - predicted 6.4
+Movie : Metroland, rating: 6.5 - predicted 7.5
+Movie : Little Birds, rating: 6.2 - predicted 7.3
+Movie : Loggerheads, rating: 7.2 - predicted 6.9
+Movie : AM - Antes del mediod�a, rating: 6.0 - predicted 6.1
+Movie : Alien: Isolation, rating: 8.8 - predicted 6.9
+Movie : Nim's Island, Our World: A Reel Thinking Event, rating: 6.8 - predicted 6.8
+Movie : Norm�lka, rating: 8.4 - predicted 6.7
+Movie : Jake Spanner, Private Eye, rating: 6.2 - predicted 6.9
+Movie : J�, m� druh� j� a Irena, rating: 6.5 - predicted 6.9
+Movie : Blood Alley, rating: 6.3 - predicted 7.2
+Movie : Drop Dead Diva, rating: 7.4 - predicted 6.5
+Movie : Mr. Woodcock, rating: 5.1 - predicted 6.8
+Movie : 'Giant' Stars Are Off to Texas, rating: 6.4 - predicted 7.5
+Movie : Thrills, Chills & Spiders: The Making of 'Arachnophobia', rating: 6.2 - predicted 6.2
+Movie : Thursday's Child, rating: 6.9 - predicted 6.9
+Movie : Sharpe's Enemy, rating: 8.0 - predicted 6.6
+Movie : The Great Christmas Movies, rating: 6.1 - predicted 7.1
+Movie : Focus, rating: 6.8 - predicted 6.7
+Movie : Free Fire, rating: 7.3 - predicted 7.3
+Movie : The Interview, rating: 6.6 - predicted 6.7
+Movie : Air Buddies, rating: 4.9 - predicted 6.5
+Movie : The Gay Sisters, rating: 6.7 - predicted 7.1
+Movie : Pride & Prejudice: The Politics of 18th Century Dating, rating: 8.7 - predicted 7.0
+Movie : Go' morgen Danmark, rating: 5.0 - predicted 7.1
+Movie : Micki + Maude, rating: 5.9 - predicted 6.6
+Movie : Honor Deferred, rating: 5.7 - predicted 6.5
+Movie : The Drowning Pool, rating: 6.5 - predicted 6.7
+Movie : Four Reasons, rating: 7.1 - predicted 6.7
+Movie : Airport 1975, rating: 5.5 - predicted 7.0
+Movie : Ridendo e scherzando - Ritratto di un regista all'italiana, rating: 6.4 - predicted 7.0
+Movie : Animals., rating: 7.1 - predicted 6.7
+Movie : Emmerdale Farm, rating: 4.8 - predicted 7.2
+Movie : Turistas, rating: 5.3 - predicted 6.9
+Movie : The Woman in Black, rating: 6.4 - predicted 7.2
+Movie : Ruthless People, rating: 6.9 - predicted 6.7
+Movie : Frankie and Johnny, rating: 6.7 - predicted 6.4
+Movie : The Pirate Fairy, rating: 6.6 - predicted 6.5
+Movie : The Frank Sinatra Show, rating: 7.8 - predicted 7.0
+Movie : Jacqueline Susann and the Valley of the Dolls, rating: 7.1 - predicted 6.8
+Movie : The Comedians, rating: 6.7 - predicted 7.1
+Movie : Out of Time: Crime Scene, rating: 2.4 - predicted 6.9
+Movie : Wall Street: Pen�ze nikdy nesp�, rating: 6.3 - predicted 6.9
+Movie : The Heart of Show Business, rating: 6.6 - predicted 7.1
+Movie : Delhi Safari, rating: 5.8 - predicted 6.2
+Movie : L'ultima sequenza, rating: 5.7 - predicted 6.8
+Movie : V�nus beaut� (institut), rating: 6.4 - predicted 6.4
+Movie : The 27th Annual Daytime Emmy Awards, rating: 8.7 - predicted 6.9
+Movie : Flying Blind, rating: 8.2 - predicted 6.3
+Movie : Lost in Space, rating: 5.1 - predicted 6.9
+Movie : Julie Walters: A Life on Screen, rating: 9.2 - predicted 7.0
+Movie : Carried Away, rating: 6.4 - predicted 6.5
+Movie : Booker, rating: 6.3 - predicted 6.7
+Movie : I.T., rating: 5.4 - predicted 6.9
+Movie : The Mummy: Tomb of the Dragon Emperor, rating: 5.2 - predicted 6.9
+Movie : The Price of Pleasure: Pornography, Sexuality & Relationships, rating: 5.8 - predicted 6.8
+Movie : Black Rain: Post-Production, rating: 6.3 - predicted 6.3
+Movie : Home, Sweet Home, rating: 5.9 - predicted 7.0
+Movie : Wind in the Wire, rating: 6.0 - predicted 6.7
+Movie : Real Husbands of Hollywood, rating: 7.7 - predicted 6.8
+Movie : The Truth About Emanuel, rating: 6.0 - predicted 6.5
+Movie : Red Hot, rating: 5.3 - predicted 6.9
+Movie : Nybyggarna, rating: 8.0 - predicted 7.2
+Movie : The Beguiled, rating: 7.2 - predicted 7.1
+Movie : The 4th Annual TV Land Awards, rating: 7.6 - predicted 6.9
+Movie : Gia, rating: 7.0 - predicted 6.3
+Movie : Escape from Planet Earth, rating: 6.0 - predicted 6.6
+Movie : Star Wars: Rogue Squadron II - Rogue Leader, rating: 8.1 - predicted 7.2
+Movie : Heidi, devc�tko z hor, rating: 7.1 - predicted 7.3
+Movie : Vune �eny, rating: 8.0 - predicted 7.0
+Movie : Casablanca, rating: 6.0 - predicted 6.9
+Movie : Mulatschag, rating: 5.4 - predicted 7.4
+Movie : xXx: A Filmmaker's Diary, rating: 5.6 - predicted 6.9
+Movie : Cape Fear, rating: 7.8 - predicted 7.1
+Movie : The Men, rating: 7.2 - predicted 7.1
+Movie : Your Friends & Neighbors, rating: 6.4 - predicted 6.2
+Movie : The 37th Annual Primetime Emmy Awards, rating: 8.0 - predicted 7.0
+Movie : Ultimo tango a Parigi, rating: 7.1 - predicted 7.1
+Movie : Quills: Creating Charenton, rating: 8.2 - predicted 6.9
+Movie : I Love Your Work, rating: 5.3 - predicted 6.8
+Movie : LEGO the Hobbit: The Video Game, rating: 8.3 - predicted 7.3
+Movie : Heart of Midnight, rating: 5.3 - predicted 7.0
+Movie : Legmen, rating: 6.6 - predicted 6.5
+Movie : Mothers and Daughters, rating: 4.8 - predicted 6.3
+Movie : Trucker, rating: 6.7 - predicted 7.3
+Movie : Summer Music Mania 2003, rating: 4.1 - predicted 6.3
+Movie : Tin Men, rating: 6.5 - predicted 6.5
+Movie : Otcuv n�vrat, rating: 5.6 - predicted 6.9
+Movie : Julia, rating: 8.0 - predicted 7.5
+Movie : The Man Who Would Be King, rating: 7.9 - predicted 7.0
+Movie : Eye of God, rating: 7.5 - predicted 6.7
+Movie : The Golden Twenties, rating: 6.3 - predicted 7.4
+Movie : Hercules, rating: 7.2 - predicted 7.0
+Movie : Vatel, rating: 6.6 - predicted 6.7
+Movie : The Novice, rating: 6.2 - predicted 7.0
+Movie : Home, rating: 7.4 - predicted 6.9
+Movie : Honeydripper, rating: 6.8 - predicted 6.6
+Movie : Roustabout, rating: 5.9 - predicted 7.2
+Movie : The Freshman, rating: 6.5 - predicted 7.0
+Movie : General Motors Presents, rating: 7.8 - predicted 7.2
+Movie : Time Is Money, rating: 6.4 - predicted 7.0
+Movie : The Matrix: The Movie Special, rating: 7.3 - predicted 7.1
+Movie : The Making of Woman in Gold, rating: 7.0 - predicted 6.8
+Movie : Live 8, rating: 7.5 - predicted 6.5
+Movie : The Bourne Supremacy: On the Move with Jason Bourne, rating: 8.3 - predicted 7.3
+Movie : La vie de Michel Muller est plus belle que la v�tre, rating: 4.8 - predicted 6.2
+Movie : The World of Hammer, rating: 7.3 - predicted 7.7
+Movie : T.J. Hooker, rating: 6.0 - predicted 6.6
+Movie : Prestrelka v Palermu, rating: 6.2 - predicted 6.8
+Movie : Warm Bodies, rating: 6.9 - predicted 6.9
+Movie : Pan, rating: 5.8 - predicted 6.6
+Movie : Nen�vist, rating: 5.9 - predicted 6.6
+Movie : The Stepford Husbands, rating: 5.1 - predicted 6.6
+Movie : Science Fiction: A Journey Into the Unknown, rating: 7.2 - predicted 7.1
+Movie : Qi lin zhang, rating: 7.0 - predicted 7.2
+Movie : Barney's Version, rating: 7.3 - predicted 7.0
+Movie : Soudce Dredd, rating: 5.5 - predicted 7.0
+Movie : Steve Martin's Best Show Ever, rating: 7.3 - predicted 6.9
+Movie : An Evening of Stars: Tribute to Stevie Wonder, rating: 6.7 - predicted 5.8
+Movie : Some of My Best Friends, rating: 5.4 - predicted 7.3
+Movie : The Lorax, rating: 6.5 - predicted 6.6
+Movie : Frank Abagnale: Between Reality and Fiction, rating: 5.6 - predicted 7.1
+Movie : Simpatico, rating: 4.5 - predicted 6.4
+Movie : The Hundred Days, rating: 7.6 - predicted 6.8
+Movie : The Three Musketeers, rating: 7.2 - predicted 7.0
+Movie : Reflections on 'The X-Files', rating: 7.1 - predicted 6.9
+Movie : The Islanders, rating: 6.9 - predicted 7.1
+Movie : The Last Time I Committed Suicide, rating: 5.8 - predicted 7.2
+Movie : Judging Amy, rating: 7.0 - predicted 7.1
+Movie : Gone with the Wind, rating: 8.2 - predicted 6.5
+Movie : 'Psycho' Path, rating: 6.1 - predicted 6.6
+Movie : Editorial: Completing the Trilogy, rating: 6.9 - predicted 6.8
+Movie : Factory Girl, rating: 6.4 - predicted 6.9
+Movie : Beowulf: The Game, rating: 5.4 - predicted 6.8
+Movie : Designing Middle-Earth, rating: 7.9 - predicted 7.1
+Movie : Eiga 'Terebishia ni kakeru hashi' k�shiki gaido, rating: 7.6 - predicted 7.5
+Movie : Hunger Games: Cast Interviews, rating: 7.0 - predicted 6.6
+Movie : Nasty Boys, rating: 6.1 - predicted 7.0
+Movie : Wanderlust, rating: 5.6 - predicted 6.7
+Movie : Get Him to the Greek, rating: 6.4 - predicted 6.5
+Movie : The Last Sunset, rating: 6.8 - predicted 7.2
+Movie : John Rabe, rating: 7.2 - predicted 7.1
+Movie : The Honorary Consul, rating: 5.7 - predicted 6.7
+Movie : Igby Goes Down, rating: 7.0 - predicted 6.5
+Movie : The Spoils Before Dying, rating: 6.6 - predicted 6.4
+Movie : Californication, rating: 8.3 - predicted 6.1
+Movie : 50x a st�le poprv�, rating: 6.8 - predicted 6.4
+Movie : The Enemy Within, rating: 5.9 - predicted 7.3
+Movie : Sobbin' Women: The Making of 'Seven Brides for Seven Brothers', rating: 7.9 - predicted 7.2
+Movie : Extract: Mike Judge's Secret Recipe, rating: 6.3 - predicted 7.2
+Movie : Smrt�c� nen�vist 2, rating: 5.0 - predicted 6.7
+Movie : Carta blanca, rating: 5.0 - predicted 6.9
+Movie : Changing Lanes, rating: 6.5 - predicted 6.6
+Movie : Flesh+Blood, rating: 6.7 - predicted 6.6
+Movie : The Flim-Flam Man, rating: 7.0 - predicted 7.3
+Movie : Think Like a Man Too, rating: 5.7 - predicted 6.1
+Movie : Boesman and Lena, rating: 5.9 - predicted 6.4
+Movie : Aids 2015, rating: 5.9 - predicted 7.2
+Movie : The Criminal Code, rating: 7.1 - predicted 7.3
+Movie : Unfaithfully Yours, rating: 6.0 - predicted 6.2
+Movie : Alias Jesse James, rating: 6.5 - predicted 7.5
+Movie : Jenifer, rating: 6.0 - predicted 6.7
+Movie : Americk� psycho, rating: 7.6 - predicted 7.2
+Movie : A Dream Comes True, rating: 8.4 - predicted 7.9
+Movie : The Intruders, rating: 5.9 - predicted 7.2
+Movie : Superpes, rating: 4.8 - predicted 7.2
+Movie : Michael H. Profession: Director, rating: 7.1 - predicted 6.3
+Movie : A Troll in Central Park, rating: 5.3 - predicted 6.9
+Movie : Dinner with Friends, rating: 6.3 - predicted 6.3
+Movie : Cool and the Crazy, rating: 3.9 - predicted 7.3
+Movie : Small Town Girl, rating: 6.7 - predicted 6.6
+Movie : Return of the Ewok, rating: 6.2 - predicted 7.5
+Movie : Les infid?les, rating: 5.3 - predicted 6.5
+Movie : Life with Mikey, rating: 5.5 - predicted 6.5
+Movie : Wagner, rating: 8.0 - predicted 7.0
+Movie : Kim, rating: 6.6 - predicted 6.9
+Movie : Exit Through the Gift Shop, rating: 8.0 - predicted 6.9
+Movie : In the Woods, rating: 6.6 - predicted 6.6
+Movie : Black Knight Decoded, rating: 6.7 - predicted 7.1
+Movie : Goodnight Moon & Other Sleepytime Tales, rating: 7.6 - predicted 6.8
+Movie : I Love the '80s Strikes Back, rating: 8.5 - predicted 7.0
+Movie : The Taming of Sm�agol, rating: 7.6 - predicted 6.6
+Movie : Moone Boy, rating: 8.2 - predicted 7.1
+Movie : Rafael Azcona, oficio de guionista, rating: 6.4 - predicted 6.5
+Movie : The Hitchhiker's Guide to the Galaxy, rating: 6.8 - predicted 6.8
+Movie : Sleepwalkers, rating: 6.7 - predicted 6.6
+Movie : Dieu a choisi Paris, rating: 7.0 - predicted 6.3
+Movie : The Making of 'Alien?', rating: 7.9 - predicted 6.8
+Movie : Captain Blood, rating: 7.8 - predicted 6.8
+Movie : Anderson's Cross, rating: 7.2 - predicted 6.8
+Movie : Along Came Polly, rating: 5.9 - predicted 7.0
+Movie : American Dreams, rating: 7.5 - predicted 7.3
+Movie : Melanie Remembers: Reflections by Olivia de Havilland, rating: 7.8 - predicted 7.0
+Movie : I Confess, rating: 7.3 - predicted 6.7
+Movie : Studio 60, rating: 8.3 - predicted 6.6
+Movie : Envy, rating: 4.8 - predicted 6.5
+Movie : Explicit Ills, rating: 5.9 - predicted 6.8
+Movie : The Gathering, rating: 5.7 - predicted 6.4
+Movie : S�m doma 3, rating: 4.3 - predicted 6.7
+Movie : The Bible According to Hollywood, rating: 6.6 - predicted 6.9
+Movie : Beat-Club, rating: 8.8 - predicted 7.0
+Movie : ESPY Awards, rating: 7.9 - predicted 6.5
+Movie : My Brother the Pig, rating: 3.8 - predicted 7.0
+Movie : Scream: The Inside Story, rating: 7.8 - predicted 6.6
+Movie : Creating a Fairy Tale World: The Making of 'Shrek', rating: 6.6 - predicted 6.2
+Movie : Moments in Music, rating: 6.3 - predicted 7.0
+Movie : Barabbas, rating: 7.0 - predicted 6.8
+Movie : Switch, rating: 7.3 - predicted 6.5
+Movie : Reunion at Fairborough, rating: 7.3 - predicted 7.1
+Movie : Party Wagon, rating: 8.1 - predicted 7.0
+Movie : 40 Greatest Pranks 3, rating: 8.2 - predicted 6.5
+Movie : Heut' abend, rating: 8.3 - predicted 6.8
+Movie : Steve Martin: A Wild and Crazy Guy, rating: 7.7 - predicted 7.0
+Movie : The Making of 'Lawrence of Arabia', rating: 7.1 - predicted 6.7
+Movie : The House of Mirth, rating: 7.1 - predicted 6.8
+Movie : Abbott and Costello Meet Jerry Seinfeld, rating: 6.4 - predicted 7.2
+Movie : Policejn� akademie 4: Obcansk� patrola, rating: 4.8 - predicted 6.6
+Movie : Thirteen, rating: 6.8 - predicted 6.9
+Movie : Fear of the Flesh: The Making of 'The Fly', rating: 7.6 - predicted 6.6
+Movie : Drift, rating: 5.2 - predicted 6.9
+Movie : The Naked Truth, rating: 7.0 - predicted 7.3
+Movie : Visiting Hours, rating: 5.5 - predicted 6.9
+Movie : 2016 Canadian Screen Awards, rating: 5.4 - predicted 7.0
+Movie : Decoding Die Hard, rating: 7.9 - predicted 6.7
+Movie : Unsupervised, rating: 7.4 - predicted 6.7
+Movie : It's All Relative, rating: 6.8 - predicted 6.6
+Movie : The American Clock, rating: 6.6 - predicted 7.0
+Movie : Buddy Buddy, rating: 6.6 - predicted 7.3
+Movie : 1st Annual Spaceys, rating: 7.1 - predicted 7.0
+Movie : ?nima, rating: 6.2 - predicted 6.5
+Movie : Paycheck, rating: 6.3 - predicted 6.6
+Movie : Delgo, rating: 4.4 - predicted 7.0
+Movie : Pour Sacha, rating: 5.5 - predicted 6.1
+Movie : The Good Shepherd, rating: 6.7 - predicted 6.8
+Movie : I'll Sleep When I'm Dead, rating: 5.9 - predicted 6.9
+Movie : Red Rock West, rating: 7.0 - predicted 6.4
+Movie : Champion, rating: 7.2 - predicted 6.5
+Movie : The Hollywood Ten, rating: 7.4 - predicted 7.2
+Movie : Penelope, rating: 6.8 - predicted 6.9
+Movie : Playboy's 50th Anniversary Celebration, rating: 4.4 - predicted 6.7
+Movie : Kick-Ass, rating: 7.7 - predicted 6.7
+Movie : Le camion, rating: 6.5 - predicted 7.1
+Movie : Pride & Prejudice: The Bennets, rating: 8.2 - predicted 7.2
+Movie : The Man Who Wanted to Live Forever, rating: 5.5 - predicted 7.0
+Movie : Wizards of Waverly Place, rating: 6.8 - predicted 6.3
+Movie : 72nd Annual Academy Awards Pre-Show, rating: 5.7 - predicted 7.5
+Movie : The Doctor, rating: 6.8 - predicted 7.5
+Movie : 5 to 7, rating: 7.1 - predicted 6.9
+Movie : Mr. Winkle Goes to War, rating: 6.8 - predicted 7.1
+Movie : Essence Awards, rating: 7.8 - predicted 6.4
+Movie : Style Star, rating: 6.4 - predicted 5.9
+Movie : A Bridge Too Far, rating: 7.4 - predicted 6.9
+Movie : Big Brother VIP: M�xico, rating: 3.8 - predicted 6.6
+Movie : All in the Family, rating: 8.3 - predicted 7.5
+Movie : Ave, Caesar!, rating: 6.3 - predicted 6.5
+Movie : 'Saving Private Ryan': Re-Creating Omaha Beach, rating: 5.6 - predicted 7.7
+Movie : Dirty Harry: The Original, rating: 6.5 - predicted 6.9
+Movie : David Copperfield, rating: 7.8 - predicted 7.6
+Movie : House of Mouse, rating: 7.6 - predicted 6.8
+Movie : Deceived, rating: 6.1 - predicted 6.5
+Movie : ABC's Wide World of Sports, rating: 7.1 - predicted 6.6
+Movie : Girl Walks Into a Bar, rating: 5.8 - predicted 6.4
+Movie : The Sheik, rating: 7.2 - predicted 6.9
+Movie : Two Hands, rating: 7.2 - predicted 6.7
+Movie : Dateline: Disneyland, rating: 7.4 - predicted 6.9
+Movie : A Dandy in Aspic, rating: 6.2 - predicted 6.5
+Movie : River of Fundament, rating: 7.5 - predicted 7.1
+Movie : Varsity Blues, rating: 6.4 - predicted 6.9
+Movie : Uli�ka hanby, rating: 6.0 - predicted 6.7
+Movie : Kicking & Screaming: Soccer Camp, rating: 5.3 - predicted 7.1
+Movie : V�sen a cit, rating: 7.1 - predicted 6.7
+Movie : Desert Blue, rating: 6.3 - predicted 6.6
+Movie : The Bad Lieutenant: Port of Call - New Orleans, rating: 6.7 - predicted 6.6
+Movie : CrissCross, rating: 5.8 - predicted 6.7
+Movie : Liberty Stands Still, rating: 5.8 - predicted 6.9
+Movie : Parachute Jumper, rating: 7.1 - predicted 7.7
+Movie : After Image, rating: 3.9 - predicted 6.8
+Movie : 2015 Billboard Music Awards, rating: 6.2 - predicted 5.9
+Movie : To Die For, rating: 6.8 - predicted 6.8
+Movie : Friday Night Lights, rating: 8.7 - predicted 6.6
+Movie : Road to 'New Jack City', rating: 6.5 - predicted 6.8
+Movie : Sex: The Revolution, rating: 8.2 - predicted 6.4
+Movie : Nabit� zbran 1, rating: 6.1 - predicted 6.9
+Movie : 100 Years of Hope and Humor, rating: 3.2 - predicted 6.9
+Movie : Getting Away with Murder, rating: 4.5 - predicted 6.8
+Movie : The Big Broadcast of 1936, rating: 5.9 - predicted 7.2
+Movie : Scenes from the Roundtable, rating: 6.5 - predicted 7.2
+Movie : Rock the Kasbah, rating: 5.5 - predicted 6.9
+Movie : Le d�moniaque, rating: 5.5 - predicted 6.2
+Movie : Stuj pri mne, rating: 8.1 - predicted 6.6
+Movie : A.C.O.D., rating: 5.7 - predicted 6.5
+Movie : Hurlyburly, rating: 5.8 - predicted 6.7
+Movie : Zmizel�, rating: 8.1 - predicted 6.1
+Movie : The Powers That Be, rating: 8.5 - predicted 7.0
+Movie : Things That Aren't Here Anymore, rating: 8.7 - predicted 6.9
+Movie : Blooper Reel, rating: 7.8 - predicted 7.3
+Movie : Thunderheart, rating: 6.8 - predicted 7.0
+******************************
+*    < 0.5       *    37.22 %  *
+******************************
+*    < 1         *    28.41 %  *
+******************************
+*    < 2         *    26.44 %  *
+******************************
+*    >= 2        *    7.93 %  *
+******************************
+Training on 18276 movies
+18276
+----------------------------- NEW MLP INIT -----------------------------
+----------------------------------  batch2  -----------------------------------
+-----------------------------------  -----------------------------------
+-----------------------------------  -----------------------------------
+Num learning steps: 3000
+Learning rate: 0.1
+Frequency of decreasing learning rate: 40
+Glorot and Bengio Weights: true
+Momentum influence: 0.0
+Print status frequency: 10
+Dropout OFF
+Minibatch OFF
+--------- WEIGHTS BEING INITIALIZED RANDOMLY ---------------
+Hidden weights: 0.0736876126183612
+Output weights: 0.38254602783800296
+Lning rate: 0,100000 | Error derivative: 0,50703274 | Err: 0,09932737
+Lning rate: 0,099000 | Error derivative: 0,02136999 | Err: 0,06835537
+Lning rate: 0,099000 | Error derivative: 0,02070471 | Err: 0,06747788
+Lning rate: 0,099000 | Error derivative: 0,02007505 | Err: 0,06665360
+Lning rate: 0,099000 | Error derivative: 0,01947842 | Err: 0,06587816
+Lning rate: 0,098010 | Error derivative: 0,01891746 | Err: 0,06515405
+Lning rate: 0,098010 | Error derivative: 0,01838509 | Err: 0,06447130
+Lning rate: 0,098010 | Error derivative: 0,01787881 | Err: 0,06382606
+Lning rate: 0,098010 | Error derivative: 0,01739690 | Err: 0,06321551
+Lning rate: 0,097030 | Error derivative: 0,01694181 | Err: 0,06264220
+Lning rate: 0,097030 | Error derivative: 0,01650807 | Err: 0,06209874
+Lning rate: 0,097030 | Error derivative: 0,01609392 | Err: 0,06158250
+Lning rate: 0,097030 | Error derivative: 0,01569815 | Err: 0,06109160
+Lning rate: 0,096060 | Error derivative: 0,01532299 | Err: 0,06062843
+Lning rate: 0,096060 | Error derivative: 0,01496413 | Err: 0,06018738
+Lning rate: 0,096060 | Error derivative: 0,01462026 | Err: 0,05976657
+Lning rate: 0,096060 | Error derivative: 0,01429054 | Err: 0,05936471
+Lning rate: 0,095099 | Error derivative: 0,01397696 | Err: 0,05898400
+Lning rate: 0,095099 | Error derivative: 0,01367605 | Err: 0,05862004
+Lning rate: 0,095099 | Error derivative: 0,01338684 | Err: 0,05827145
+Lning rate: 0,095099 | Error derivative: 0,01310870 | Err: 0,05793732
+Lning rate: 0,094148 | Error derivative: 0,01284341 | Err: 0,05761966
+Lning rate: 0,094148 | Error derivative: 0,01258814 | Err: 0,05731493
+Lning rate: 0,094148 | Error derivative: 0,01234213 | Err: 0,05702209
+Lning rate: 0,094148 | Error derivative: 0,01210492 | Err: 0,05674050
+Lning rate: 0,093207 | Error derivative: 0,01187810 | Err: 0,05647194
+Lning rate: 0,093207 | Error derivative: 0,01165931 | Err: 0,05621353
+Lning rate: 0,093207 | Error derivative: 0,01144796 | Err: 0,05596449
+Lning rate: 0,093207 | Error derivative: 0,01124369 | Err: 0,05572433
+Lning rate: 0,092274 | Error derivative: 0,01104793 | Err: 0,05549464
+Lning rate: 0,092274 | Error derivative: 0,01085870 | Err: 0,05527306
+Lning rate: 0,092274 | Error derivative: 0,01067551 | Err: 0,05505894
+Lning rate: 0,092274 | Error derivative: 0,01049810 | Err: 0,05485194
+Lning rate: 0,091352 | Error derivative: 0,01032774 | Err: 0,05465348
+Lning rate: 0,091352 | Error derivative: 0,01016273 | Err: 0,05446157
+Lning rate: 0,091352 | Error derivative: 0,01000270 | Err: 0,05427569
+Lning rate: 0,091352 | Error derivative: 0,00984742 | Err: 0,05409559
+Lning rate: 0,090438 | Error derivative: 0,00969804 | Err: 0,05392254
+Lning rate: 0,090438 | Error derivative: 0,00955311 | Err: 0,05375484
+Lning rate: 0,090438 | Error derivative: 0,00941230 | Err: 0,05359208
+Lning rate: 0,090438 | Error derivative: 0,00927545 | Err: 0,05343405
+Lning rate: 0,089534 | Error derivative: 0,00914359 | Err: 0,05328192
+Lning rate: 0,089534 | Error derivative: 0,00901545 | Err: 0,05313420
+Lning rate: 0,089534 | Error derivative: 0,00889076 | Err: 0,05299057
+Lning rate: 0,089534 | Error derivative: 0,00876939 | Err: 0,05285086
+Lning rate: 0,088638 | Error derivative: 0,00865227 | Err: 0,05271613
+Lning rate: 0,088638 | Error derivative: 0,00853829 | Err: 0,05258508
+Lning rate: 0,088638 | Error derivative: 0,00842723 | Err: 0,05245743
+Lning rate: 0,088638 | Error derivative: 0,00831897 | Err: 0,05233307
+Lning rate: 0,087752 | Error derivative: 0,00821436 | Err: 0,05221294
+Lning rate: 0,087752 | Error derivative: 0,00811242 | Err: 0,05209592
+Lning rate: 0,087752 | Error derivative: 0,00801296 | Err: 0,05198176
+Lning rate: 0,087752 | Error derivative: 0,00791589 | Err: 0,05187037
+Lning rate: 0,086875 | Error derivative: 0,00782198 | Err: 0,05176262
+Lning rate: 0,086875 | Error derivative: 0,00773035 | Err: 0,05165750
+Lning rate: 0,086875 | Error derivative: 0,00764084 | Err: 0,05155481
+Lning rate: 0,086875 | Error derivative: 0,00755338 | Err: 0,05145447
+Lning rate: 0,086006 | Error derivative: 0,00746866 | Err: 0,05135728
+Lning rate: 0,086006 | Error derivative: 0,00738592 | Err: 0,05126234
+Lning rate: 0,086006 | Error derivative: 0,00730500 | Err: 0,05116948
+Lning rate: 0,086006 | Error derivative: 0,00722584 | Err: 0,05107864
+Lning rate: 0,085146 | Error derivative: 0,00714909 | Err: 0,05099053
+Lning rate: 0,085146 | Error derivative: 0,00707404 | Err: 0,05090437
+Lning rate: 0,085146 | Error derivative: 0,00700058 | Err: 0,05081999
+Lning rate: 0,085146 | Error derivative: 0,00692864 | Err: 0,05073735
+Lning rate: 0,084294 | Error derivative: 0,00685882 | Err: 0,05065711
+Lning rate: 0,084294 | Error derivative: 0,00679049 | Err: 0,05057855
+Lning rate: 0,084294 | Error derivative: 0,00672353 | Err: 0,05050154
+Lning rate: 0,084294 | Error derivative: 0,00665790 | Err: 0,05042604
+Lning rate: 0,083451 | Error derivative: 0,00659414 | Err: 0,05035265
+Lning rate: 0,083451 | Error derivative: 0,00653169 | Err: 0,05028073
+Lning rate: 0,083451 | Error derivative: 0,00647043 | Err: 0,05021016
+Lning rate: 0,083451 | Error derivative: 0,00641034 | Err: 0,05014090
+Lning rate: 0,082617 | Error derivative: 0,00635192 | Err: 0,05007352
+Lning rate: 0,082617 | Error derivative: 0,00629463 | Err: 0,05000743
+Lning rate: 0,082617 | Error derivative: 0,00623841 | Err: 0,04994251
+Lning rate: 0,082617 | Error derivative: 0,00618320 | Err: 0,04987875
+Lning rate: 0,081791 | Error derivative: 0,00612948 | Err: 0,04981666
+Lning rate: 0,081791 | Error derivative: 0,00607677 | Err: 0,04975571
+Lning rate: 0,081791 | Error derivative: 0,00602499 | Err: 0,04969579
+Lning rate: 0,081791 | Error derivative: 0,00597412 | Err: 0,04963688
+Lning rate: 0,080973 | Error derivative: 0,00592457 | Err: 0,04957948
+Lning rate: 0,080973 | Error derivative: 0,00587592 | Err: 0,04952308
+Lning rate: 0,080973 | Error derivative: 0,00582808 | Err: 0,04946760
+Lning rate: 0,080973 | Error derivative: 0,00578106 | Err: 0,04941302
+Lning rate: 0,080163 | Error derivative: 0,00573522 | Err: 0,04935978
+Lning rate: 0,080163 | Error derivative: 0,00569019 | Err: 0,04930744
+Lning rate: 0,080163 | Error derivative: 0,00564588 | Err: 0,04925592
+Lning rate: 0,080163 | Error derivative: 0,00560228 | Err: 0,04920519
+Lning rate: 0,079361 | Error derivative: 0,00555977 | Err: 0,04915568
+Lning rate: 0,079361 | Error derivative: 0,00551796 | Err: 0,04910697
+Lning rate: 0,079361 | Error derivative: 0,00547681 | Err: 0,04905898
+Lning rate: 0,079361 | Error derivative: 0,00543629 | Err: 0,04901171
+Lning rate: 0,078568 | Error derivative: 0,00539675 | Err: 0,04896554
+Lning rate: 0,078568 | Error derivative: 0,00535784 | Err: 0,04892009
+Lning rate: 0,078568 | Error derivative: 0,00531952 | Err: 0,04887529
+Lning rate: 0,078568 | Error derivative: 0,00528176 | Err: 0,04883112
+Lning rate: 0,077782 | Error derivative: 0,00524490 | Err: 0,04878797
+Lning rate: 0,077782 | Error derivative: 0,00520860 | Err: 0,04874546
+Lning rate: 0,077782 | Error derivative: 0,00517283 | Err: 0,04870353
+Lning rate: 0,077782 | Error derivative: 0,00513756 | Err: 0,04866217
+Lning rate: 0,077004 | Error derivative: 0,00510311 | Err: 0,04862174
+Lning rate: 0,077004 | Error derivative: 0,00506917 | Err: 0,04858189
+Lning rate: 0,077004 | Error derivative: 0,00503570 | Err: 0,04854256
+Lning rate: 0,077004 | Error derivative: 0,00500269 | Err: 0,04850375
+Lning rate: 0,076234 | Error derivative: 0,00497042 | Err: 0,04846579
+Lning rate: 0,076234 | Error derivative: 0,00493861 | Err: 0,04842835
+Lning rate: 0,076234 | Error derivative: 0,00490723 | Err: 0,04839139
+Lning rate: 0,076234 | Error derivative: 0,00487626 | Err: 0,04835489
+Lning rate: 0,075472 | Error derivative: 0,00484597 | Err: 0,04831918
+Lning rate: 0,075472 | Error derivative: 0,00481610 | Err: 0,04828394
+Lning rate: 0,075472 | Error derivative: 0,00478661 | Err: 0,04824913
+Lning rate: 0,075472 | Error derivative: 0,00475750 | Err: 0,04821475
+Lning rate: 0,074717 | Error derivative: 0,00472902 | Err: 0,04818108
+Lning rate: 0,074717 | Error derivative: 0,00470091 | Err: 0,04814785
+Lning rate: 0,074717 | Error derivative: 0,00467315 | Err: 0,04811501
+Lning rate: 0,074717 | Error derivative: 0,00464573 | Err: 0,04808256
+Lning rate: 0,073970 | Error derivative: 0,00461889 | Err: 0,04805077
+Lning rate: 0,073970 | Error derivative: 0,00459240 | Err: 0,04801939
+Lning rate: 0,073970 | Error derivative: 0,00456621 | Err: 0,04798835
+Lning rate: 0,073970 | Error derivative: 0,00454034 | Err: 0,04795767
+Lning rate: 0,073230 | Error derivative: 0,00451500 | Err: 0,04792761
+Lning rate: 0,073230 | Error derivative: 0,00448998 | Err: 0,04789791
+Lning rate: 0,073230 | Error derivative: 0,00446524 | Err: 0,04786854
+Lning rate: 0,073230 | Error derivative: 0,00444079 | Err: 0,04783949
+Lning rate: 0,072498 | Error derivative: 0,00441683 | Err: 0,04781101
+Lning rate: 0,072498 | Error derivative: 0,00439316 | Err: 0,04778287
+Lning rate: 0,072498 | Error derivative: 0,00436975 | Err: 0,04775503
+Lning rate: 0,072498 | Error derivative: 0,00434659 | Err: 0,04772748
+Lning rate: 0,071773 | Error derivative: 0,00432390 | Err: 0,04770047
+Lning rate: 0,071773 | Error derivative: 0,00430147 | Err: 0,04767376
+Lning rate: 0,071773 | Error derivative: 0,00427928 | Err: 0,04764733
+Lning rate: 0,071773 | Error derivative: 0,00425732 | Err: 0,04762118
+Lning rate: 0,071055 | Error derivative: 0,00423579 | Err: 0,04759552
+Lning rate: 0,071055 | Error derivative: 0,00421450 | Err: 0,04757014
+Lning rate: 0,071055 | Error derivative: 0,00419344 | Err: 0,04754502
+Lning rate: 0,071055 | Error derivative: 0,00417258 | Err: 0,04752015
+Lning rate: 0,070345 | Error derivative: 0,00415213 | Err: 0,04749574
+Lning rate: 0,070345 | Error derivative: 0,00413190 | Err: 0,04747160
+Lning rate: 0,070345 | Error derivative: 0,00411187 | Err: 0,04744769
+Lning rate: 0,070345 | Error derivative: 0,00409204 | Err: 0,04742401
+Lning rate: 0,069641 | Error derivative: 0,00407258 | Err: 0,04740077
+Lning rate: 0,069641 | Error derivative: 0,00405332 | Err: 0,04737777
+Lning rate: 0,069641 | Error derivative: 0,00403425 | Err: 0,04735499
+Lning rate: 0,069641 | Error derivative: 0,00401537 | Err: 0,04733243
+Lning rate: 0,068945 | Error derivative: 0,00399683 | Err: 0,04731027
+Lning rate: 0,068945 | Error derivative: 0,00397848 | Err: 0,04728834
+Lning rate: 0,068945 | Error derivative: 0,00396030 | Err: 0,04726661
+Lning rate: 0,068945 | Error derivative: 0,00394229 | Err: 0,04724507
+Lning rate: 0,068255 | Error derivative: 0,00392461 | Err: 0,04722393
+Lning rate: 0,068255 | Error derivative: 0,00390710 | Err: 0,04720299
+Lning rate: 0,068255 | Error derivative: 0,00388975 | Err: 0,04718224
+Lning rate: 0,068255 | Error derivative: 0,00387255 | Err: 0,04716167
+Lning rate: 0,067573 | Error derivative: 0,00385566 | Err: 0,04714147
+Lning rate: 0,067573 | Error derivative: 0,00383894 | Err: 0,04712146
+Lning rate: 0,067573 | Error derivative: 0,00382236 | Err: 0,04710162
+Lning rate: 0,067573 | Error derivative: 0,00380592 | Err: 0,04708196
+Lning rate: 0,066897 | Error derivative: 0,00378977 | Err: 0,04706264
+Lning rate: 0,066897 | Error derivative: 0,00377377 | Err: 0,04704350
+Lning rate: 0,066897 | Error derivative: 0,00375791 | Err: 0,04702452
+Lning rate: 0,066897 | Error derivative: 0,00374218 | Err: 0,04700570
+Lning rate: 0,066228 | Error derivative: 0,00372672 | Err: 0,04698721
+Lning rate: 0,066228 | Error derivative: 0,00371141 | Err: 0,04696888
+Lning rate: 0,066228 | Error derivative: 0,00369621 | Err: 0,04695071
+Lning rate: 0,066228 | Error derivative: 0,00368115 | Err: 0,04693268
+Lning rate: 0,065566 | Error derivative: 0,00366633 | Err: 0,04691496
+Lning rate: 0,065566 | Error derivative: 0,00365165 | Err: 0,04689740
+Lning rate: 0,065566 | Error derivative: 0,00363709 | Err: 0,04687998
+Lning rate: 0,065566 | Error derivative: 0,00362264 | Err: 0,04686270
+Lning rate: 0,064910 | Error derivative: 0,00360843 | Err: 0,04684571
+Lning rate: 0,064910 | Error derivative: 0,00359435 | Err: 0,04682887
+Lning rate: 0,064910 | Error derivative: 0,00358037 | Err: 0,04681216
+Lning rate: 0,064910 | Error derivative: 0,00356650 | Err: 0,04679558
+Lning rate: 0,064261 | Error derivative: 0,00355286 | Err: 0,04677927
+Lning rate: 0,064261 | Error derivative: 0,00353933 | Err: 0,04676311
+Lning rate: 0,064261 | Error derivative: 0,00352591 | Err: 0,04674707
+Lning rate: 0,064261 | Error derivative: 0,00351258 | Err: 0,04673115
+Lning rate: 0,063619 | Error derivative: 0,00349947 | Err: 0,04671549
+Lning rate: 0,063619 | Error derivative: 0,00348647 | Err: 0,04669996
+Lning rate: 0,063619 | Error derivative: 0,00347356 | Err: 0,04668455
+Lning rate: 0,063619 | Error derivative: 0,00346075 | Err: 0,04666925
+Lning rate: 0,062982 | Error derivative: 0,00344814 | Err: 0,04665420
+Lning rate: 0,062982 | Error derivative: 0,00343563 | Err: 0,04663928
+Lning rate: 0,062982 | Error derivative: 0,00342321 | Err: 0,04662446
+Lning rate: 0,062982 | Error derivative: 0,00341088 | Err: 0,04660975
+Lning rate: 0,062353 | Error derivative: 0,00339875 | Err: 0,04659528
+Lning rate: 0,062353 | Error derivative: 0,00338670 | Err: 0,04658092
+Lning rate: 0,062353 | Error derivative: 0,00337474 | Err: 0,04656666
+Lning rate: 0,062353 | Error derivative: 0,00336286 | Err: 0,04655251
+Lning rate: 0,061729 | Error derivative: 0,00335117 | Err: 0,04653858
+Lning rate: 0,061729 | Error derivative: 0,00333957 | Err: 0,04652476
+Lning rate: 0,061729 | Error derivative: 0,00332804 | Err: 0,04651104
+Lning rate: 0,061729 | Error derivative: 0,00331659 | Err: 0,04649741
+Lning rate: 0,061112 | Error derivative: 0,00330532 | Err: 0,04648399
+Lning rate: 0,061112 | Error derivative: 0,00329413 | Err: 0,04647068
+Lning rate: 0,061112 | Error derivative: 0,00328301 | Err: 0,04645746
+Lning rate: 0,061112 | Error derivative: 0,00327197 | Err: 0,04644433
+Lning rate: 0,060501 | Error derivative: 0,00326109 | Err: 0,04643140
+Lning rate: 0,060501 | Error derivative: 0,00325030 | Err: 0,04641858
+Lning rate: 0,060501 | Error derivative: 0,00323957 | Err: 0,04640583
+Lning rate: 0,060501 | Error derivative: 0,00322890 | Err: 0,04639317
+Lning rate: 0,059896 | Error derivative: 0,00321840 | Err: 0,04638071
+Lning rate: 0,059896 | Error derivative: 0,00320798 | Err: 0,04636834
+Lning rate: 0,059896 | Error derivative: 0,00319761 | Err: 0,04635605
+Lning rate: 0,059896 | Error derivative: 0,00318732 | Err: 0,04634384
+Lning rate: 0,059297 | Error derivative: 0,00317717 | Err: 0,04633182
+Lning rate: 0,059297 | Error derivative: 0,00316710 | Err: 0,04631988
+Lning rate: 0,059297 | Error derivative: 0,00315708 | Err: 0,04630802
+Lning rate: 0,059297 | Error derivative: 0,00314713 | Err: 0,04629624
+Lning rate: 0,058704 | Error derivative: 0,00313732 | Err: 0,04628463
+Lning rate: 0,058704 | Error derivative: 0,00312758 | Err: 0,04627311
+Lning rate: 0,058704 | Error derivative: 0,00311790 | Err: 0,04626166
+Lning rate: 0,058704 | Error derivative: 0,00310827 | Err: 0,04625028
+Lning rate: 0,058117 | Error derivative: 0,00309878 | Err: 0,04623907
+Lning rate: 0,058117 | Error derivative: 0,00308936 | Err: 0,04622794
+Lning rate: 0,058117 | Error derivative: 0,00307999 | Err: 0,04621688
+Lning rate: 0,058117 | Error derivative: 0,00307067 | Err: 0,04620588
+Lning rate: 0,057535 | Error derivative: 0,00306149 | Err: 0,04619505
+Lning rate: 0,057535 | Error derivative: 0,00305236 | Err: 0,04618430
+Lning rate: 0,057535 | Error derivative: 0,00304329 | Err: 0,04617361
+Lning rate: 0,057535 | Error derivative: 0,00303427 | Err: 0,04616298
+Lning rate: 0,056960 | Error derivative: 0,00302538 | Err: 0,04615251
+Lning rate: 0,056960 | Error derivative: 0,00301654 | Err: 0,04614211
+Lning rate: 0,056960 | Error derivative: 0,00300776 | Err: 0,04613178
+Lning rate: 0,056960 | Error derivative: 0,00299902 | Err: 0,04612150
+Lning rate: 0,056391 | Error derivative: 0,00299040 | Err: 0,04611137
+Lning rate: 0,056391 | Error derivative: 0,00298184 | Err: 0,04610131
+Lning rate: 0,056391 | Error derivative: 0,00297332 | Err: 0,04609131
+Lning rate: 0,056391 | Error derivative: 0,00296485 | Err: 0,04608137
+Lning rate: 0,055827 | Error derivative: 0,00295650 | Err: 0,04607157
+Lning rate: 0,055827 | Error derivative: 0,00294820 | Err: 0,04606184
+Lning rate: 0,055827 | Error derivative: 0,00293994 | Err: 0,04605216
+Lning rate: 0,055827 | Error derivative: 0,00293172 | Err: 0,04604253
+Lning rate: 0,055268 | Error derivative: 0,00292362 | Err: 0,04603305
+Lning rate: 0,055268 | Error derivative: 0,00291557 | Err: 0,04602363
+Lning rate: 0,055268 | Error derivative: 0,00290756 | Err: 0,04601425
+Lning rate: 0,055268 | Error derivative: 0,00289958 | Err: 0,04600493
+Lning rate: 0,054716 | Error derivative: 0,00289172 | Err: 0,04599575
+Lning rate: 0,054716 | Error derivative: 0,00288391 | Err: 0,04598662
+Lning rate: 0,054716 | Error derivative: 0,00287613 | Err: 0,04597754

@@ -4,7 +4,9 @@ import cz.muni.fi.datascrapper.DataTools;
 import cz.muni.fi.datascrapper.model.Movie;
 import cz.muni.fi.datascrapper.model.Person;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,10 +16,46 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-        //System.setOut(out);
+        PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+        System.setOut(out);
 //        xorTraining();
-        trainOnMovies(500, 50, 2, true);
+
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "1",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.05, true, 10, 0.0, 50,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "2",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.1, true, 10, 0.0, 40,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "3",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.15, true, 10, 0.0, 40,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "4",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.15, true, 10, 0.0, 70,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "53" +
+                        "",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.0, 25,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
     }
 
     private static void sinTraining() {
@@ -72,7 +110,10 @@ public class Main {
         System.out.println("Vstup: [0,0] Výstup: " + mlp.feedForward(new double[]{0, 0}, true)[0]);
     }
 
-    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons) throws IOException {
+    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons,
+                                      int numHiddenNeurons, int numLearningSteps, boolean showGraph, String imgName,
+                                      double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq,
+                                      boolean dropoutOn, boolean minibatchOn, int minibatchSize) throws IOException {
         //
         // load training data from json
         //
@@ -176,10 +217,9 @@ public class Main {
 
         System.out.println(samples.size());
 
-        //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(outputSize, 20, 1, 5000, true, "7",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
-                0.2, false, 30, 0.7, 80, true, true, movies.size() / 500);
+        MLP mlp = new MLP(outputSize, numHiddenNeurons, 1, numLearningSteps, showGraph, imgName,
+                learningRate, glorotBengioWeights, printStatusFreq, momentumInfluence, decLearningRateFreq,
+                dropoutOn, minibatchOn, minibatchSize);
         mlp.training(samples);
 
         int[] diffs = new int[]{0, 0, 0, 0};
@@ -209,7 +249,7 @@ public class Main {
             float rating = movies.get(i).getRating();
             double predictedRating = (mlp.feedForward(inputs, false)[0] + 1) * 5;
 
-            if(i >= trainingSize){
+            if (i >= trainingSize) {
                 System.out.printf("Movie : %s, rating: %.1f - predicted %.1f%n", movies.get(i).getName(), rating, predictedRating);
             }
 
