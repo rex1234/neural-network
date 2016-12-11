@@ -21,7 +21,8 @@ public class Main {
         //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
         //System.setOut(out);
 //        xorTraining();
-        trainOnMovies(1000, 400, 3, true);
+//        System.out.println(DataTools.getBaseDirectors().size());
+        trainOnMovies(1000, 1000, 3, true);
     }
 
     private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons) throws IOException {
@@ -31,6 +32,8 @@ public class Main {
         actors = DataTools.getBaseActors();
         directors = DataTools.getBaseDirectors();
         movies = DataTools.getMoviesWDirectorsFromJson();
+
+        movies = movies.stream().filter(m -> m.getActors().size() >= actorsInMovie).collect(Collectors.toList());
 
         //
         // keep only top frequent 'desiredActorCount' actors / 'desiredDirectorsCount' directors
@@ -45,7 +48,7 @@ public class Main {
         movies = movies.stream().filter(m -> !m.filterMovie(actorsInMovie, useDummyNeurons)).collect(Collectors.toList());
 
         List<Sample> samples = new ArrayList<>();
-        Collections.shuffle(movies, new Random(55));
+        Collections.shuffle(movies, new Random(60));
 
         int trainingSize = (int) (movies.size() * 0.9);
 
@@ -75,9 +78,9 @@ public class Main {
         System.out.println(samples.size());
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(inputSize, 10, 1, 5000, true, "7",
+        MLP mlp = new MLP(inputSize, 6, 1, 5000, true, "7",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
-                0.1, false, 30, 0.7, 80, true, true, movies.size() / 500);
+                0.2, false, 30, 0.5, 50, true, true, movies.size() / 500);
         mlp.training(samples);
 
         int[] diffs = new int[]{0, 0, 0, 0};
@@ -85,6 +88,8 @@ public class Main {
         //
         // validation
         //
+
+        List<Movie> validationMovies = new ArrayList<>();
 
         for (int i = 0; i < movies.size(); i++) {
 
@@ -94,7 +99,7 @@ public class Main {
                 diffs = new int[]{0, 0, 0, 0};
 
                 System.out.println("***");
-                System.out.println((movies.size() - trainingSize) + "movies not from the training set:");
+                System.out.println((movies.size() - trainingSize) + " validation movies:");
                 System.out.println("***");
             }
 
@@ -107,8 +112,10 @@ public class Main {
             float rating = movies.get(i).getRating();
             double predictedRating = (mlp.feedForward(inputs, false)[0] + 1) * 5;
 
-            if(i >= trainingSize){
-                System.out.printf("Movie : %s, rating: %.1f - predicted %.1f%n", movies.get(i).getName(), rating, predictedRating);
+            movies.get(i).setPredictedRating(predictedRating);
+
+            if(i >= iteratedMovies){
+                validationMovies.add(movies.get(i));
             }
 
             if (Math.abs(rating - predictedRating) < 0.5) {
@@ -120,6 +127,19 @@ public class Main {
             } else {
                 ++diffs[3];
             }
+        }
+
+        Collections.sort(validationMovies, (a, b) -> Double.compare(
+                Math.abs(a.getRating() - a.getPredictedRating()),
+                Math.abs(b.getRating() - b.getPredictedRating())));
+
+        for (Movie movie : validationMovies) {
+            System.out.printf("Movie : %s, rating: %.1f - predicted %.1f;   %d actors (%s), %d directors (%s) %n", movie.getName(),
+                    movie.getRating(), movie.getPredictedRating(),
+                    movie.getActors().size(), movie.getActors().stream()
+                            .map(id -> actorById(id).getName())
+                            .collect(Collectors.joining(", ")),
+            movie.getDirector() == null ? 0 : 1, directorById(movie.getDirector()).getName());
         }
 
         printDiffsTable(diffs);
@@ -147,7 +167,7 @@ public class Main {
 
         Set<String> removedActors = actors.subList(desiredActorCount, actors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
         actors = actors.subList(0, desiredActorCount);
-        Set<String> removedDirectors = actors.subList(desiredDirectorsCount, actors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
+        Set<String> removedDirectors = directors.subList(desiredDirectorsCount, directors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
         directors = directors.subList(0, desiredDirectorsCount);
 
         //
@@ -252,9 +272,9 @@ public class Main {
         samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(2, 2, 1, 3000, false, "1",
+        MLP mlp = new MLP(2, 5, 1, 6000, false, "1",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate,Is dropout on, Is minibatch on, Minibatch size
-                0.3, false, 10, 0.5, 30, false, true, 10);
+                0.2, false, 10, 0.4, 40, false, true, 10);
 
         mlp.training(samples);
 
@@ -262,5 +282,13 @@ public class Main {
         System.out.println("Vstup: [1,1] Výstup: " + mlp.feedForward(new double[]{1, 1}, true)[0]);
         System.out.println("Vstup: [0,1] Výstup: " + mlp.feedForward(new double[]{0, 1}, true)[0]);
         System.out.println("Vstup: [0,0] Výstup: " + mlp.feedForward(new double[]{0, 0}, true)[0]);
+    }
+
+    private static Person actorById(String id) {
+        return actors.stream().filter(a -> a.getId().equals(id)).findFirst().orElse(new Person(id, "-"));
+    }
+
+    private static Person directorById(String id) {
+        return directors.stream().filter(a -> a.getId().equals(id)).findFirst().orElse(new Person(id, "-"));
     }
 }

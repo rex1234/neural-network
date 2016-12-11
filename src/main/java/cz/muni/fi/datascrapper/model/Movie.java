@@ -14,6 +14,8 @@ public class Movie {
     private String director;
     private int year;
 
+    private transient double predictedRating;
+
     public Movie(String id, float rating, List<String> actors, String director, int year) {
         this.id = id;
         this.rating = rating;
@@ -97,5 +99,13 @@ public class Movie {
         }
 
         return rating < 0.1 || actors.size() < maxActors || director == null;
+    }
+
+    public void setPredictedRating(double predictedRating) {
+        this.predictedRating = predictedRating;
+    }
+
+    public double getPredictedRating() {
+        return predictedRating;
     }
 }
