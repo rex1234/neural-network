@@ -21,11 +21,55 @@ public class Main {
         //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
         //System.setOut(out);
 //        xorTraining();
-//        System.out.println(DataTools.getBaseDirectors().size());
-        trainOnMovies(1000, 1000, 3, true);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 1000, 3, true, 6, 500, false, "1",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 20,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, true, 500);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "1",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 20,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 30, 500, false, "2",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.2, 35,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 50, 500, false, "3",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.0, 50,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "4",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 40,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "5",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.3, true, 10, 0.5, 30,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
     }
 
-    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons) throws IOException {
+    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons,
+                                      int numHiddenNeurons, int numLearningSteps, boolean showGraph, String imgName,
+                                      double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq,
+                                      boolean dropoutOn, boolean minibatchOn, int minibatchSize) throws IOException {
+
         //
         // load training data from json
         //
@@ -76,14 +120,14 @@ public class Main {
         }
 
         System.out.println(samples.size());
+        MLP mlp = new MLP(inputSize, numHiddenNeurons, 1, numLearningSteps, showGraph, imgName,
+                learningRate, glorotBengioWeights, printStatusFreq, momentumInfluence, decLearningRateFreq,
+                dropoutOn, minibatchOn, minibatchSize);
 
-        //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(inputSize, 6, 1, 5000, true, "7",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
-                0.2, false, 30, 0.5, 50, true, true, movies.size() / 500);
-        mlp.training(samples);
+       mlp.training(samples);
 
         int[] diffs = new int[]{0, 0, 0, 0};
+        double mse = 0.0;
 
         //
         // validation
@@ -94,7 +138,10 @@ public class Main {
         for (int i = 0; i < movies.size(); i++) {
 
             if (i == iteratedMovies) {
+                mse *= 1d / i;
+                System.out.println("Mean square error: " + mse);
                 printDiffsTable(diffs);
+                mse = 0.0;
 
                 diffs = new int[]{0, 0, 0, 0};
 
@@ -117,6 +164,8 @@ public class Main {
             if(i >= iteratedMovies){
                 validationMovies.add(movies.get(i));
             }
+
+            mse += Math.pow(rating - predictedRating, 2);
 
             if (Math.abs(rating - predictedRating) < 0.5) {
                 ++diffs[0];
@@ -142,6 +191,8 @@ public class Main {
             movie.getDirector() == null ? 0 : 1, directorById(movie.getDirector()).getName());
         }
 
+        mse *= 1d / (movies.size() - iteratedMovies);
+        System.out.println("Mean square error: " + mse);
         printDiffsTable(diffs);
     }
 
@@ -272,9 +323,9 @@ public class Main {
         samples.add(new Sample(new double[]{0, 0}, new double[]{0}));
 
         //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(2, 5, 1, 6000, false, "1",
+        MLP mlp = new MLP(2, 2, 1, 3000, false, "1",
                 //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate,Is dropout on, Is minibatch on, Minibatch size
-                0.2, false, 10, 0.4, 40, false, true, 10);
+                0.3, false, 10, 0.5, 30, false, true, 10);
 
         mlp.training(samples);
 
