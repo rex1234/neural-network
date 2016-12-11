@@ -4,9 +4,7 @@ import cz.muni.fi.datascrapper.DataTools;
 import cz.muni.fi.datascrapper.model.Movie;
 import cz.muni.fi.datascrapper.model.Person;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -15,47 +13,203 @@ import java.util.stream.Collectors;
  */
 public class Main {
 
+    private static List<Person> actors;
+    private static List<Person> directors;
+    private static List<Movie> movies;
+
     public static void main(String[] args) throws Exception {
-        PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-        System.setOut(out);
+        //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+        //System.setOut(out);
 //        xorTraining();
+        trainOnMovies(1000, 400, 3, true);
+    }
 
+    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons) throws IOException {
+        //
+        // load training data from json
+        //
+        actors = DataTools.getBaseActors();
+        directors = DataTools.getBaseDirectors();
+        movies = DataTools.getMoviesWDirectorsFromJson();
 
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "1",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.05, true, 10, 0.0, 50,
-                // dropout ON, Minibatch ON, Minibatch size
-                false, false, 0);
+        //
+        // keep only top frequent 'desiredActorCount' actors / 'desiredDirectorsCount' directors
+        //
+        int inputSize = desiredActorCount + desiredDirectorsCount + (useDummyNeurons ? (1 + actorsInMovie) : 0);
+        removePeopleAboveLimit(desiredActorCount, desiredDirectorsCount);
 
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "2",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.1, true, 10, 0.0, 40,
-                // dropout ON, Minibatch ON, Minibatch size
-                false, false, 0);
+        //
+        // remove movies unfit for training (w/o director or 'actorsInMovie' actors)
+        //
 
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "3",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.15, true, 10, 0.0, 40,
-                // dropout ON, Minibatch ON, Minibatch size
-                false, false, 0);
+        movies = movies.stream().filter(m -> !m.filterMovie(actorsInMovie, useDummyNeurons)).collect(Collectors.toList());
 
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "4",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.15, true, 10, 0.0, 70,
-                // dropout ON, Minibatch ON, Minibatch size
-                false, false, 0);
+        List<Sample> samples = new ArrayList<>();
+        Collections.shuffle(movies, new Random(55));
 
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 100, 3, true, 40, 3000, false, "53" +
-                        "",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.2, true, 10, 0.0, 25,
-                // dropout ON, Minibatch ON, Minibatch size
-                false, false, 0);
+        int trainingSize = (int) (movies.size() * 0.9);
+
+        System.out.printf("Training on %d movies%n", trainingSize);
+
+        int iteratedMovies = 0;
+        for (Movie movie : movies) {
+            if (iteratedMovies++ == trainingSize) {
+                break;
+            }
+
+            double[] outputs = new double[]{movie.getRating() / 5 - 1};
+            double[] inputs = new double[inputSize];
+
+            if (!createInputsForMovie(desiredActorCount, desiredDirectorsCount, actorsInMovie, useDummyNeurons, movie, inputs)) {
+                continue;
+            }
+
+            double inputSum = Math.round(Arrays.stream(inputs).sum());
+            if(inputSum != actorsInMovie + 1) {
+                throw new RuntimeException("Invalid count of set neurons " + inputSum);
+            }
+
+            samples.add(new Sample(inputs, outputs));
+        }
+
+        System.out.println(samples.size());
+
+        //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
+        MLP mlp = new MLP(inputSize, 10, 1, 5000, true, "7",
+                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
+                0.1, false, 30, 0.7, 80, true, true, movies.size() / 500);
+        mlp.training(samples);
+
+        int[] diffs = new int[]{0, 0, 0, 0};
+
+        //
+        // validation
+        //
+
+        for (int i = 0; i < movies.size(); i++) {
+
+            if (i == iteratedMovies) {
+                printDiffsTable(diffs);
+
+                diffs = new int[]{0, 0, 0, 0};
+
+                System.out.println("***");
+                System.out.println((movies.size() - trainingSize) + "movies not from the training set:");
+                System.out.println("***");
+            }
+
+            double[] inputs = new double[inputSize];
+
+            if(!createInputsForMovie(desiredActorCount, desiredDirectorsCount, actorsInMovie, useDummyNeurons, movies.get(i), inputs)) {
+                continue;
+            }
+
+            float rating = movies.get(i).getRating();
+            double predictedRating = (mlp.feedForward(inputs, false)[0] + 1) * 5;
+
+            if(i >= trainingSize){
+                System.out.printf("Movie : %s, rating: %.1f - predicted %.1f%n", movies.get(i).getName(), rating, predictedRating);
+            }
+
+            if (Math.abs(rating - predictedRating) < 0.5) {
+                ++diffs[0];
+            } else if (Math.abs(rating - predictedRating) < 1) {
+                ++diffs[1];
+            } else if (Math.abs(rating - predictedRating) < 2) {
+                ++diffs[2];
+            } else {
+                ++diffs[3];
+            }
+        }
+
+        printDiffsTable(diffs);
+    }
+
+    private static void removePeopleAboveLimit(int desiredActorCount, int desiredDirectorsCount) {
+        for (Movie movie : movies) {
+            for (String actor : movie.getActors()) {
+                for (Person person : actors) {
+                    if (person.getId().equals(actor)) {
+                        person.count++;
+                    }
+                }
+            }
+
+            for (Person director : directors) {
+                if (director.getId().equals(movie.getDirector())) {
+                    director.count++;
+                }
+            }
+        }
+
+        Collections.sort(actors, (b, a) -> b.count - a.count);
+        Collections.sort(directors, (b, a) -> b.count - a.count);
+
+        Set<String> removedActors = actors.subList(desiredActorCount, actors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
+        actors = actors.subList(0, desiredActorCount);
+        Set<String> removedDirectors = actors.subList(desiredDirectorsCount, actors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
+        directors = directors.subList(0, desiredDirectorsCount);
+
+        //
+        // remove removed actors / directors from movies
+        //
+
+        for (Movie movie : movies) {
+            movie.getActors().removeAll(removedActors);
+            if (removedDirectors.contains(movie.getDirector())) {
+                movie.setDirector(null);
+            }
+        }
+    }
+
+    private static boolean createInputsForMovie(int desiredActorCount, int desiredDirectorsCount, int actorsInMovie, boolean useDummyNeurons, Movie movie, double[] inputs) {
+        int missingActors = actorsInMovie - movie.getActors().size();
+        for (String actorId : movie.getActors()) {
+            int i = actors.indexOf(new Person(actorId));
+
+            if (i == -1) {
+                ++missingActors;
+            } else {
+                inputs[i] = 1;
+            }
+        }
+
+        if (useDummyNeurons) {
+            int peopleNeurons = desiredActorCount + desiredDirectorsCount;
+            for (int i = peopleNeurons; i < peopleNeurons + missingActors; i++) {
+                inputs[i] = 1;
+            }
+        }
+
+        int directorIndex = directors.indexOf(new Person(movie.getDirector()));
+        if (directorIndex == -1) {
+            inputs[inputs.length - 1] = 1;
+        } else {
+            inputs[desiredActorCount + directorIndex] = 1;
+        }
+
+        if (!useDummyNeurons && (directorIndex == -1 || missingActors > 0)) {
+            return false;
+        }
+        return true;
+    }
+
+    private static void printDiffsTable(int[] diffs) {
+        int total = Arrays.stream(diffs).sum();
+
+        System.out.printf("******************************%n");
+        System.out.printf("*    < 0.5       *    %.2f %%  *%n", percent(diffs[0], total));
+        System.out.printf("******************************%n");
+        System.out.printf("*    < 1         *    %.2f %%  *%n", percent(diffs[1], total));
+        System.out.printf("******************************%n");
+        System.out.printf("*    < 2         *    %.2f %%  *%n", percent(diffs[2], total));
+        System.out.printf("******************************%n");
+        System.out.printf("*    >= 2        *    %.2f %%  *%n", percent(diffs[3], total));
+        System.out.printf("******************************%n");
+    }
+
+    private static float percent(int x, int total) {
+        return x / (float) total * 100f;
     }
 
     private static void sinTraining() {
@@ -108,180 +262,5 @@ public class Main {
         System.out.println("Vstup: [1,1] Výstup: " + mlp.feedForward(new double[]{1, 1}, true)[0]);
         System.out.println("Vstup: [0,1] Výstup: " + mlp.feedForward(new double[]{0, 1}, true)[0]);
         System.out.println("Vstup: [0,0] Výstup: " + mlp.feedForward(new double[]{0, 0}, true)[0]);
-    }
-
-    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons,
-                                      int numHiddenNeurons, int numLearningSteps, boolean showGraph, String imgName,
-                                      double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq,
-                                      boolean dropoutOn, boolean minibatchOn, int minibatchSize) throws IOException {
-        //
-        // load training data from json
-        //
-        List<Person> actors = DataTools.getBaseActors();
-        List<Person> directors = DataTools.getBaseDirectors();
-        List<Movie> movies = DataTools.getMoviesWDirectorsFromJson();
-
-        //
-        // keep only top frequent 500 actors / 100 directors
-        //
-        for (Movie movie : movies) {
-            for (String actor : movie.getActors()) {
-                for (Person person : actors) {
-                    if (person.getId().equals(actor)) {
-                        person.count++;
-                    }
-                }
-            }
-
-            for (Person director : directors) {
-                if (director.getId().equals(movie.getDirector())) {
-                    director.count++;
-                }
-            }
-        }
-
-        Collections.sort(actors, (b, a) -> b.count - a.count);
-        Collections.sort(directors, (b, a) -> b.count - a.count);
-
-        int outputSize = desiredActorCount + desiredDirectorsCount + (useDummyNeurons ? (1 + actorsInMovie) : 0);
-
-        Set<String> removedActors = actors.subList(desiredActorCount, actors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
-        actors = actors.subList(0, desiredActorCount);
-        Set<String> removedDirectors = actors.subList(desiredDirectorsCount, actors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
-        directors = directors.subList(0, desiredDirectorsCount);
-
-        //
-        // remove removed actors / directors from movies
-        //
-
-        for (Movie movie : movies) {
-            movie.getActors().removeAll(removedActors);
-            if (removedDirectors.contains(movie.getDirector())) {
-                movie.setDirector(null);
-            }
-        }
-
-        //
-        // remove movies unfit for training (w/o director or 4 actors)
-        //
-
-        movies = movies.stream().filter(m -> !m.filterMovie(actorsInMovie, useDummyNeurons)).collect(Collectors.toList());
-
-        List<Sample> samples = new ArrayList<>();
-        Collections.shuffle(movies, new Random(55));
-
-        int trainingSize = (int) (movies.size() * 0.9);
-
-        System.out.printf("Training on %d movies%n", trainingSize);
-
-        int done = 0;
-        for (Movie movie : movies) {
-            if (done++ == trainingSize) {
-                break;
-            }
-
-            double[] outputs = new double[]{movie.getRating() / 5 - 1};
-            double[] inputs = new double[outputSize];
-
-            int missingActors = 0;
-            for (String actorId : movie.getActors()) {
-                int i = actors.indexOf(new Person(actorId));
-
-                if (i == -1) {
-                    ++missingActors;
-                } else {
-                    inputs[i] = 1;
-                }
-            }
-
-            if (useDummyNeurons) {
-                int peopleNeurons = desiredActorCount + desiredDirectorsCount;
-                for (int i = peopleNeurons; i < peopleNeurons + missingActors; i++) {
-                    inputs[i] = 1;
-                }
-            }
-
-            int directorIndex = directors.indexOf(new Person(movie.getDirector()));
-            if (directorIndex == -1) {
-                inputs[inputs.length - 1] = 1;
-            } else {
-                inputs[desiredActorCount + directorIndex] = 1;
-            }
-
-            if (!useDummyNeurons && (directorIndex == -1 || missingActors > 0)) {
-                continue;
-            }
-
-            samples.add(new Sample(inputs, outputs));
-        }
-
-        System.out.println(samples.size());
-
-        MLP mlp = new MLP(outputSize, numHiddenNeurons, 1, numLearningSteps, showGraph, imgName,
-                learningRate, glorotBengioWeights, printStatusFreq, momentumInfluence, decLearningRateFreq,
-                dropoutOn, minibatchOn, minibatchSize);
-        mlp.training(samples);
-
-        int[] diffs = new int[]{0, 0, 0, 0};
-
-        for (int i = 0; i < movies.size(); i++) {
-
-            if (i == trainingSize) {
-                printDiffsTable(diffs);
-
-                diffs = new int[]{0, 0, 0, 0};
-
-                System.out.println("***");
-                System.out.println((movies.size() - trainingSize) + "movies not from the training set:");
-                System.out.println("***");
-            }
-
-            double[] inputs = new double[outputSize];
-
-            for (String actorId : movies.get(i).getActors()) {
-                int j = actors.indexOf(new Person(actorId));
-                inputs[j] = 1;
-            }
-
-            int directorIndex = directors.indexOf(new Person(movies.get(i).getDirector()));
-            inputs[desiredActorCount + directorIndex] = 1;
-
-            float rating = movies.get(i).getRating();
-            double predictedRating = (mlp.feedForward(inputs, false)[0] + 1) * 5;
-
-            if (i >= trainingSize) {
-                System.out.printf("Movie : %s, rating: %.1f - predicted %.1f%n", movies.get(i).getName(), rating, predictedRating);
-            }
-
-            if (Math.abs(rating - predictedRating) < 0.5) {
-                ++diffs[0];
-            } else if (Math.abs(rating - predictedRating) < 1) {
-                ++diffs[1];
-            } else if (Math.abs(rating - predictedRating) < 2) {
-                ++diffs[2];
-            } else {
-                ++diffs[3];
-            }
-        }
-
-        printDiffsTable(diffs);
-    }
-
-    private static void printDiffsTable(int[] diffs) {
-        int total = Arrays.stream(diffs).sum();
-
-        System.out.printf("******************************%n");
-        System.out.printf("*    < 0.5       *    %.2f %%  *%n", percent(diffs[0], total));
-        System.out.printf("******************************%n");
-        System.out.printf("*    < 1         *    %.2f %%  *%n", percent(diffs[1], total));
-        System.out.printf("******************************%n");
-        System.out.printf("*    < 2         *    %.2f %%  *%n", percent(diffs[2], total));
-        System.out.printf("******************************%n");
-        System.out.printf("*    >= 2        *    %.2f %%  *%n", percent(diffs[3], total));
-        System.out.printf("******************************%n");
-    }
-
-    private static float percent(int x, int total) {
-        return x / (float) total * 100f;
     }
 }
