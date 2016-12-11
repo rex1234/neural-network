@@ -4,7 +4,9 @@ import cz.muni.fi.datascrapper.DataTools;
 import cz.muni.fi.datascrapper.model.Movie;
 import cz.muni.fi.datascrapper.model.Person;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,13 +20,58 @@ public class Main {
     private static List<Movie> movies;
 
     public static void main(String[] args) throws Exception {
-        //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-        //System.setOut(out);
+        PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
+        System.setOut(out);
 //        xorTraining();
-        trainOnMovies(1000, 400, 3, true);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "1",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 20,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "1",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 20,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 30, 500, false, "2",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.2, 35,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 50, 500, false, "3",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.0, 50,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "4",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 40,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "5",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.3, true, 10, 0.5, 30,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
     }
 
-    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons) throws IOException {
+    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons,
+                                      int numHiddenNeurons, int numLearningSteps, boolean showGraph, String imgName,
+                                      double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq,
+                                      boolean dropoutOn, boolean minibatchOn, int minibatchSize) throws IOException {
+
         //
         // load training data from json
         //
@@ -65,7 +112,7 @@ public class Main {
             }
 
             double inputSum = Math.round(Arrays.stream(inputs).sum());
-            if(inputSum != actorsInMovie + 1) {
+            if (inputSum != actorsInMovie + 1) {
                 throw new RuntimeException("Invalid count of set neurons " + inputSum);
             }
 
@@ -73,14 +120,14 @@ public class Main {
         }
 
         System.out.println(samples.size());
+        MLP mlp = new MLP(inputSize, numHiddenNeurons, 1, numLearningSteps, showGraph, imgName,
+                learningRate, glorotBengioWeights, printStatusFreq, momentumInfluence, decLearningRateFreq,
+                dropoutOn, minibatchOn, minibatchSize);
 
-        //    Num Inputs,  Num Hidden,  Num Outputs, Num Learning steps, Show Graph, Output image name
-        MLP mlp = new MLP(inputSize, 10, 1, 5000, true, "7",
-                //Learning rate, Use Glorot & Bengio weight init? ,  Print status frequency, Momentum influence, Frequency of decreasing learning rate, Is dropout on, Is minibatch on, Minibatch size
-                0.1, false, 30, 0.7, 80, true, true, movies.size() / 500);
         mlp.training(samples);
 
         int[] diffs = new int[]{0, 0, 0, 0};
+        double mse = 0.0;
 
         //
         // validation
@@ -89,7 +136,10 @@ public class Main {
         for (int i = 0; i < movies.size(); i++) {
 
             if (i == iteratedMovies) {
+                mse *= 1d / i;
+                System.out.println("Mean square error: " + mse);
                 printDiffsTable(diffs);
+                mse = 0.0;
 
                 diffs = new int[]{0, 0, 0, 0};
 
@@ -100,16 +150,18 @@ public class Main {
 
             double[] inputs = new double[inputSize];
 
-            if(!createInputsForMovie(desiredActorCount, desiredDirectorsCount, actorsInMovie, useDummyNeurons, movies.get(i), inputs)) {
+            if (!createInputsForMovie(desiredActorCount, desiredDirectorsCount, actorsInMovie, useDummyNeurons, movies.get(i), inputs)) {
                 continue;
             }
 
             float rating = movies.get(i).getRating();
             double predictedRating = (mlp.feedForward(inputs, false)[0] + 1) * 5;
 
-            if(i >= trainingSize){
+            if (i >= trainingSize) {
                 System.out.printf("Movie : %s, rating: %.1f - predicted %.1f%n", movies.get(i).getName(), rating, predictedRating);
             }
+
+            mse += Math.pow(rating - predictedRating, 2);
 
             if (Math.abs(rating - predictedRating) < 0.5) {
                 ++diffs[0];
@@ -121,7 +173,8 @@ public class Main {
                 ++diffs[3];
             }
         }
-
+        mse *= 1d / (movies.size() - iteratedMovies);
+        System.out.println("Mean square error: " + mse);
         printDiffsTable(diffs);
     }
 
