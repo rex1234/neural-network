@@ -18,57 +18,53 @@ public class Main {
     private static List<Movie> movies;
 
     public static void main(String[] args) throws Exception {
-        //PrintStream out = new PrintStream(new FileOutputStream("output.txt"));
-        //System.setOut(out);
-//        xorTraining();
-
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 1000, 3, true, 6, 500, false, "1",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.2, true, 10, 0.5, 20,
-                // dropout ON, Minibatch ON, Minibatch size
-                true, true, 500);
-
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 200, 2, true, 40, 500, false, "1",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.2, true, 10, 0.5, 20,
-                // dropout ON, Minibatch ON, Minibatch size
-                true, false, 0);
-
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 200, 2, true, 30, 500, false, "2",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.2, true, 10, 0.2, 35,
-                // dropout ON, Minibatch ON, Minibatch size
-                true, false, 0);
-
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 200, 2, true, 50, 500, false, "3",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.2, true, 10, 0.0, 50,
-                // dropout ON, Minibatch ON, Minibatch size
-                true, false, 0);
-
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 200, 2, true, 40, 500, false, "4",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.2, true, 10, 0.5, 40,
-                // dropout ON, Minibatch ON, Minibatch size
-                false, false, 0);
-
-        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
-        trainOnMovies(1000, 200, 2, true, 40, 500, false, "5",
-                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
-                0.3, true, 10, 0.5, 30,
-                // dropout ON, Minibatch ON, Minibatch size
-                false, false, 0);
+        trainOnMovies(
+                //actors count
+                1000,
+                //directors count
+                1000,
+                //actors in movie
+                getInputFor("count of actors in a movie", 3),
+                //dummy neurons (to fill missing data so there is always the same amount on inputs)
+                true,
+                //hidden neurons
+                getInputFor("hidden neuron count", 6),
+                //learning steps
+                getInputFor("learning steps", 500),
+                //graph
+                true, "graph",
+                //learning rate
+                0.2,
+                //glorot bengio weights
+                true,
+                //print frequency of status messages
+                10,
+                //momentum
+                0.5,
+                //declining learning rate frequency
+                20,
+                //dropout ON
+                true,
+                //minibatch
+                true, 500);
     }
 
-    private static void trainOnMovies(final int desiredActorCount, final int desiredDirectorsCount, final int actorsInMovie, boolean useDummyNeurons,
-                                      int numHiddenNeurons, int numLearningSteps, boolean showGraph, String imgName,
-                                      double learningRate, boolean glorotBengioWeights, int printStatusFreq, double momentumInfluence, int decLearningRateFreq,
-                                      boolean dropoutOn, boolean minibatchOn, int minibatchSize) throws IOException {
+    private static void trainOnMovies(final int desiredActorCount,
+                                      final int desiredDirectorsCount,
+                                      final int actorsInMovie,
+                                      boolean useDummyNeurons,
+                                      int numHiddenNeurons,
+                                      int numLearningSteps,
+                                      boolean showGraph,
+                                      String imgName,
+                                      double learningRate,
+                                      boolean glorotBengioWeights,
+                                      int printStatusFreq,
+                                      double momentumInfluence,
+                                      int decLearningRateFreq,
+                                      boolean dropoutOn,
+                                      boolean minibatchOn,
+                                      int minibatchSize) throws IOException {
 
         //
         // load training data from json
@@ -124,7 +120,7 @@ public class Main {
                 learningRate, glorotBengioWeights, printStatusFreq, momentumInfluence, decLearningRateFreq,
                 dropoutOn, minibatchOn, minibatchSize);
 
-       mlp.training(samples);
+        mlp.training(samples);
 
         int[] diffs = new int[]{0, 0, 0, 0};
         double mse = 0.0;
@@ -188,7 +184,7 @@ public class Main {
                     movie.getActors().size(), movie.getActors().stream()
                             .map(id -> actorById(id).getName())
                             .collect(Collectors.joining(", ")),
-            movie.getDirector() == null ? 0 : 1, directorById(movie.getDirector()).getName());
+                    movie.getDirector() == null ? 0 : 1, directorById(movie.getDirector()).getName());
         }
 
         mse *= 1d / (movies.size() - iteratedMovies);
@@ -213,8 +209,8 @@ public class Main {
             }
         }
 
-        Collections.sort(actors, (b, a) -> b.count - a.count);
-        Collections.sort(directors, (b, a) -> b.count - a.count);
+        Collections.sort(actors, (a, b) -> b.count - a.count);
+        Collections.sort(directors, (a, b) -> b.count - a.count);
 
         Set<String> removedActors = actors.subList(desiredActorCount, actors.size()).stream().map(a -> a.getId()).collect(Collectors.toSet());
         actors = actors.subList(0, desiredActorCount);
@@ -335,11 +331,66 @@ public class Main {
         System.out.println("Vstup: [0,0] Výstup: " + mlp.feedForward(new double[]{0, 0}, true)[0]);
     }
 
+    private static void otherTrainings() throws IOException {
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "1",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 20,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 30, 500, false, "2",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.2, 35,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 50, 500, false, "3",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.0, 50,
+                // dropout ON, Minibatch ON, Minibatch size
+                true, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "4",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.2, true, 10, 0.5, 40,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+
+        //ACTORS count, DIRECTORS count, ACTORS in movie, use DUMMY neurons, num HIDDEN neurons, Learning steps, show graph
+        trainOnMovies(1000, 200, 2, true, 40, 500, false, "5",
+                //learning rate, glorotBengioWeights, print status freq, momentum, Dec learnRatefreq
+                0.3, true, 10, 0.5, 30,
+                // dropout ON, Minibatch ON, Minibatch size
+                false, false, 0);
+    }
+
     private static Person actorById(String id) {
         return actors.stream().filter(a -> a.getId().equals(id)).findFirst().orElse(new Person(id, "-"));
     }
 
     private static Person directorById(String id) {
         return directors.stream().filter(a -> a.getId().equals(id)).findFirst().orElse(new Person(id, "-"));
+    }
+
+    private static String getInputFor(String field, String defaultVal) {
+        System.out.printf("Please enter an value for \"%s\". Default value is %s%n", field, defaultVal);
+        String s = new Scanner(System.in).nextLine();
+        if(s.isEmpty()) {
+            return defaultVal;
+        }
+        return s;
+    }
+
+    private static int getInputFor(String field, int defaultVal) {
+        System.out.printf("Please enter an value for \"%s\". Default value is %s%n", field, defaultVal);
+        String s = new Scanner(System.in).nextLine();
+        if(s.isEmpty()) {
+            return defaultVal;
+        }
+        return Integer.parseInt(s);
     }
 }

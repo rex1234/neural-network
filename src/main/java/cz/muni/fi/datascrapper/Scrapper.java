@@ -19,7 +19,7 @@ import java.util.*;
 /**
  * Created by Rex on 8.11.2016.
  */
-public class Main{
+public class Scrapper {
 
     private static volatile int buffered = 5000;
     private static volatile int processed = 0;
